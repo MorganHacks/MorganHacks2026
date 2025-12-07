@@ -1,159 +1,213 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Users, Award, Code, Building2, Repeat } from "lucide-react"
+import { useEffect, useMemo, useState } from "react"
+import type { LucideIcon } from "lucide-react"
+import { BookOpenCheck, PieChart, School, Sparkles, Users } from "lucide-react"
 
-const analytics = [
-  { label: "Total Attendance", value: 450, icon: Users, color: "text-primary", suffix: "" },
-  { label: "Distinct Majors", value: 32, icon: Building2, color: "text-secondary", suffix: "" },
-  { label: "Colleges Represented", value: 18, icon: Award, color: "text-accent", suffix: "" },
-  { label: "Projects Submitted", value: 87, icon: Code, color: "text-primary", suffix: "" },
-  { label: "Returning Hackers", value: 156, icon: Repeat, color: "text-secondary", suffix: "" },
-  { label: "Mentors & Judges", value: 42, icon: Users, color: "text-accent", suffix: "" },
+type Metric = {
+  label: string
+  value: number
+  suffix?: string
+  icon: LucideIcon
+  tone: string
+}
+
+type Slice = {
+  label: string
+  value: number
+  color: string
+}
+
+const stats: Metric[] = [
+  { label: "Total Hackers", value: 142, icon: Users, tone: "text-primary" },
+  { label: "Workshops", value: 6, icon: Sparkles, tone: "text-secondary" },
+  { label: "Schools Represented", value: 14, icon: School, tone: "text-accent" },
+  { label: "Distinct Majors", value: 43, icon: BookOpenCheck, tone: "text-primary" },
+]
+
+const classificationMix: Slice[] = [
+  { label: "Freshman (F)", value: 14, color: "#60a5fa" },
+  { label: "Sophomore (S)", value: 43, color: "#4f46e5" },
+  { label: "Junior (J)", value: 43, color: "#22d3ee" },
+  { label: "Senior (Sr)", value: 24, color: "#38bdf8" },
+  { label: "5th Year (5S)", value: 5, color: "#a855f7" },
+  { label: "Masters (M)", value: 40, color: "#0ea5e9" },
+]
+
+const sampleMajors = [
+  "Computer Science",
+  "Economics",
+  "Biology",
+  "Mechanical Eng",
+  "Psychology",
+  "Film & Media",
+  "Cybersecurity",
+  "Business",
 ]
 
 export function AnalyticsDataTower() {
+  const totalHackers = 142
+  const classificationTotal = classificationMix.reduce((sum, slice) => sum + slice.value, 0)
+
   return (
-    <div className="relative">
-      {/* Data tower */}
-      <div className="relative max-w-4xl mx-auto">
-        {/* Tower structure */}
-        <div className="relative bg-gradient-to-t from-card via-background to-card border border-primary/30 rounded-lg p-8 overflow-hidden">
-          {/* Holographic grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ea5e9_1px,transparent_1px),linear-gradient(to_bottom,#0ea5e9_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-10" />
+    <div className="relative max-w-6xl mx-auto space-y-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((metric) => (
+          <MetricCard key={metric.label} metric={metric} />
+        ))}
+      </div>
 
-          {/* Floating particles */}
-          <div className="absolute inset-0">
-            {Array.from({ length: 30 }).map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-primary rounded-full animate-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${3 + Math.random() * 4}s`,
-                  opacity: Math.random() * 0.5 + 0.3,
-                }}
-              />
-            ))}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="p-6 bg-card border border-primary/30 rounded-lg">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="text-xs font-mono text-muted-foreground uppercase tracking-[0.2em]">Attendance Mix</p>
+              <h3 className="text-2xl font-bold font-[family-name:var(--font-orbitron)] mt-1">Classifications</h3>
+            </div>
+            <PieChart className="w-5 h-5 text-primary" />
           </div>
 
-          {/* Data holograms */}
-          <div className="relative z-10 space-y-6">
-            {analytics.map((stat, index) => (
-              <DataHologram key={index} stat={stat} delay={index * 0.1} />
-            ))}
+          <div className="flex items-center justify-center">
+            <PieChartWithLabels slices={classificationMix} total={classificationTotal} />
           </div>
-
-          {/* Tower top glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-gradient-to-b from-primary/30 to-transparent blur-3xl pointer-events-none" />
         </div>
 
-        {/* Additional stats grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          <StatCard
-            label="Student Classifications"
-            details={["Freshmen: 28%", "Sophomores: 32%", "Juniors: 25%", "Seniors: 15%"]}
-            color="from-cyan-500 to-blue-500"
-          />
-          <StatCard
-            label="Top Project Categories"
-            details={["AI/ML: 24", "Web Apps: 21", "Mobile: 18", "Hardware: 14", "Other: 10"]}
-            color="from-pink-500 to-rose-500"
-          />
-          <StatCard
-            label="Gender Distribution"
-            details={["Male: 58%", "Female: 38%", "Non-binary: 3%", "Prefer not to say: 1%"]}
-            color="from-green-500 to-emerald-500"
-          />
+        <div className="p-6 bg-card border border-primary/30 rounded-lg">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="text-xs font-mono text-muted-foreground uppercase tracking-[0.2em]">Skills</p>
+              <h3 className="text-2xl font-bold font-[family-name:var(--font-orbitron)] mt-1">Majors Represented</h3>
+              <p className="text-sm text-muted-foreground mt-2">
+                43 unique majors last year. Your background doesn&apos;t limit you.
+              </p>
+            </div>
+            <BookOpenCheck className="w-5 h-5 text-primary" />
+          </div>
+
+          <div className="flex flex-wrap gap-2 items-center">
+            {sampleMajors.map((major) => (
+              <span
+                key={major}
+                className="px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 text-xs font-mono text-foreground shadow-sm"
+              >
+                {major}
+              </span>
+            ))}
+            <span className="px-3 py-1.5 rounded-full bg-muted text-xs font-mono text-foreground border border-primary/10">
+              +35 more majors
+            </span>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-function DataHologram({
-  stat,
-  delay,
-}: {
-  stat: (typeof analytics)[0]
-  delay: number
-}) {
+function MetricCard({ metric }: { metric: Metric }) {
   const [count, setCount] = useState(0)
-  const Icon = stat.icon
+  const Icon = metric.icon
 
   useEffect(() => {
-    const duration = 2000
-    const steps = 60
-    const increment = stat.value / steps
-    let currentStep = 0
+    const duration = 800
+    const steps = 50
+    const increment = metric.value / steps
+    let current = 0
 
     const timer = setInterval(() => {
-      currentStep++
-      if (currentStep <= steps) {
-        setCount(Math.floor(increment * currentStep))
+      current++
+      if (current <= steps) {
+        setCount(Math.round(increment * current))
       } else {
-        setCount(stat.value)
+        setCount(metric.value)
         clearInterval(timer)
       }
     }, duration / steps)
 
     return () => clearInterval(timer)
-  }, [stat.value])
+  }, [metric.value])
 
   return (
-    <div
-      className="group relative flex items-center gap-6 p-6 bg-card/50 backdrop-blur-sm border border-primary/20 rounded-lg hover:border-primary/50 transition-all"
-      style={{
-        animationDelay: `${delay}s`,
-      }}
-    >
-      {/* Icon */}
-      <div
-        className={`w-16 h-16 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center ${stat.color} group-hover:scale-110 transition-transform`}
-      >
-        <Icon className="w-8 h-8" />
+    <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-card p-4 hover:border-primary/60 transition-all">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-60" />
+      <div className="relative z-10 flex items-center gap-3">
+        <div className={`w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center ${metric.tone}`}>
+          <Icon className="w-5 h-5" />
+        </div>
+        <div>
+          <p className="text-xs uppercase tracking-wide text-muted-foreground font-mono">{metric.label}</p>
+          <p className="text-2xl font-bold font-[family-name:var(--font-orbitron)]">
+            <span className={metric.tone}>{count.toLocaleString()}</span>
+            {metric.suffix}
+          </p>
+        </div>
       </div>
-
-      {/* Data */}
-      <div className="flex-1">
-        <p className="text-sm text-muted-foreground font-mono mb-1">{stat.label}</p>
-        <p className={`text-4xl md:text-5xl font-bold font-[family-name:var(--font-orbitron)] ${stat.color}`}>
-          {count.toLocaleString()}
-          {stat.suffix}
-        </p>
-      </div>
-
-      {/* Animated bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-
-      {/* Scan line effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none animate-scan" />
     </div>
   )
 }
 
-function StatCard({
-  label,
-  details,
-  color,
-}: {
-  label: string
-  details: string[]
-  color: string
-}) {
+function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number }) {
+  const size = 280
+  const center = size / 2
+  const radius = 110
+  const paths = useMemo(() => {
+    let currentAngle = -90 // start at top
+    return slices.map((slice) => {
+      const angle = (slice.value / total) * 360
+      const startAngle = currentAngle
+      const endAngle = currentAngle + angle
+      currentAngle = endAngle
+
+      const start = polarToCartesian(center, center, radius, endAngle)
+      const end = polarToCartesian(center, center, radius, startAngle)
+      const largeArcFlag = angle > 180 ? 1 : 0
+      const d = `M ${center} ${center} L ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y} Z`
+
+      const percent = Math.round((slice.value / total) * 100)
+      const midAngle = startAngle + angle / 2
+      const lineStart = polarToCartesian(center, center, radius * 0.8, midAngle)
+      const labelPos = polarToCartesian(center, center, radius + 24, midAngle)
+      const textAnchor = labelPos.x < center ? "end" : "start"
+
+      return { d, color: slice.color, label: `${slice.label} (${percent}%)`, lineStart, labelPos, textAnchor }
+    })
+  }, [center, radius, slices, total])
+
   return (
-    <div className="p-6 bg-card border border-primary/30 rounded-lg hover:border-primary/50 transition-colors">
-      <h3 className="text-lg font-bold mb-4 font-[family-name:var(--font-orbitron)]">{label}</h3>
-      <ul className="space-y-2">
-        {details.map((detail, i) => (
-          <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground font-mono">
-            <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${color}`} />
-            {detail}
-          </li>
+    <div className="relative w-[280px] h-[280px]">
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+        {paths.map((path, idx) => (
+          <g key={idx}>
+            <path d={path.d} fill={path.color} className="opacity-90" />
+            <line
+              x1={path.lineStart.x}
+              y1={path.lineStart.y}
+              x2={path.labelPos.x}
+              y2={path.labelPos.y}
+              stroke={path.color}
+              strokeWidth={1.5}
+            />
+            <text
+              x={path.labelPos.x}
+              y={path.labelPos.y}
+              textAnchor={path.textAnchor as "start" | "end"}
+              dominantBaseline="middle"
+              className="text-[10px] font-mono fill-foreground"
+              dx={path.textAnchor === "end" ? -6 : 6}
+            >
+              {path.label}
+            </text>
+          </g>
         ))}
-      </ul>
+      </svg>
+      <div className="absolute inset-8 rounded-full border border-primary/20 pointer-events-none" />
     </div>
   )
+}
+
+function polarToCartesian(cx: number, cy: number, r: number, angleInDegrees: number) {
+  const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0
+  return {
+    x: cx + r * Math.cos(angleInRadians),
+    y: cy + r * Math.sin(angleInRadians),
+  }
 }

@@ -33,7 +33,7 @@ const workshops = [
     level: "All Levels",
     description:
       "Build technology with environmental impact in mind. Learn frameworks for sustainable design, carbon-aware computing, and green UX patterns.",
-    color: "from-green-500 to-emerald-500",
+    color: "from-blue-500 to-indigo-500",
     district: "sustainability",
     status: "upcoming",
   },

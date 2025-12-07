@@ -20,10 +20,10 @@ const cities = [
     id: "sustainability",
     name: "Sustainability Harbor",
     description: "Green technology, climate solutions, and environmental innovation",
-    color: "from-green-500 to-emerald-500",
+    color: "from-blue-500 to-indigo-500",
     position: { x: 50, y: 15 },
     icon: Leaf,
-    glowColor: "rgba(34, 197, 94, 0.5)",
+    glowColor: "rgba(59, 130, 246, 0.5)",
   },
   {
     id: "health",
@@ -87,6 +87,25 @@ export function InteractiveCityMap() {
     setIsDragging(false)
   }
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setIsDragging(true)
+    setDragStart({ x: touch.clientX - position.x, y: touch.clientY - position.y })
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    const touch = e.touches[0]
+    setPosition({
+      x: touch.clientX - dragStart.x,
+      y: touch.clientY - dragStart.y,
+    })
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
+  }
+
   const handleCityClick = (cityId: string) => {
     router.push(`/tracks/${cityId}`)
   }
@@ -94,7 +113,7 @@ export function InteractiveCityMap() {
   return (
     <div className="relative">
       {/* Controls */}
-      <div className="absolute top-4 right-4 z-20 flex flex-col gap-2">
+      <div className="absolute top-4 right-4 z-20 hidden md:flex flex-col gap-2">
         <button
           onClick={() => setScale((prev) => Math.min(prev * 1.2, 2))}
           className="px-4 py-2 bg-card border border-primary/30 rounded-lg text-sm font-mono hover:bg-primary/10 transition-colors"
@@ -121,12 +140,16 @@ export function InteractiveCityMap() {
       {/* Map Container */}
       <div
         ref={containerRef}
-        className="relative w-full h-[600px] bg-gradient-to-br from-background via-card to-background border border-primary/30 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing"
+        className="relative w-full min-h-[360px] h-[70vh] max-h-[720px] bg-gradient-to-br from-background via-card to-background border border-primary/30 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing"
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
       >
         {/* Grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20" />
@@ -150,7 +173,7 @@ export function InteractiveCityMap() {
             y1="15%"
             x2="75%"
             y2="35%"
-            stroke="rgba(34, 197, 94, 0.3)"
+            stroke="rgba(59, 130, 246, 0.3)"
             strokeWidth="2"
             strokeDasharray="5,5"
           />
@@ -284,7 +307,29 @@ export function InteractiveCityMap() {
 
       {/* Instructions */}
       <div className="mt-4 text-center text-sm text-muted-foreground font-mono">
-        <p>Drag to pan • Scroll to zoom • Click cities to explore</p>
+        <p className="md:block hidden">Drag to pan • Scroll to zoom • Click cities to explore</p>
+        <p className="md:hidden block">Pinch/drag to pan • Tap cities to explore</p>
+      </div>
+
+      {/* Mobile-friendly cards */}
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+        {cities.map((city) => {
+          const Icon = city.icon
+          return (
+            <button
+              key={city.id}
+              onClick={() => handleCityClick(city.id)}
+              className="p-4 bg-card border border-primary/30 rounded-lg text-left hover:border-primary/60 transition-colors"
+            >
+              <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${city.color} mb-3 flex items-center justify-center neon-border`}>
+                <Icon className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold font-[family-name:var(--font-orbitron)]">{city.name}</h3>
+              <p className="text-sm text-muted-foreground mt-1 font-mono">{city.description}</p>
+              <p className="text-xs text-primary mt-2 font-mono">Tap to explore →</p>
+            </button>
+          )
+        })}
       </div>
     </div>
   )

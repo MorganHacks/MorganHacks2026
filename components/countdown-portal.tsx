@@ -76,7 +76,7 @@ export function CountdownPortal() {
             ) : (
               <div className="animate-fade-in">
                 <div className="text-6xl md:text-8xl mb-4 neon-glow-cyan">🚀</div>
-                <h3 className="text-2xl md:text-3xl font-bold neon-glow-green font-[family-name:var(--font-orbitron)]">
+                <h3 className="text-2xl md:text-3xl font-bold neon-glow-blue font-[family-name:var(--font-orbitron)]">
                   PORTAL OPEN
                 </h3>
                 <p className="mt-4 text-sm text-accent">MorganHacks has begun!</p>

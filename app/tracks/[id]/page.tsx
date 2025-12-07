@@ -40,7 +40,7 @@ const trackData: Record<
     description: "Green technology, climate solutions, and environmental innovation",
     fullDescription:
       "Sustainability Harbor is our greenest district, where technology meets environmental responsibility. Hackers here are tackling climate change, renewable energy, and sustainable living through innovative software and hardware solutions. This is where we build the future we want to live in.",
-    color: "from-green-500 to-emerald-500",
+    color: "from-blue-500 to-indigo-500",
     icon: "🌱",
     challenges: [
       "Create a carbon footprint tracking app",

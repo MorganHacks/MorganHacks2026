@@ -23,7 +23,7 @@ const sponsors = [
     description: "Innovation hub focused on emerging technologies and sustainable development.",
     website: "https://innovatelabs.example.com",
     offerings: ["Internship Opportunities", "Workshop", "Swag"],
-    color: "from-green-500 to-emerald-500",
+    color: "from-blue-500 to-indigo-500",
   },
   {
     id: 3,

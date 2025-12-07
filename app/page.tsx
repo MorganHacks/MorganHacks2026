@@ -21,15 +21,13 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-[family-name:var(--font-orbitron)]">
-              <span className="neon-glow-cyan">Neon Parallel</span>
+              <span className="neon-glow-cyan">MorganHacks</span>
               <br />
-              <span className="neon-glow-pink">Cities</span>
+              <span className="neon-glow-pink">2026</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 text-pretty">
-              {
-                "Enter a futuristic multi-city universe where innovation meets imagination. Five districts, endless possibilities."
-              }
+              {"Morgan State University's flagship hackathon—two days of building, learning, and launching big ideas."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -67,7 +65,7 @@ export default function Home() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 font-[family-name:var(--font-orbitron)]">
-            <span className="neon-glow-green">Explore the Districts</span>
+            <span className="neon-glow-blue">Explore the Districts</span>
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Each track is a glowing district with its own unique culture and challenges
@@ -81,7 +79,7 @@ export default function Home() {
             />
             <CityCard
               name="Sustainability Harbor"
-              color="from-green-500 to-emerald-500"
+              color="from-blue-500 to-indigo-500"
               description="Green tech & climate solutions"
             />
             <CityCard
@@ -133,7 +131,7 @@ function StatCard({
       <div className="flex justify-center mb-4">{icon}</div>
       <div
         className={`text-4xl font-bold mb-2 font-[family-name:var(--font-orbitron)] ${
-          color === "primary" ? "neon-glow-cyan" : color === "secondary" ? "neon-glow-pink" : "neon-glow-green"
+          color === "primary" ? "neon-glow-cyan" : color === "secondary" ? "neon-glow-pink" : "neon-glow-blue"
         }`}
       >
         {value}

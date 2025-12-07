@@ -5,11 +5,11 @@ import { Bus, MapPin, Clock, Users } from "lucide-react"
 
 const routes = [
   {
-    id: "green",
-    name: "Green Line",
-    color: "from-green-500 to-emerald-500",
-    borderColor: "border-green-500",
-    textColor: "text-green-500",
+    id: "cobalt",
+    name: "Cobalt Line",
+    color: "from-blue-500 to-indigo-500",
+    borderColor: "border-blue-500",
+    textColor: "text-blue-500",
     stops: [
       { name: "Campus Center", time: "9:00 AM", type: "major" },
       { name: "North Dorms", time: "9:05 AM", type: "regular" },
@@ -22,11 +22,11 @@ const routes = [
     hours: "9:00 AM - 11:00 PM",
   },
   {
-    id: "blue",
-    name: "Blue Line",
-    color: "from-cyan-500 to-blue-500",
-    borderColor: "border-cyan-500",
-    textColor: "text-cyan-500",
+    id: "sky",
+    name: "Sky Line",
+    color: "from-sky-400 to-blue-500",
+    borderColor: "border-sky-500",
+    textColor: "text-sky-500",
     stops: [
       { name: "Train Station", time: "8:30 AM", type: "major" },
       { name: "Downtown Hub", time: "8:40 AM", type: "regular" },
@@ -39,11 +39,11 @@ const routes = [
     hours: "8:30 AM - 6:00 PM",
   },
   {
-    id: "pink",
-    name: "Pink Line",
-    color: "from-pink-500 to-rose-500",
-    borderColor: "border-pink-500",
-    textColor: "text-pink-500",
+    id: "violet",
+    name: "Violet Line",
+    color: "from-indigo-400 to-purple-500",
+    borderColor: "border-indigo-400",
+    textColor: "text-indigo-400",
     stops: [
       { name: "Airport Terminal", time: "7:00 AM", type: "major" },
       { name: "Hotel District", time: "7:30 AM", type: "regular" },
@@ -57,7 +57,7 @@ const routes = [
 ]
 
 export function TransitMap() {
-  const [selectedRoute, setSelectedRoute] = useState<string | null>("green")
+  const [selectedRoute, setSelectedRoute] = useState<string | null>("cobalt")
   const [hoveredStop, setHoveredStop] = useState<string | null>(null)
 
   const activeRoute = routes.find((r) => r.id === selectedRoute)

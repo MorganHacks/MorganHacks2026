@@ -10,28 +10,28 @@
   --card-foreground: oklch(0.98 0.01 270);
   --popover: oklch(0.12 0.03 270);
   --popover-foreground: oklch(0.98 0.01 270);
-  --primary: oklch(0.65 0.25 180);
+  --primary: oklch(0.6 0.18 244);
   --primary-foreground: oklch(0.08 0.02 270);
-  --secondary: oklch(0.7 0.22 320);
+  --secondary: oklch(0.63 0.12 285);
   --secondary-foreground: oklch(0.98 0.01 270);
   --muted: oklch(0.2 0.03 270);
   --muted-foreground: oklch(0.65 0.03 270);
-  --accent: oklch(0.7 0.28 145);
+  --accent: oklch(0.56 0.16 232);
   --accent-foreground: oklch(0.08 0.02 270);
   --destructive: oklch(0.6 0.25 25);
   --destructive-foreground: oklch(0.98 0.01 270);
   --border: oklch(0.25 0.04 270);
   --input: oklch(0.25 0.04 270);
-  --ring: oklch(0.65 0.25 180);
-  --chart-1: oklch(0.65 0.25 180);
-  --chart-2: oklch(0.7 0.22 320);
-  --chart-3: oklch(0.7 0.28 145);
+  --ring: oklch(0.6 0.18 244);
+  --chart-1: oklch(0.6 0.18 244);
+  --chart-2: oklch(0.63 0.12 285);
+  --chart-3: oklch(0.56 0.16 232);
   --chart-4: oklch(0.68 0.24 50);
   --chart-5: oklch(0.6 0.25 25);
   --radius: 0.5rem;
-  --neon-cyan: oklch(0.65 0.25 180);
-  --neon-pink: oklch(0.7 0.22 320);
-  --neon-green: oklch(0.7 0.28 145);
+  --neon-cyan: oklch(0.6 0.18 244);
+  --neon-pink: oklch(0.63 0.12 285);
+  --neon-green: oklch(0.56 0.16 232);
   --neon-yellow: oklch(0.68 0.24 50);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -50,22 +50,22 @@
   --card-foreground: oklch(0.98 0.01 270);
   --popover: oklch(0.12 0.03 270);
   --popover-foreground: oklch(0.98 0.01 270);
-  --primary: oklch(0.65 0.25 180);
+  --primary: oklch(0.6 0.18 244);
   --primary-foreground: oklch(0.08 0.02 270);
-  --secondary: oklch(0.7 0.22 320);
+  --secondary: oklch(0.63 0.12 285);
   --secondary-foreground: oklch(0.98 0.01 270);
   --muted: oklch(0.2 0.03 270);
   --muted-foreground: oklch(0.65 0.03 270);
-  --accent: oklch(0.7 0.28 145);
+  --accent: oklch(0.56 0.16 232);
   --accent-foreground: oklch(0.08 0.02 270);
   --destructive: oklch(0.6 0.25 25);
   --destructive-foreground: oklch(0.98 0.01 270);
   --border: oklch(0.25 0.04 270);
   --input: oklch(0.25 0.04 270);
-  --ring: oklch(0.65 0.25 180);
-  --chart-1: oklch(0.65 0.25 180);
-  --chart-2: oklch(0.7 0.22 320);
-  --chart-3: oklch(0.7 0.28 145);
+  --ring: oklch(0.6 0.18 244);
+  --chart-1: oklch(0.6 0.18 244);
+  --chart-2: oklch(0.63 0.12 285);
+  --chart-3: oklch(0.56 0.16 232);
   --chart-4: oklch(0.68 0.24 50);
   --chart-5: oklch(0.6 0.25 25);
   --sidebar: oklch(0.205 0 0);
@@ -142,22 +142,23 @@
   }
   /* </CHANGE> */
 
-  /* Fixed neon glow utilities to use CSS variables instead of theme() function */
+  /* Soft glow utilities tuned for the blue-centric palette */
   .neon-glow-cyan {
-    text-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary), 0 0 30px var(--color-primary);
+    text-shadow: 0 0 8px var(--color-primary), 0 0 16px var(--color-primary), 0 0 24px var(--color-primary);
   }
 
   .neon-glow-pink {
-    text-shadow: 0 0 10px var(--color-secondary), 0 0 20px var(--color-secondary), 0 0 30px var(--color-secondary);
+    text-shadow: 0 0 8px var(--color-secondary), 0 0 16px var(--color-secondary), 0 0 24px var(--color-secondary);
   }
 
+  .neon-glow-blue,
   .neon-glow-green {
-    text-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent), 0 0 30px var(--color-accent);
+    text-shadow: 0 0 8px var(--color-accent), 0 0 16px var(--color-accent), 0 0 24px var(--color-accent);
   }
   /* </CHANGE> */
 
   .neon-border {
-    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, inset 0 0 10px currentColor;
+    box-shadow: 0 0 8px currentColor, 0 0 16px currentColor, inset 0 0 8px currentColor;
   }
 
   /* Enhanced animations for portal transitions and effects */

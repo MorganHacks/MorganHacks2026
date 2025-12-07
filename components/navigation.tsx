@@ -12,9 +12,9 @@ export function Navigation() {
 
   const links = [
     { href: "/tracks", label: "Track Cities" },
-    { href: "/timeline", label: "Timeline" },
-    { href: "/workshops", label: "Workshops" },
-    { href: "/transit", label: "Transit" },
+    // { href: "/timeline", label: "Timeline" },
+    // { href: "/workshops", label: "Workshops" },
+    // { href: "/transit", label: "Transit" },
     { href: "/sponsors", label: "Sponsors" },
   ]
 
