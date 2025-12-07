@@ -51,7 +51,7 @@ export default function SponsorsPage() {
               <div className="mt-6 flex justify-center">
                 <Link href="https://example.com/sponsorship-prospectus.pdf" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="neon-border">
-                    View Sponsorship Prospectus (PDF)
+                    View Sponsorship Packet (PDF)
                   </Button>
                 </Link>
               </div>

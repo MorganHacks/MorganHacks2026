@@ -17,9 +17,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "MorganHacks 2026 | Neon Parallel Cities",
+  title: "MorganHacks 2026",
   description: "Join us April 14-15, 2026 for MorganHacks - A futuristic multi-city hackathon experience",
-  generator: "v0.app",
+  generator: "Next.js",
   icons: {
     icon: [
       {

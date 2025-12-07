@@ -58,6 +58,9 @@ export function Navigation() {
 
           {/* Mobile menu button */}
           <button
+            type="button"
+            aria-expanded={isOpen}
+            aria-label="Toggle menu"
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
           >
@@ -67,8 +70,8 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-primary/20 animate-fade-in">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden absolute left-0 right-0 top-16 bg-background/95 border-t border-primary/20 shadow-xl animate-fade-in">
+            <div className="flex flex-col gap-4 p-4">
               {links.map((link) => (
                 <Link
                   key={link.href}

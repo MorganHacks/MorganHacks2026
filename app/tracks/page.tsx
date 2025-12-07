@@ -12,7 +12,7 @@ export default function TracksPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 font-[family-name:var(--font-orbitron)]">
-              <span className="neon-glow-cyan">Parallel Cities</span>
+              <span className="neon-glow-cyan">Track Cities</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
               Explore five interconnected districts. Click and drag to navigate, hover to preview.

@@ -146,7 +146,7 @@ function MetricCard({ metric }: { metric: Metric }) {
 }
 
 function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number }) {
-  const size = 280
+  const size = 320
   const center = size / 2
   const radius = 110
   const paths = useMemo(() => {
@@ -164,8 +164,8 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
 
       const percent = Math.round((slice.value / total) * 100)
       const midAngle = startAngle + angle / 2
-      const lineStart = polarToCartesian(center, center, radius * 0.8, midAngle)
-      const labelPos = polarToCartesian(center, center, radius + 24, midAngle)
+      const lineStart = polarToCartesian(center, center, radius * 0.88, midAngle)
+      const labelPos = polarToCartesian(center, center, radius * 1.15, midAngle)
       const textAnchor = labelPos.x < center ? "end" : "start"
 
       return { d, color: slice.color, label: `${slice.label} (${percent}%)`, lineStart, labelPos, textAnchor }
@@ -173,7 +173,7 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
   }, [center, radius, slices, total])
 
   return (
-    <div className="relative w-[280px] h-[280px]">
+    <div className="relative w-[320px] h-[320px]">
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
         {paths.map((path, idx) => (
           <g key={idx}>

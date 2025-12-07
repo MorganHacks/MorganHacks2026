@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
+import { Cpu, Leaf, Heart, Gamepad2, Bot, X } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { Cpu, Leaf, Heart, Gamepad2, Bot } from "lucide-react"
 
 const cities = [
   {
@@ -54,8 +54,100 @@ const cities = [
   },
 ]
 
+const trackDetails: Record<
+  string,
+  {
+    fullDescription: string
+    challenges: string[]
+    prizes: string[]
+    resources: { name: string; url: string }[]
+  }
+> = {
+  ai: {
+    fullDescription:
+      "Push the boundaries of neural networks, NLP, and computer vision. From chatbots to recommendation systems, this is where silicon dreams become reality.",
+    challenges: [
+      "Build an AI assistant that understands context",
+      "Create a computer vision app for accessibility",
+      "Develop a predictive model for social good",
+    ],
+    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Use of OpenAI"],
+    resources: [
+      { name: "OpenAI API", url: "https://platform.openai.com/docs" },
+      { name: "Hugging Face Hub", url: "https://huggingface.co/models" },
+      { name: "Google Colab GPUs", url: "https://colab.research.google.com/" },
+      { name: "TensorFlow Tutorials", url: "https://www.tensorflow.org/tutorials" },
+    ],
+  },
+  sustainability: {
+    fullDescription:
+      "Tackle climate, energy, and sustainable living. Code with an environmental conscience and design the future you want to inhabit.",
+    challenges: [
+      "Create a carbon footprint tracking app",
+      "Build tools for sustainable agriculture",
+      "Develop renewable energy optimization software",
+    ],
+    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Environmental Impact"],
+    resources: [
+      { name: "NOAA Climate Data API", url: "https://www.ncei.noaa.gov/support/access-search-service-api-user-documentation" },
+      { name: "ElectricityMaps API", url: "https://www.electricitymaps.com/api" },
+      { name: "USDA Crop Data", url: "https://quickstats.nass.usda.gov/api" },
+      { name: "Sentinel Hub (satellite)", url: "https://www.sentinel-hub.com/" },
+    ],
+  },
+  health: {
+    fullDescription:
+      "From telemedicine to mental health, build tools that improve wellbeing. Here, code saves lives and algorithms empower care.",
+    challenges: [
+      "Build a mental health support application",
+      "Create accessible healthcare tools",
+      "Develop fitness and wellness trackers",
+    ],
+    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Health Innovation"],
+    resources: [
+      { name: "HL7 FHIR API", url: "https://www.hl7.org/fhir/" },
+      { name: "Twilio Programmable Video", url: "https://www.twilio.com/docs/video" },
+      { name: "Fitbit Web API", url: "https://dev.fitbit.com/build/reference/web-api/" },
+      { name: "WHO Mental Health Atlas", url: "https://www.who.int/data/gho/data/themes/mental-health" },
+    ],
+  },
+  entertainment: {
+    fullDescription:
+      "Games, AR/VR, music tech, and interactive stories. Let imagination run wild and craft experiences that delight.",
+    challenges: [
+      "Create an innovative game mechanic",
+      "Build an AR/VR experience",
+      "Develop music or audio technology",
+    ],
+    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Most Creative Experience"],
+    resources: [
+      { name: "Unity Learn", url: "https://learn.unity.com/" },
+      { name: "Unreal Engine Docs", url: "https://docs.unrealengine.com/" },
+      { name: "WebXR Samples", url: "https://immersive-web.github.io/webxr-samples/" },
+      { name: "Spotify Web API", url: "https://developer.spotify.com/documentation/web-api" },
+    ],
+  },
+  robotics: {
+    fullDescription:
+      "Where bits meet atoms: IoT, drones, wearables, and automation. If it moves, beeps, or blinks, it belongs here.",
+    challenges: [
+      "Build an autonomous robot or drone",
+      "Create smart home IoT devices",
+      "Develop wearable technology",
+    ],
+    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Hardware Hack"],
+    resources: [
+      { name: "Arduino Docs", url: "https://docs.arduino.cc/" },
+      { name: "Raspberry Pi Resources", url: "https://www.raspberrypi.com/documentation/" },
+      { name: "MQTT Basics", url: "https://mqtt.org/getting-started/" },
+      { name: "3D Printing Guides", url: "https://www.simplify3d.com/support/" },
+    ],
+  },
+}
+
 export function InteractiveCityMap() {
   const [hoveredCity, setHoveredCity] = useState<string | null>(null)
+  const [selectedCity, setSelectedCity] = useState<string | null>(null)
   const [scale, setScale] = useState(1)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
@@ -107,8 +199,11 @@ export function InteractiveCityMap() {
   }
 
   const handleCityClick = (cityId: string) => {
-    router.push(`/tracks/${cityId}`)
+    setSelectedCity(cityId)
   }
+
+  const selected = selectedCity ? cities.find((c) => c.id === selectedCity) : null
+  const selectedTrack = selectedCity ? trackDetails[selectedCity] : null
 
   return (
     <div className="relative">
@@ -315,11 +410,11 @@ export function InteractiveCityMap() {
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
         {cities.map((city) => {
           const Icon = city.icon
-          return (
-            <button
-              key={city.id}
-              onClick={() => handleCityClick(city.id)}
-              className="p-4 bg-card border border-primary/30 rounded-lg text-left hover:border-primary/60 transition-colors"
+              return (
+                <button
+                  key={city.id}
+                  onClick={() => handleCityClick(city.id)}
+                  className="p-4 bg-card border border-primary/30 rounded-lg text-left hover:border-primary/60 transition-colors"
             >
               <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${city.color} mb-3 flex items-center justify-center neon-border`}>
                 <Icon className="w-6 h-6 text-white" />
@@ -331,6 +426,68 @@ export function InteractiveCityMap() {
           )
         })}
       </div>
+
+      {/* City detail modal */}
+      {selected && selectedTrack && (
+        <div className="fixed inset-0 z-30 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-lg bg-card border border-primary/30 rounded-lg p-6 shadow-2xl">
+            <button
+              onClick={() => setSelectedCity(null)}
+              className="absolute top-4 right-4 p-2 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${selected.color} flex items-center justify-center mb-4 neon-border`}>
+              <selected.icon className="w-7 h-7 text-white" />
+            </div>
+            <h3 className="text-2xl font-bold mb-2 font-[family-name:var(--font-orbitron)]">{selected.name}</h3>
+            <p className="text-sm text-muted-foreground mb-4 font-mono">{selectedTrack.fullDescription}</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">Challenges</p>
+                <ul className="space-y-2">
+                  {selectedTrack.challenges.slice(0, 3).map((challenge, i) => (
+                    <li key={i} className="text-sm text-foreground font-mono">
+                      • {challenge}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">Prizes</p>
+                <ul className="space-y-1">
+                  {selectedTrack.prizes.slice(0, 3).map((prize, i) => (
+                    <li key={i} className="text-sm text-foreground font-mono">
+                      {prize}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                Resources (APIs & tools)
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {selectedTrack.resources.map((resource, i) => (
+                  <a
+                    key={i}
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-mono text-primary hover:bg-primary/15 transition-colors"
+                  >
+                    {resource.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

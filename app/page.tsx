@@ -1,4 +1,5 @@
 import type React from "react"
+import Link from "next/link"
 import { CountdownPortal } from "@/components/countdown-portal"
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
@@ -27,14 +28,16 @@ export default function Home() {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 text-pretty">
-              {"Morgan State University's flagship hackathon—two days of building, learning, and launching big ideas."}
+              {"Morgan State University's hackathon—two days of building, learning, and launching big ideas."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border group">
-                Explore the Cities
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link href="/tracks">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border group">
+                  Explore the Cities
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
               <Button
                 size="lg"
                 variant="outline"
