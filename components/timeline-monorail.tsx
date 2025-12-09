@@ -258,7 +258,7 @@ export function TimelineMonorail() {
         {/* Desktop Layout */}
         <div className="hidden lg:block">
           {/* Monorail track */}
-          <div className="relative h-2 bg-gradient-to-r from-primary via-secondary to-primary rounded-full mb-12">
+          <div className="relative h-2 bg-linear-to-r from-primary via-secondary to-primary rounded-full mb-12">
             {/* Animated train */}
             <div
               className="absolute top-1/2 left-0 w-8 h-8 -translate-y-1/2 bg-accent rounded-full animate-pulse neon-border"
@@ -286,7 +286,7 @@ export function TimelineMonorail() {
         <div className="lg:hidden space-y-4">
           {(activeDay === "all" || activeDay === "saturday") && (
             <div>
-              <h3 className="text-xl font-bold mb-4 text-primary font-[family-name:var(--font-orbitron)]">
+              <h3 className="text-xl font-bold mb-4 text-primary font-orbitron">
                 Saturday, April 14
               </h3>
               {saturdayEvents.map((event) => (
@@ -297,7 +297,7 @@ export function TimelineMonorail() {
 
           {(activeDay === "all" || activeDay === "sunday") && (
             <div>
-              <h3 className="text-xl font-bold mb-4 text-secondary font-[family-name:var(--font-orbitron)]">
+              <h3 className="text-xl font-bold mb-4 text-secondary font-orbitron">
                 Sunday, April 15
               </h3>
               {sundayEvents.map((event) => (
@@ -334,7 +334,7 @@ export function TimelineMonorail() {
                     </span>
                     <span className="text-xs text-muted-foreground font-mono uppercase">{event.type}</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-2 font-[family-name:var(--font-orbitron)]">{event.title}</h3>
+                  <h3 className="text-xl font-bold mb-2 font-orbitron">{event.title}</h3>
                   <p className="text-muted-foreground mb-3">{event.description}</p>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
@@ -375,7 +375,7 @@ function EventStation({
     >
       {/* Station pole */}
       <div className="flex flex-col items-center">
-        <div className={`h-16 w-0.5 bg-gradient-to-b from-${dayColor} to-transparent mb-2`} />
+        <div className={`h-16 w-0.5 bg-linear-to-b from-${dayColor} to-transparent mb-2`} />
 
         {/* Station icon */}
         <div
@@ -397,7 +397,7 @@ function EventStation({
           >
             {event.time}
           </p>
-          <p className="text-sm font-bold leading-tight font-[family-name:var(--font-orbitron)]">{event.title}</p>
+          <p className="text-sm font-bold leading-tight font-orbitron">{event.title}</p>
           <p className="text-xs text-muted-foreground mt-1 font-mono">{event.location}</p>
         </div>
       </div>
@@ -412,7 +412,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
     <div className="p-4 mb-3 bg-card border border-primary/30 rounded-lg hover:border-primary/50 transition-colors">
       <div className="flex items-start gap-4">
         <div
-          className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
+          className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${
             event.day === "saturday" ? "bg-primary/20 text-primary" : "bg-secondary/20 text-secondary"
           }`}
         >
@@ -427,7 +427,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
             </span>
             <span className="text-xs text-muted-foreground font-mono uppercase">{event.type}</span>
           </div>
-          <h3 className="text-base font-bold mb-1 font-[family-name:var(--font-orbitron)]">{event.title}</h3>
+          <h3 className="text-base font-bold mb-1 font-orbitron">{event.title}</h3>
           <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <MapPin className="w-3 h-3" />

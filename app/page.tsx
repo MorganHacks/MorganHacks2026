@@ -3,6 +3,7 @@ import Link from "next/link"
 import { CountdownPortal } from "@/components/countdown-portal"
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
+import { HomeTrackGrid } from "@/components/home-track-grid"
 import { ArrowRight, Zap, Users, Trophy } from "lucide-react"
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 px-4 overflow-hidden">
         {/* Background grid effect */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -21,7 +22,7 @@ export default function Home() {
               <span className="text-sm text-primary font-mono">April 14-15, 2026</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-[family-name:var(--font-orbitron)]">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-orbitron">
               <span className="neon-glow-cyan">MorganHacks</span>
               <br />
               <span className="neon-glow-pink">2026</span>
@@ -34,7 +35,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/tracks">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border group">
-                  Explore the Cities
+                  See the Tracks
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
@@ -57,9 +58,9 @@ export default function Home() {
       <section className="py-16 px-4 border-t border-primary/20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StatCard icon={<Users className="w-8 h-8" />} value="500+" label="Hackers Expected" color="primary" />
-            <StatCard icon={<Zap className="w-8 h-8" />} value="5" label="Track Cities" color="secondary" />
-            <StatCard icon={<Trophy className="w-8 h-8" />} value="$50K" label="In Prizes" color="accent" />
+            <StatCard icon={<Users className="w-8 h-8" />} value="200+" label="Hackers Expected" color="primary" />
+            <StatCard icon={<Zap className="w-8 h-8" />} value="8" label="Districts" color="secondary" />
+            <StatCard icon={<Trophy className="w-8 h-8" />} value="TBA" label="In Prizes" color="accent" />
           </div>
         </div>
       </section>
@@ -67,45 +68,17 @@ export default function Home() {
       {/* Track Cities Preview */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 font-[family-name:var(--font-orbitron)]">
-            <span className="neon-glow-blue">Explore the Districts</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 font-orbitron">
+            <span className="neon-glow-blue">Explore Tracks</span>
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Each track is a glowing district with its own unique culture and challenges
+            Eight themed districts. Pick one to start your build journey.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            <CityCard
-              name="AI District"
-              color="from-cyan-500 to-blue-500"
-              description="Machine learning & intelligence"
-            />
-            <CityCard
-              name="Sustainability Harbor"
-              color="from-blue-500 to-indigo-500"
-              description="Green tech & climate solutions"
-            />
-            <CityCard
-              name="Health Core"
-              color="from-pink-500 to-rose-500"
-              description="Medical innovation & wellness"
-            />
-            <CityCard
-              name="Entertainment Alley"
-              color="from-purple-500 to-violet-500"
-              description="Gaming & creative tech"
-            />
-            <CityCard name="Robotics Forge" color="from-orange-500 to-red-500" description="Hardware & automation" />
-          </div>
+          <HomeTrackGrid />
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-primary/20 py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-sm text-muted-foreground font-mono">© 2026 MorganHacks. Built for the future.</p>
-        </div>
-      </footer>
     </main>
   )
 }
@@ -133,38 +106,13 @@ function StatCard({
     >
       <div className="flex justify-center mb-4">{icon}</div>
       <div
-        className={`text-4xl font-bold mb-2 font-[family-name:var(--font-orbitron)] ${
+        className={`text-4xl font-bold mb-2 font-orbitron ${
           color === "primary" ? "neon-glow-cyan" : color === "secondary" ? "neon-glow-pink" : "neon-glow-blue"
         }`}
       >
         {value}
       </div>
       <div className="text-sm text-muted-foreground font-mono">{label}</div>
-    </div>
-  )
-}
-
-function CityCard({
-  name,
-  color,
-  description,
-}: {
-  name: string
-  color: string
-  description: string
-}) {
-  return (
-    <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-card p-6 hover:scale-105 transition-all cursor-pointer">
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity`}
-      />
-      <div className="relative z-10">
-        <div
-          className={`w-12 h-12 rounded-lg bg-gradient-to-br ${color} mb-4 opacity-80 group-hover:opacity-100 transition-opacity neon-border`}
-        />
-        <h3 className="text-lg font-bold mb-2 font-[family-name:var(--font-orbitron)]">{name}</h3>
-        <p className="text-sm text-muted-foreground font-mono">{description}</p>
-      </div>
     </div>
   )
 }

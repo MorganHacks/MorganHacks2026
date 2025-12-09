@@ -72,13 +72,13 @@ export function TransitMap() {
             onClick={() => setSelectedRoute(route.id)}
             className={`px-6 py-3 rounded-lg border transition-all ${
               selectedRoute === route.id
-                ? `${route.borderColor} bg-gradient-to-r ${route.color} bg-opacity-20 ${route.textColor} neon-border`
+                ? `${route.borderColor} bg-linear-to-r ${route.color} bg-opacity-20 ${route.textColor} neon-border`
                 : "bg-card border-primary/30 text-muted-foreground hover:border-primary/50"
             }`}
           >
             <div className="flex items-center gap-2">
               <Bus className="w-5 h-5" />
-              <span className="font-bold font-[family-name:var(--font-orbitron)]">{route.name}</span>
+              <span className="font-bold font-orbitron">{route.name}</span>
             </div>
           </button>
         ))}
@@ -93,12 +93,12 @@ export function TransitMap() {
               {/* Route line */}
               <div className="relative flex items-center justify-between mb-8">
                 <div
-                  className={`absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r ${activeRoute.color} rounded-full -translate-y-1/2`}
+                  className={`absolute top-1/2 left-0 right-0 h-2 bg-linear-to-r ${activeRoute.color} rounded-full -translate-y-1/2`}
                 />
 
                 {/* Animated bus */}
                 <div
-                  className={`absolute top-1/2 w-12 h-12 rounded-full bg-gradient-to-r ${activeRoute.color} flex items-center justify-center -translate-y-1/2 neon-border z-10`}
+                  className={`absolute top-1/2 w-12 h-12 rounded-full bg-linear-to-r ${activeRoute.color} flex items-center justify-center -translate-y-1/2 neon-border z-10`}
                   style={{
                     animation: "slideRoute 8s ease-in-out infinite",
                   }}
@@ -130,7 +130,7 @@ export function TransitMap() {
                         hoveredStop === stop.name ? "scale-110" : ""
                       }`}
                     >
-                      <p className="text-sm font-bold mb-1 font-[family-name:var(--font-orbitron)]">{stop.name}</p>
+                      <p className="text-sm font-bold mb-1 font-orbitron">{stop.name}</p>
                       <p className={`text-xs font-mono ${activeRoute.textColor}`}>{stop.time}</p>
                       {stop.type === "major" && (
                         <div className="mt-1">
@@ -156,7 +156,7 @@ export function TransitMap() {
                   }`}
                 />
                 <div className="flex-1">
-                  <p className="font-bold text-sm font-[family-name:var(--font-orbitron)]">{stop.name}</p>
+                  <p className="font-bold text-sm font-orbitron">{stop.name}</p>
                   {stop.type === "major" && (
                     <span className="text-[10px] px-2 py-0.5 bg-accent/20 text-accent rounded-full font-mono">HUB</span>
                   )}
@@ -173,7 +173,7 @@ export function TransitMap() {
                 <Clock className={`w-5 h-5 ${activeRoute.textColor}`} />
                 <p className="text-sm font-bold font-mono">Frequency</p>
               </div>
-              <p className="text-lg font-[family-name:var(--font-orbitron)]">Every {activeRoute.frequency}</p>
+              <p className="text-lg font-orbitron">Every {activeRoute.frequency}</p>
             </div>
 
             <div className="p-4 bg-background/50 rounded-lg">
@@ -181,7 +181,7 @@ export function TransitMap() {
                 <Clock className={`w-5 h-5 ${activeRoute.textColor}`} />
                 <p className="text-sm font-bold font-mono">Hours</p>
               </div>
-              <p className="text-lg font-[family-name:var(--font-orbitron)]">{activeRoute.hours}</p>
+              <p className="text-lg font-orbitron">{activeRoute.hours}</p>
             </div>
 
             <div className="p-4 bg-background/50 rounded-lg">
@@ -189,7 +189,7 @@ export function TransitMap() {
                 <MapPin className={`w-5 h-5 ${activeRoute.textColor}`} />
                 <p className="text-sm font-bold font-mono">Stops</p>
               </div>
-              <p className="text-lg font-[family-name:var(--font-orbitron)]">{activeRoute.stops.length} locations</p>
+              <p className="text-lg font-orbitron">{activeRoute.stops.length} locations</p>
             </div>
           </div>
         </div>
@@ -198,7 +198,7 @@ export function TransitMap() {
       {/* Important info */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-6 bg-card border border-primary/30 rounded-lg">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+          <h3 className="text-xl font-bold mb-4 flex items-center gap-2 font-orbitron">
             <Users className="w-5 h-5 text-primary" />
             For Attendees
           </h3>
@@ -223,7 +223,7 @@ export function TransitMap() {
         </div>
 
         <div className="p-6 bg-card border border-primary/30 rounded-lg">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2 font-[family-name:var(--font-orbitron)]">
+          <h3 className="text-xl font-bold mb-4 flex items-center gap-2 font-orbitron">
             <MapPin className="w-5 h-5 text-secondary" />
             Getting Here
           </h3>

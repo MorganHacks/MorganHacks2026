@@ -2,148 +2,38 @@
 
 import type React from "react"
 
-import { useState, useRef } from "react"
-import { Cpu, Leaf, Heart, Gamepad2, Bot, X } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { useState, useRef, useMemo, useEffect } from "react"
+import { Cpu, Leaf, Heart, Gamepad2, Bot, X, Sparkles, Banknote, Orbit } from "lucide-react"
+import trackCitiesStatic from "@/public/track-cities.json"
+import trackDetailsStatic from "@/public/track-details.json"
 
-const cities = [
-  {
-    id: "ai",
-    name: "AI District",
-    description: "Machine learning, neural networks, and artificial intelligence",
-    color: "from-cyan-500 to-blue-500",
-    position: { x: 20, y: 30 },
-    icon: Cpu,
-    glowColor: "rgba(6, 182, 212, 0.5)",
-  },
-  {
-    id: "sustainability",
-    name: "Sustainability Harbor",
-    description: "Green technology, climate solutions, and environmental innovation",
-    color: "from-blue-500 to-indigo-500",
-    position: { x: 50, y: 15 },
-    icon: Leaf,
-    glowColor: "rgba(59, 130, 246, 0.5)",
-  },
-  {
-    id: "health",
-    name: "Health Core",
-    description: "Medical technology, wellness apps, and healthcare innovation",
-    color: "from-pink-500 to-rose-500",
-    position: { x: 75, y: 35 },
-    icon: Heart,
-    glowColor: "rgba(236, 72, 153, 0.5)",
-  },
-  {
-    id: "entertainment",
-    name: "Entertainment Alley",
-    description: "Gaming, AR/VR, creative tech, and digital experiences",
-    color: "from-purple-500 to-violet-500",
-    position: { x: 35, y: 65 },
-    icon: Gamepad2,
-    glowColor: "rgba(168, 85, 247, 0.5)",
-  },
-  {
-    id: "robotics",
-    name: "Robotics Forge",
-    description: "Hardware hacking, IoT, drones, and physical computing",
-    color: "from-orange-500 to-red-500",
-    position: { x: 65, y: 70 },
-    icon: Bot,
-    glowColor: "rgba(249, 115, 22, 0.5)",
-  },
-]
-
-const trackDetails: Record<
-  string,
-  {
-    fullDescription: string
-    challenges: string[]
-    prizes: string[]
-    resources: { name: string; url: string }[]
-  }
-> = {
-  ai: {
-    fullDescription:
-      "Push the boundaries of neural networks, NLP, and computer vision. From chatbots to recommendation systems, this is where silicon dreams become reality.",
-    challenges: [
-      "Build an AI assistant that understands context",
-      "Create a computer vision app for accessibility",
-      "Develop a predictive model for social good",
-    ],
-    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Use of OpenAI"],
-    resources: [
-      { name: "OpenAI API", url: "https://platform.openai.com/docs" },
-      { name: "Hugging Face Hub", url: "https://huggingface.co/models" },
-      { name: "Google Colab GPUs", url: "https://colab.research.google.com/" },
-      { name: "TensorFlow Tutorials", url: "https://www.tensorflow.org/tutorials" },
-    ],
-  },
-  sustainability: {
-    fullDescription:
-      "Tackle climate, energy, and sustainable living. Code with an environmental conscience and design the future you want to inhabit.",
-    challenges: [
-      "Create a carbon footprint tracking app",
-      "Build tools for sustainable agriculture",
-      "Develop renewable energy optimization software",
-    ],
-    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Environmental Impact"],
-    resources: [
-      { name: "NOAA Climate Data API", url: "https://www.ncei.noaa.gov/support/access-search-service-api-user-documentation" },
-      { name: "ElectricityMaps API", url: "https://www.electricitymaps.com/api" },
-      { name: "USDA Crop Data", url: "https://quickstats.nass.usda.gov/api" },
-      { name: "Sentinel Hub (satellite)", url: "https://www.sentinel-hub.com/" },
-    ],
-  },
-  health: {
-    fullDescription:
-      "From telemedicine to mental health, build tools that improve wellbeing. Here, code saves lives and algorithms empower care.",
-    challenges: [
-      "Build a mental health support application",
-      "Create accessible healthcare tools",
-      "Develop fitness and wellness trackers",
-    ],
-    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Health Innovation"],
-    resources: [
-      { name: "HL7 FHIR API", url: "https://www.hl7.org/fhir/" },
-      { name: "Twilio Programmable Video", url: "https://www.twilio.com/docs/video" },
-      { name: "Fitbit Web API", url: "https://dev.fitbit.com/build/reference/web-api/" },
-      { name: "WHO Mental Health Atlas", url: "https://www.who.int/data/gho/data/themes/mental-health" },
-    ],
-  },
-  entertainment: {
-    fullDescription:
-      "Games, AR/VR, music tech, and interactive stories. Let imagination run wild and craft experiences that delight.",
-    challenges: [
-      "Create an innovative game mechanic",
-      "Build an AR/VR experience",
-      "Develop music or audio technology",
-    ],
-    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Most Creative Experience"],
-    resources: [
-      { name: "Unity Learn", url: "https://learn.unity.com/" },
-      { name: "Unreal Engine Docs", url: "https://docs.unrealengine.com/" },
-      { name: "WebXR Samples", url: "https://immersive-web.github.io/webxr-samples/" },
-      { name: "Spotify Web API", url: "https://developer.spotify.com/documentation/web-api" },
-    ],
-  },
-  robotics: {
-    fullDescription:
-      "Where bits meet atoms: IoT, drones, wearables, and automation. If it moves, beeps, or blinks, it belongs here.",
-    challenges: [
-      "Build an autonomous robot or drone",
-      "Create smart home IoT devices",
-      "Develop wearable technology",
-    ],
-    prizes: ["$10,000 Grand Prize", "$5,000 Runner Up", "$2,500 Best Hardware Hack"],
-    resources: [
-      { name: "Arduino Docs", url: "https://docs.arduino.cc/" },
-      { name: "Raspberry Pi Resources", url: "https://www.raspberrypi.com/documentation/" },
-      { name: "MQTT Basics", url: "https://mqtt.org/getting-started/" },
-      { name: "3D Printing Guides", url: "https://www.simplify3d.com/support/" },
-    ],
-  },
+type TrackCity = {
+  id: string
+  name: string
+  description: string
+  color: string
+  position: { x: number; y: number }
+  icon: string
+  glowColor: string
 }
+
+type TrackDetail = {
+  fullDescription: string
+  challenges: string[]
+  prizes: string[]
+  resources: { name: string; url: string }[]
+}
+
+const iconMap = {
+  Cpu,
+  Heart,
+  Leaf,
+  Gamepad2,
+  Bot,
+  Sparkles,
+  Banknote,
+  Orbit,
+} as const
 
 export function InteractiveCityMap() {
   const [hoveredCity, setHoveredCity] = useState<string | null>(null)
@@ -152,8 +42,12 @@ export function InteractiveCityMap() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [citiesData, setCitiesData] = useState<TrackCity[]>(trackCitiesStatic as TrackCity[])
+  const [trackDetailsData, setTrackDetailsData] = useState<Record<string, TrackDetail>>(
+    trackDetailsStatic as Record<string, TrackDetail>
+  )
+  const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const router = useRouter()
 
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault()
@@ -202,8 +96,77 @@ export function InteractiveCityMap() {
     setSelectedCity(cityId)
   }
 
-  const selected = selectedCity ? cities.find((c) => c.id === selectedCity) : null
-  const selectedTrack = selectedCity ? trackDetails[selectedCity] : null
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [citiesRes, detailsRes] = await Promise.all([fetch("/track-cities.json"), fetch("/track-details.json")])
+        if (citiesRes.ok) {
+          const data = (await citiesRes.json()) as TrackCity[]
+          setCitiesData(data)
+        }
+        if (detailsRes.ok) {
+          const data = (await detailsRes.json()) as Record<string, TrackDetail>
+          setTrackDetailsData(data)
+        }
+      } catch {
+        setCitiesData(trackCitiesStatic as TrackCity[])
+        setTrackDetailsData(trackDetailsStatic as Record<string, TrackDetail>)
+      }
+    }
+    loadData()
+    setMounted(true)
+  }, [])
+
+  const citiesWithIcons = useMemo(() => {
+    return citiesData.map((city) => {
+      const Icon = iconMap[city.icon as keyof typeof iconMap] ?? Cpu
+      return { ...city, icon: Icon }
+    })
+  }, [citiesData])
+
+  const displayCities = useMemo(() => {
+    if (!citiesWithIcons.length) return []
+
+    // Order cities around center, then lay them out radially for even spacing
+    const ordered = [...citiesWithIcons].sort((a, b) => {
+      const angleA = Math.atan2(a.position.y - 50, a.position.x - 50)
+      const angleB = Math.atan2(b.position.y - 50, b.position.x - 50)
+      return angleA - angleB
+    })
+
+    const center = 50
+    const radius = 40
+
+    return ordered.map((city, idx) => {
+      const angle = (2 * Math.PI * idx) / ordered.length - Math.PI / 2
+      const displayPosition = {
+        x: center + Math.cos(angle) * radius,
+        y: center + Math.sin(angle) * radius,
+      }
+      return { ...city, displayPosition }
+    })
+  }, [citiesWithIcons])
+
+  const selected = selectedCity ? displayCities.find((c) => c.id === selectedCity) : null
+  const selectedTrack =
+    selectedCity && trackDetailsData[selectedCity]
+      ? trackDetailsData[selectedCity]
+      : selectedCity
+        ? {
+            fullDescription: "Details coming soon.",
+            challenges: ["Challenges: TBA"],
+            prizes: ["Prizes: TBA"],
+            resources: [],
+          }
+        : null
+
+  const linePairs = useMemo(() => {
+    if (displayCities.length < 2) return []
+    return displayCities.map((city, idx) => ({
+      from: city,
+      to: displayCities[(idx + 1) % displayCities.length],
+    }))
+  }, [displayCities])
 
   return (
     <div className="relative">
@@ -235,7 +198,7 @@ export function InteractiveCityMap() {
       {/* Map Container */}
       <div
         ref={containerRef}
-        className="relative w-full min-h-[360px] h-[70vh] max-h-[720px] bg-gradient-to-br from-background via-card to-background border border-primary/30 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing"
+        className="relative w-full min-h-[420px] h-[75vh] max-h-[840px] bg-linear-to-br from-background via-card to-background border border-primary/30 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing"
         onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -247,157 +210,135 @@ export function InteractiveCityMap() {
         onTouchCancel={handleTouchEnd}
       >
         {/* Grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-size-[3rem_3rem] opacity-20" />
 
-        {/* Connection lines */}
-        <svg
-          className="absolute inset-0 w-full h-full"
-          style={{ transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)` }}
-        >
-          <line
-            x1="20%"
-            y1="30%"
-            x2="50%"
-            y2="15%"
-            stroke="rgba(6, 182, 212, 0.3)"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-          />
-          <line
-            x1="50%"
-            y1="15%"
-            x2="75%"
-            y2="35%"
-            stroke="rgba(59, 130, 246, 0.3)"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-          />
-          <line
-            x1="20%"
-            y1="30%"
-            x2="35%"
-            y2="65%"
-            stroke="rgba(6, 182, 212, 0.3)"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-          />
-          <line
-            x1="75%"
-            y1="35%"
-            x2="65%"
-            y2="70%"
-            stroke="rgba(236, 72, 153, 0.3)"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-          />
-          <line
-            x1="35%"
-            y1="65%"
-            x2="65%"
-            y2="70%"
-            stroke="rgba(168, 85, 247, 0.3)"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-          />
-        </svg>
+        {/* Padded content area so labels and glow have breathing room */}
+        <div className="absolute inset-6 sm:inset-8 md:inset-10">
+          {/* Connection lines */}
+          <svg
+            className="absolute inset-0 w-full h-full"
+            style={{
+              transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
+              transformOrigin: "50% 50%",
+            }}
+          >
+            {linePairs.map((pair, idx) => (
+              <line
+                key={idx}
+                x1={`${pair.from.position.x}%`}
+                y1={`${pair.from.position.y}%`}
+                x2={`${pair.to.position.x}%`}
+                y2={`${pair.to.position.y}%`}
+                stroke="rgba(59, 130, 246, 0.3)"
+                strokeWidth="2"
+                strokeDasharray="6,6"
+              />
+            ))}
+          </svg>
 
-        {/* Cities */}
-        <div
-          className="absolute inset-0 transition-transform duration-200"
-          style={{
-            transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
-          }}
-        >
-          {cities.map((city) => {
-            const Icon = city.icon
-            const isHovered = hoveredCity === city.id
+          {/* Cities */}
+          <div
+            className="absolute inset-0 transition-transform duration-200"
+            style={{
+              transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
+              transformOrigin: "50% 50%",
+            }}
+          >
+            {displayCities.map((city) => {
+              const Icon = city.icon
+              const isHovered = hoveredCity === city.id
 
-            return (
-              <div
-                key={city.id}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                style={{
-                  left: `${city.position.x}%`,
-                  top: `${city.position.y}%`,
-                }}
-                onMouseEnter={() => setHoveredCity(city.id)}
-                onMouseLeave={() => setHoveredCity(null)}
-                onClick={() => handleCityClick(city.id)}
-              >
-                {/* Glow effect */}
-                {isHovered && (
-                  <div
-                    className="absolute inset-0 rounded-full blur-2xl animate-pulse"
-                    style={{
-                      width: "200px",
-                      height: "200px",
-                      backgroundColor: city.glowColor,
-                      transform: "translate(-50%, -50%)",
-                      top: "50%",
-                      left: "50%",
-                    }}
-                  />
-                )}
-
-                {/* City building */}
+              return (
                 <div
-                  className={`relative w-24 h-32 bg-gradient-to-br ${city.color} rounded-lg transition-all duration-300 ${
-                    isHovered ? "scale-110 shadow-2xl" : "scale-100"
-                  }`}
+                  key={city.id}
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                   style={{
-                    boxShadow: isHovered ? `0 0 40px ${city.glowColor}` : "none",
+                    left: `${city.displayPosition.x}%`,
+                    top: `${city.displayPosition.y}%`,
                   }}
+                  onMouseEnter={() => setHoveredCity(city.id)}
+                  onMouseLeave={() => setHoveredCity(null)}
+                  onClick={() => handleCityClick(city.id)}
                 >
-                  {/* Windows */}
-                  <div className="absolute inset-2 grid grid-cols-3 gap-1">
-                    {Array.from({ length: 9 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className={`bg-white/20 rounded-sm transition-all ${
-                          isHovered ? "bg-white/60 animate-pulse" : ""
-                        }`}
-                      />
-                    ))}
+                  {/* Glow effect */}
+                  {isHovered && (
+                    <div
+                      className="absolute inset-0 rounded-full blur-2xl animate-pulse"
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        backgroundColor: city.glowColor,
+                        transform: "translate(-50%, -50%)",
+                        top: "50%",
+                        left: "50%",
+                      }}
+                    />
+                  )}
+
+                  {/* City building */}
+                  <div
+                    className={`relative w-24 h-32 bg-linear-to-br ${city.color} rounded-lg transition-all duration-300 ${
+                      isHovered ? "scale-110 shadow-2xl" : "scale-100"
+                    }`}
+                    style={{
+                      boxShadow: isHovered ? `0 0 40px ${city.glowColor}` : "none",
+                    }}
+                  >
+                    {/* Windows */}
+                    <div className="absolute inset-2 grid grid-cols-3 gap-1">
+                      {Array.from({ length: 9 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className={`bg-white/20 rounded-sm transition-all ${
+                            isHovered ? "bg-white/60 animate-pulse" : ""
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Icon */}
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-card border-2 border-current rounded-full flex items-center justify-center">
+                      <Icon className="w-6 h-6" />
+                    </div>
                   </div>
 
-                  {/* Icon */}
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-card border-2 border-current rounded-full flex items-center justify-center">
-                    <Icon className="w-6 h-6" />
+                  {/* City name */}
+                  <div className="absolute top-full mt-6 left-1/2 transform -translate-x-1/2">
+                    <p className="text-sm font-bold text-center font-orbitron px-3 py-1 rounded-full bg-background/95 border border-primary/20 shadow-sm max-w-[200px] whitespace-normal leading-snug">
+                      {city.name}
+                    </p>
                   </div>
+
+                  {/* Hover card */}
+                  {isHovered && (
+                    <div className="absolute top-full mt-16 left-1/2 transform -translate-x-1/2 w-72 p-4 bg-card border border-primary/30 rounded-lg shadow-xl z-10 animate-fade-in">
+                      <p className="text-xs text-muted-foreground font-mono">{city.description}</p>
+                      <p className="text-xs text-primary mt-2 font-mono">Click to explore →</p>
+                    </div>
+                  )}
                 </div>
-
-                {/* City name */}
-                <div className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                  <p className="text-sm font-bold text-center font-[family-name:var(--font-orbitron)]">{city.name}</p>
-                </div>
-
-                {/* Hover card */}
-                {isHovered && (
-                  <div className="absolute top-full mt-12 left-1/2 transform -translate-x-1/2 w-64 p-4 bg-card border border-primary/30 rounded-lg shadow-xl z-10 animate-fade-in">
-                    <p className="text-xs text-muted-foreground font-mono">{city.description}</p>
-                    <p className="text-xs text-primary mt-2 font-mono">Click to explore →</p>
-                  </div>
-                )}
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
 
         {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${5 + Math.random() * 5}s`,
-              }}
-            />
-          ))}
-        </div>
+        {mounted && (
+          <div className="absolute inset-0 pointer-events-none">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  animationDuration: `${5 + Math.random() * 5}s`,
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Instructions */}
@@ -408,18 +349,20 @@ export function InteractiveCityMap() {
 
       {/* Mobile-friendly cards */}
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-        {cities.map((city) => {
+        {citiesWithIcons.map((city) => {
           const Icon = city.icon
-              return (
-                <button
-                  key={city.id}
-                  onClick={() => handleCityClick(city.id)}
-                  className="p-4 bg-card border border-primary/30 rounded-lg text-left hover:border-primary/60 transition-colors"
+          return (
+            <button
+              key={city.id}
+              onClick={() => handleCityClick(city.id)}
+              className="p-4 bg-card border border-primary/30 rounded-lg text-left hover:border-primary/60 transition-colors"
             >
-              <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${city.color} mb-3 flex items-center justify-center neon-border`}>
+              <div
+                className={`w-12 h-12 rounded-lg bg-linear-to-br ${city.color} mb-3 flex items-center justify-center neon-border`}
+              >
                 <Icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-lg font-bold font-[family-name:var(--font-orbitron)]">{city.name}</h3>
+              <h3 className="text-lg font-bold font-orbitron">{city.name}</h3>
               <p className="text-sm text-muted-foreground mt-1 font-mono">{city.description}</p>
               <p className="text-xs text-primary mt-2 font-mono">Tap to explore →</p>
             </button>
@@ -438,10 +381,10 @@ export function InteractiveCityMap() {
               <X className="w-5 h-5" />
             </button>
 
-            <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${selected.color} flex items-center justify-center mb-4 neon-border`}>
+            <div className={`w-14 h-14 rounded-lg bg-linear-to-br ${selected.color} flex items-center justify-center mb-4 neon-border`}>
               <selected.icon className="w-7 h-7 text-white" />
             </div>
-            <h3 className="text-2xl font-bold mb-2 font-[family-name:var(--font-orbitron)]">{selected.name}</h3>
+            <h3 className="text-2xl font-bold mb-2 font-orbitron">{selected.name}</h3>
             <p className="text-sm text-muted-foreground mb-4 font-mono">{selectedTrack.fullDescription}</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
