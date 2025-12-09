@@ -26,12 +26,12 @@ const stats: Metric[] = [
 ]
 
 const classificationMix: Slice[] = [
-  { label: "Freshman (F)", value: 14, color: "#60a5fa" },
-  { label: "Sophomore (S)", value: 43, color: "#4f46e5" },
-  { label: "Junior (J)", value: 43, color: "#22d3ee" },
-  { label: "Senior (Sr)", value: 24, color: "#38bdf8" },
-  { label: "5th Year (5S)", value: 5, color: "#a855f7" },
-  { label: "Masters (M)", value: 40, color: "#0ea5e9" },
+  { label: "Freshman", value: 14, color: "#60a5fa" },
+  { label: "Sophomore", value: 43, color: "#4f46e5" },
+  { label: "Junior", value: 43, color: "#22d3ee" },
+  { label: "Senior", value: 24, color: "#38bdf8" },
+  { label: "5th Year", value: 5, color: "#a855f7" },
+  { label: "Masters", value: 40, color: "#0ea5e9" },
 ]
 
 const sampleMajors = [
@@ -146,9 +146,11 @@ function MetricCard({ metric }: { metric: Metric }) {
 }
 
 function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number }) {
-  const size = 320
+  const size = 620
   const center = size / 2
-  const radius = 110
+  const radius = 160
+  const lineRadius = radius * 0.95
+  const labelRadius = radius * 1.7
   const paths = useMemo(() => {
     return slices.reduce(
       (acc, slice) => {
@@ -163,21 +165,39 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
 
         const percent = Math.round((slice.value / total) * 100)
         const midAngle = startAngle + angle / 2
-        const lineStart = polarToCartesian(center, center, radius * 0.88, midAngle)
-        const labelPos = polarToCartesian(center, center, radius * 1.15, midAngle)
-        const textAnchor = labelPos.x < center ? "end" : "start"
+        const lineStart = polarToCartesian(center, center, lineRadius, midAngle)
+        const labelPos = polarToCartesian(center, center, labelRadius, midAngle)
+        const margin = 90
+        const clampedLabelPos = {
+          x: Math.min(Math.max(labelPos.x, margin), size - margin),
+          y: Math.min(Math.max(labelPos.y, 28), size - 28),
+        }
+        const textAnchor = clampedLabelPos.x < center ? "end" : "start"
 
-        acc.paths.push({ d, color: slice.color, label: `${slice.label} (${percent}%)`, lineStart, labelPos, textAnchor })
+        acc.paths.push({
+          d,
+          color: slice.color,
+          label: `${slice.label} (${percent}%)`,
+          lineStart,
+          labelPos: clampedLabelPos,
+          textAnchor,
+        })
         acc.currentAngle = endAngle
         return acc
       },
       { currentAngle: -90, paths: [] as Array<{ d: string; color: string; label: string; lineStart: { x: number; y: number }; labelPos: { x: number; y: number }; textAnchor: string }> }
     ).paths
-  }, [center, radius, slices, total])
+  }, [center, labelRadius, lineRadius, radius, slices, total])
 
   return (
-    <div className="relative w-[320px] h-80">
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+    <div className="relative w-full max-w-[620px] aspect-square">
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        className="drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)] w-full h-full"
+        preserveAspectRatio="xMidYMid meet"
+      >
         {paths.map((path, idx) => (
           <g key={idx}>
             <path d={path.d} fill={path.color} className="opacity-90" />
@@ -194,15 +214,15 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
               y={path.labelPos.y}
               textAnchor={path.textAnchor as "start" | "end"}
               dominantBaseline="middle"
-              className="text-[10px] font-mono fill-foreground"
-              dx={path.textAnchor === "end" ? -6 : 6}
+              className="text-[11px] font-mono fill-foreground"
+              dx={path.textAnchor === "end" ? -4 : 4}
             >
               {path.label}
             </text>
           </g>
         ))}
       </svg>
-      <div className="absolute inset-8 rounded-full border border-primary/20 pointer-events-none" />
+      <div className="absolute inset-10 rounded-full border border-primary/20 pointer-events-none" />
     </div>
   )
 }
