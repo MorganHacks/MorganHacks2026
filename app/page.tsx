@@ -19,7 +19,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
-              <span className="text-sm text-primary font-mono">April 14-15, 2026</span>
+              <span className="text-sm text-primary font-mono">April 11-12, 2026</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-orbitron">
