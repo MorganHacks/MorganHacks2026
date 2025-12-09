@@ -11,10 +11,10 @@ export function Navigation() {
   const pathname = usePathname()
 
   const links = [
+    { href: "/about", label: "About" },
     { href: "/tracks", label: "Track Cities" },
     { href: "/sponsors", label: "Sponsors" },
     { href: "/timeline", label: "Timeline" },
-    { href: "/workshops", label: "Workshops" },
     { href: "/transit", label: "Transit" },
   ]
 
@@ -51,6 +51,13 @@ export function Navigation() {
                 )}
               </Link>
             ))}
+            <Button
+              variant="outline"
+              className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70"
+              onClick={(e) => e.preventDefault()}
+            >
+              Become a Judge
+            </Button>
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border hover:scale-105 transition-transform">
               Register Now
             </Button>
@@ -84,6 +91,13 @@ export function Navigation() {
                   {link.label}
                 </Link>
               ))}
+              <Button
+                variant="outline"
+                className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70 w-full"
+                onClick={(e) => e.preventDefault()}
+              >
+                Become a Judge
+              </Button>
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border w-full">
                 Register Now
               </Button>

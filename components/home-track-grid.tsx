@@ -40,16 +40,16 @@ export function HomeTrackGrid() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {items.map((city) => (
           <Link href="/tracks" key={city.id}>
-            <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-card p-6 hover:scale-105 transition-all cursor-pointer">
+            <div className="group relative h-full overflow-hidden rounded-lg border border-primary/30 bg-card p-6 hover:scale-105 transition-all cursor-pointer flex flex-col">
               <div
                 className={`absolute inset-0 bg-linear-to-br ${city.color} opacity-10 group-hover:opacity-20 transition-opacity`}
               />
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <div
                   className={`w-12 h-12 rounded-lg bg-linear-to-br ${city.color} mb-4 opacity-80 group-hover:opacity-100 transition-opacity neon-border`}
                 />
                 <h3 className="text-lg font-bold mb-2 font-orbitron">{city.name}</h3>
-                <p className="text-sm text-muted-foreground font-mono">{city.description}</p>
+                <p className="text-sm text-muted-foreground font-mono flex-1">{city.description}</p>
               </div>
             </div>
           </Link>
