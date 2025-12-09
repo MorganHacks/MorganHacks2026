@@ -10,6 +10,7 @@ type Sponsor = {
   image?: string
   url?: string
   linkedin?: string
+  gradient?: string
   color?: string
 }
 
@@ -46,7 +47,7 @@ export function SponsorGrid() {
     () =>
       sponsors.map((s, idx) => ({
         ...s,
-        color: gradients[idx % gradients.length],
+        color: s.gradient ?? s.color ?? gradients[idx % gradients.length],
       })),
     [sponsors],
   )

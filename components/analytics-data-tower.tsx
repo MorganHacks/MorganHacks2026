@@ -26,12 +26,12 @@ const stats: Metric[] = [
 ]
 
 const classificationMix: Slice[] = [
-  { label: "Freshman", value: 14, color: "#60a5fa" },
-  { label: "Sophomore", value: 43, color: "#4f46e5" },
-  { label: "Junior", value: 43, color: "#22d3ee" },
-  { label: "Senior", value: 24, color: "#38bdf8" },
-  { label: "5th Year", value: 5, color: "#a855f7" },
-  { label: "Masters", value: 40, color: "#0ea5e9" },
+  { label: "Freshman", value: 14, color: "#ef4444" }, // red
+  { label: "Sophomore", value: 43, color: "#f59e0b" }, // amber
+  { label: "Junior", value: 43, color: "#10b981" }, // emerald
+  { label: "Senior", value: 24, color: "#0ea5e9" }, // sky
+  { label: "5th Year", value: 5, color: "#8b5cf6" }, // violet
+  { label: "Masters", value: 40, color: "#e11d48" }, // rose
 ]
 
 const sampleMajors = [

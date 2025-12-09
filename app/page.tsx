@@ -39,13 +39,15 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-secondary text-secondary hover:bg-secondary/10 bg-transparent"
-              >
-                View Schedule
-              </Button>
+              <Link href="/timeline">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-secondary text-secondary hover:bg-secondary/10 bg-transparent"
+                >
+                  View Schedule
+                </Button>
+              </Link>
             </div>
           </div>
 
