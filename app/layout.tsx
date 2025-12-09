@@ -4,6 +4,7 @@ import { Orbitron, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { PortalTransition } from "@/components/portal-transition"
+import { SiteFooter } from "@/components/site-footer"
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -17,26 +18,40 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "MorganHacks 2026",
-  description: "Join us April 14-15, 2026 for MorganHacks - A futuristic multi-city hackathon experience",
-  generator: "Next.js",
+  metadataBase: new URL("https://morganhacks.com"),
+  title: {
+    default: "MorganHacks 2026",
+    template: "%s • MorganHacks 2026",
+  },
+  description: "Join us April 14-15, 2026 for MorganHacks.",
+  keywords: ["MorganHacks", "hackathon", "Morgan State University", "2026"],
+  authors: [{ name: "MorganHacks Team", url: "https://morganhacks.com" }],
+  creator: "MorganHacks Team",
+  publisher: "MorganHacks",
+  openGraph: {
+    title: "MorganHacks 2026",
+    description: "Join us April 14-15, 2026 for MorganHacks.",
+    url: "https://morganhacks.com",
+    siteName: "MorganHacks",
+    locale: "en_US",
+    type: "website",
+    images: ["/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MorganHacks 2026",
+    description: "Join us April 14-15, 2026 for MorganHacks.",
+    images: ["/og-image.png"],
+  },
   icons: {
     icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: "/icon.png", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
     ],
-    apple: "/apple-icon.png",
+    apple: "/icon.png",
   },
+  manifest: "/site.webmanifest",
+  themeColor: "#0b1430",
 }
 
 export default function RootLayout({
@@ -49,6 +64,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${orbitron.variable} font-sans antialiased`}>
         <PortalTransition />
         {children}
+        <SiteFooter />
         <Analytics />
       </body>
     </html>

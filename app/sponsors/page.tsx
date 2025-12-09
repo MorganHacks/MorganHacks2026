@@ -14,7 +14,7 @@ export default function SponsorsPage() {
           {/* Sponsors section */}
           <div>
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 font-[family-name:var(--font-orbitron)]">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 font-orbitron">
                 <span className="neon-glow-pink">Our Sponsors</span>
               </h1>
               <div className="space-y-4 text-left max-w-4xl mx-auto text-base leading-relaxed">
@@ -48,18 +48,18 @@ export default function SponsorsPage() {
                 <p>Thank you,<br />The MorganHacks Team</p>
               </div>
 
-              <div className="mt-6 flex justify-center">
+              {/* <div className="mt-6 flex justify-center">
                 <Link href="https://example.com/sponsorship-prospectus.pdf" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="neon-border">
                     View Sponsorship Packet (PDF)
                   </Button>
                 </Link>
-              </div>
-            </div>
+              </div> */}
+            </div> 
 
             <div className="space-y-10">
               <div className="text-center">
-                <h2 className="text-3xl md:text-5xl font-bold mb-3 font-[family-name:var(--font-orbitron)]">
+                <h2 className="text-3xl md:text-5xl font-bold mb-3 font-orbitron">
                   <span className="neon-glow-cyan">Last Year’s Review</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">

@@ -12,10 +12,10 @@ export function Navigation() {
 
   const links = [
     { href: "/tracks", label: "Track Cities" },
-    // { href: "/timeline", label: "Timeline" },
-    // { href: "/workshops", label: "Workshops" },
-    // { href: "/transit", label: "Transit" },
     { href: "/sponsors", label: "Sponsors" },
+    { href: "/timeline", label: "Timeline" },
+    { href: "/workshops", label: "Workshops" },
+    { href: "/transit", label: "Transit" },
   ]
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/")
@@ -26,10 +26,10 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center neon-border group-hover:scale-110 transition-transform">
-              <span className="text-lg font-bold text-background font-[family-name:var(--font-orbitron)]">M</span>
+            <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary via-secondary to-accent flex items-center justify-center neon-border group-hover:scale-110 transition-transform">
+              <span className="text-lg font-bold text-background font-orbitron">M</span>
             </div>
-            <span className="text-xl font-bold neon-glow-cyan font-[family-name:var(--font-orbitron)] group-hover:scale-105 transition-transform">
+            <span className="text-xl font-bold neon-glow-cyan font-orbitron group-hover:scale-105 transition-transform">
               MorganHacks
             </span>
             <span className="text-xs text-secondary ml-1 font-mono">2026</span>

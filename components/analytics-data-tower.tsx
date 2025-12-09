@@ -62,7 +62,7 @@ export function AnalyticsDataTower() {
           <div className="flex items-start justify-between mb-4">
             <div>
               <p className="text-xs font-mono text-muted-foreground uppercase tracking-[0.2em]">Attendance Mix</p>
-              <h3 className="text-2xl font-bold font-[family-name:var(--font-orbitron)] mt-1">Classifications</h3>
+              <h3 className="text-2xl font-bold font-orbitron mt-1">Classifications</h3>
             </div>
             <PieChart className="w-5 h-5 text-primary" />
           </div>
@@ -76,7 +76,7 @@ export function AnalyticsDataTower() {
           <div className="flex items-start justify-between mb-4">
             <div>
               <p className="text-xs font-mono text-muted-foreground uppercase tracking-[0.2em]">Skills</p>
-              <h3 className="text-2xl font-bold font-[family-name:var(--font-orbitron)] mt-1">Majors Represented</h3>
+              <h3 className="text-2xl font-bold font-orbitron mt-1">Majors Represented</h3>
               <p className="text-sm text-muted-foreground mt-2">
                 43 unique majors last year. Your background doesn&apos;t limit you.
               </p>
@@ -88,7 +88,7 @@ export function AnalyticsDataTower() {
             {sampleMajors.map((major) => (
               <span
                 key={major}
-                className="px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 text-xs font-mono text-foreground shadow-sm"
+                className="px-3 py-1.5 rounded-full bg-linear-to-r from-primary/10 to-secondary/10 border border-primary/20 text-xs font-mono text-foreground shadow-sm"
               >
                 {major}
               </span>
@@ -128,14 +128,14 @@ function MetricCard({ metric }: { metric: Metric }) {
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-card p-4 hover:border-primary/60 transition-all">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-60" />
+      <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-secondary/10 opacity-60" />
       <div className="relative z-10 flex items-center gap-3">
         <div className={`w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center ${metric.tone}`}>
           <Icon className="w-5 h-5" />
         </div>
         <div>
           <p className="text-xs uppercase tracking-wide text-muted-foreground font-mono">{metric.label}</p>
-          <p className="text-2xl font-bold font-[family-name:var(--font-orbitron)]">
+          <p className="text-2xl font-bold font-orbitron">
             <span className={metric.tone}>{count.toLocaleString()}</span>
             {metric.suffix}
           </p>
@@ -173,7 +173,7 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
   }, [center, radius, slices, total])
 
   return (
-    <div className="relative w-[320px] h-[320px]">
+    <div className="relative w-[320px] h-80">
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="drop-shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
         {paths.map((path, idx) => (
           <g key={idx}>

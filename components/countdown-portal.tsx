@@ -41,8 +41,8 @@ export function CountdownPortal() {
         <div
           className={`w-96 h-96 rounded-full transition-all duration-1000 ${
             isPortalOpen
-              ? "animate-pulse bg-gradient-to-r from-primary via-secondary to-accent"
-              : "bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20"
+              ? "animate-pulse bg-linear-to-r from-primary via-secondary to-accent"
+              : "bg-linear-to-r from-primary/20 via-secondary/20 to-accent/20"
           } blur-3xl`}
         />
       </div>
@@ -76,7 +76,7 @@ export function CountdownPortal() {
             ) : (
               <div className="animate-fade-in">
                 <div className="text-6xl md:text-8xl mb-4 neon-glow-cyan">🚀</div>
-                <h3 className="text-2xl md:text-3xl font-bold neon-glow-blue font-[family-name:var(--font-orbitron)]">
+                <h3 className="text-2xl md:text-3xl font-bold neon-glow-blue font-orbitron">
                   PORTAL OPEN
                 </h3>
                 <p className="mt-4 text-sm text-accent">MorganHacks has begun!</p>
@@ -92,7 +92,7 @@ export function CountdownPortal() {
 function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="text-2xl md:text-4xl font-bold text-primary neon-glow-cyan font-[family-name:var(--font-orbitron)]">
+      <div className="text-2xl md:text-4xl font-bold text-primary neon-glow-cyan font-orbitron">
         {String(value).padStart(2, "0")}
       </div>
       <div className="text-[10px] md:text-xs text-muted-foreground uppercase mt-1 font-mono">{label}</div>

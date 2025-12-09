@@ -143,7 +143,7 @@ export function WorkshopsCity() {
   return (
     <div className="space-y-8">
       {/* City skyline */}
-      <div className="relative bg-gradient-to-b from-background via-card to-background border border-primary/30 rounded-lg p-8 min-h-[400px] overflow-hidden">
+      <div className="relative bg-linear-to-b from-background via-card to-background border border-primary/30 rounded-lg p-8 min-h-[400px] overflow-hidden">
         {/* Stars background */}
         <div className="absolute inset-0">
           {Array.from({ length: 50 }).map((_, i) => (
@@ -173,7 +173,7 @@ export function WorkshopsCity() {
         </div>
 
         {/* Ground */}
-        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-primary via-secondary to-accent" />
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-linear-to-r from-primary via-secondary to-accent" />
       </div>
 
       {/* Workshop detail modal */}
@@ -189,12 +189,12 @@ export function WorkshopsCity() {
             </button>
 
             {/* Header */}
-            <div className={`w-full h-2 bg-gradient-to-r ${workshop.color} rounded-full mb-6`} />
+            <div className={`w-full h-2 bg-linear-to-r ${workshop.color} rounded-full mb-6`} />
 
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-3">
                 <span
-                  className={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${workshop.color} text-white`}
+                  className={`px-3 py-1 rounded-full text-xs font-bold bg-linear-to-r ${workshop.color} text-white`}
                 >
                   {workshop.level}
                 </span>
@@ -203,10 +203,10 @@ export function WorkshopsCity() {
                 </span>
               </div>
 
-              <h2 className="text-3xl font-bold mb-3 font-[family-name:var(--font-orbitron)]">{workshop.title}</h2>
+              <h2 className="text-3xl font-bold mb-3 font-orbitron">{workshop.title}</h2>
 
               <div className="flex items-center gap-3 text-muted-foreground">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-xl font-bold">
+                <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-secondary flex items-center justify-center text-xl font-bold">
                   {workshop.speaker
                     .split(" ")
                     .map((n) => n[0])
@@ -256,14 +256,14 @@ export function WorkshopsCity() {
 
             {/* Description */}
             <div className="mb-6">
-              <h3 className="text-lg font-bold mb-2 font-[family-name:var(--font-orbitron)]">About This Workshop</h3>
+              <h3 className="text-lg font-bold mb-2 font-orbitron">About This Workshop</h3>
               <p className="text-muted-foreground leading-relaxed">{workshop.description}</p>
             </div>
 
             {/* Action */}
             <Button
               size="lg"
-              className={`w-full bg-gradient-to-r ${workshop.color} text-white hover:opacity-90 neon-border`}
+              className={`w-full bg-linear-to-r ${workshop.color} text-white hover:opacity-90 neon-border`}
             >
               Reserve Your Spot
             </Button>
@@ -273,7 +273,7 @@ export function WorkshopsCity() {
 
       {/* Workshop list (mobile-friendly) */}
       <div className="md:hidden space-y-3">
-        <h3 className="text-xl font-bold mb-4 font-[family-name:var(--font-orbitron)]">All Workshops</h3>
+        <h3 className="text-xl font-bold mb-4 font-orbitron">All Workshops</h3>
         {workshops.map((ws) => (
           <div
             key={ws.id}
@@ -281,7 +281,7 @@ export function WorkshopsCity() {
             className="p-4 bg-card border border-primary/30 rounded-lg hover:border-primary/50 transition-colors cursor-pointer"
           >
             <div className="flex items-start gap-3">
-              <div className={`w-12 h-16 bg-gradient-to-br ${ws.color} rounded flex-shrink-0`}>
+              <div className={`w-12 h-16 bg-linear-to-br ${ws.color} rounded shrink-0`}>
                 <div className="grid grid-cols-2 gap-0.5 p-1">
                   {Array.from({ length: 6 }).map((_, i) => (
                     <div key={i} className="bg-white/30 rounded-sm" />
@@ -289,7 +289,7 @@ export function WorkshopsCity() {
                 </div>
               </div>
               <div className="flex-1 min-w-0">
-                <h4 className="font-bold mb-1 font-[family-name:var(--font-orbitron)]">{ws.title}</h4>
+                <h4 className="font-bold mb-1 font-orbitron">{ws.title}</h4>
                 <p className="text-sm text-muted-foreground font-mono">{ws.speaker}</p>
                 <p className="text-xs text-primary mt-1 font-mono">{ws.time}</p>
               </div>
@@ -317,7 +317,7 @@ function WorkshopBuilding({
       style={{ height: `${height}px` }}
     >
       <div
-        className={`relative w-full h-full bg-gradient-to-br ${workshop.color} rounded-t-lg overflow-hidden`}
+        className={`relative w-full h-full bg-linear-to-br ${workshop.color} rounded-t-lg overflow-hidden`}
         style={{
           boxShadow: "0 0 20px rgba(0,0,0,0.5)",
         }}

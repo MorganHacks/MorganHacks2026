@@ -19,7 +19,7 @@ export function PortalTransition() {
   if (!isTransitioning) return null
 
   return (
-    <div className="fixed inset-0 z-[100] pointer-events-none">
+    <div className="fixed inset-0 z-100 pointer-events-none">
       {/* Portal effect */}
       <div className="absolute inset-0 bg-background animate-portal-close">
         <div className="absolute inset-0 flex items-center justify-center">
@@ -30,7 +30,7 @@ export function PortalTransition() {
             <div className="absolute inset-16 rounded-full border-4 border-accent animate-spin-fast opacity-40" />
 
             {/* Center glow */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent blur-3xl opacity-50 animate-pulse" />
+            <div className="absolute inset-0 rounded-full bg-linear-to-r from-primary via-secondary to-accent blur-3xl opacity-50 animate-pulse" />
           </div>
         </div>
       </div>
