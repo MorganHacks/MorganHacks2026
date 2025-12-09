@@ -146,9 +146,9 @@ function MetricCard({ metric }: { metric: Metric }) {
 }
 
 function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number }) {
-  const size = 620
+  const size = 700
   const center = size / 2
-  const radius = 160
+  const radius = 180
   const lineRadius = radius * 0.95
   const labelRadius = radius * 1.7
   const paths = useMemo(() => {
@@ -167,10 +167,10 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
         const midAngle = startAngle + angle / 2
         const lineStart = polarToCartesian(center, center, lineRadius, midAngle)
         const labelPos = polarToCartesian(center, center, labelRadius, midAngle)
-        const margin = 90
+        const margin = 110
         const clampedLabelPos = {
           x: Math.min(Math.max(labelPos.x, margin), size - margin),
-          y: Math.min(Math.max(labelPos.y, 28), size - 28),
+          y: Math.min(Math.max(labelPos.y, 32), size - 32),
         }
         const textAnchor = clampedLabelPos.x < center ? "end" : "start"
 
@@ -190,7 +190,7 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
   }, [center, labelRadius, lineRadius, radius, slices, total])
 
   return (
-    <div className="relative w-full max-w-[620px] aspect-square">
+    <div className="relative w-full max-w-[720px] aspect-square">
       <svg
         width={size}
         height={size}
@@ -214,8 +214,8 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
               y={path.labelPos.y}
               textAnchor={path.textAnchor as "start" | "end"}
               dominantBaseline="middle"
-              className="text-[11px] font-mono fill-foreground"
-              dx={path.textAnchor === "end" ? -4 : 4}
+              className="text-[13px] font-mono fill-foreground"
+              dx={path.textAnchor === "end" ? -7 : 7}
             >
               {path.label}
             </text>
