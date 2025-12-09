@@ -24,6 +24,13 @@ type TrackDetail = {
   resources: { name: string; url: string }[]
 }
 
+const PARTICLE_SEEDS = Array.from({ length: 20 }).map((_, i) => ({
+  left: (i * 37) % 100,
+  top: (i * 53) % 100,
+  delay: (i * 17) % 5,
+  duration: 5 + ((i * 23) % 5),
+}))
+
 const iconMap = {
   Cpu,
   Heart,
@@ -46,7 +53,6 @@ export function InteractiveCityMap() {
   const [trackDetailsData, setTrackDetailsData] = useState<Record<string, TrackDetail>>(
     trackDetailsStatic as Record<string, TrackDetail>
   )
-  const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const handleWheel = (e: React.WheelEvent) => {
@@ -114,7 +120,6 @@ export function InteractiveCityMap() {
       }
     }
     loadData()
-    setMounted(true)
   }, [])
 
   const citiesWithIcons = useMemo(() => {
@@ -323,22 +328,20 @@ export function InteractiveCityMap() {
         </div>
 
         {/* Floating particles */}
-        {mounted && (
-          <div className="absolute inset-0 pointer-events-none">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${5 + Math.random() * 5}s`,
-                }}
-              />
-            ))}
-          </div>
-        )}
+        <div className="absolute inset-0 pointer-events-none">
+          {PARTICLE_SEEDS.map((seed, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
+              style={{
+                left: `${seed.left}%`,
+                top: `${seed.top}%`,
+                animationDelay: `${seed.delay}s`,
+                animationDuration: `${seed.duration}s`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Instructions */}

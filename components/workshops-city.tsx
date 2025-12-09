@@ -4,6 +4,13 @@ import { useState } from "react"
 import { X, Clock, MapPin, Users, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+const STAR_SEEDS = Array.from({ length: 50 }).map((_, i) => ({
+  left: (i * 37) % 100,
+  top: (i * 23) % 50,
+  delay: (i * 19) % 3,
+  opacity: 0.25 + ((i * 11) % 30) / 100,
+}))
+
 const workshops = [
   {
     id: 1,
@@ -137,6 +144,7 @@ const workshops = [
 
 export function WorkshopsCity() {
   const [selectedWorkshop, setSelectedWorkshop] = useState<number | null>(null)
+  const starSeeds = STAR_SEEDS
 
   const workshop = selectedWorkshop ? workshops.find((w) => w.id === selectedWorkshop) : null
 
@@ -146,15 +154,15 @@ export function WorkshopsCity() {
       <div className="relative bg-linear-to-b from-background via-card to-background border border-primary/30 rounded-lg p-8 min-h-[400px] overflow-hidden">
         {/* Stars background */}
         <div className="absolute inset-0">
-          {Array.from({ length: 50 }).map((_, i) => (
+          {starSeeds.map((star, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 50}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                opacity: Math.random() * 0.5 + 0.2,
+                left: `${star.left}%`,
+                top: `${star.top}%`,
+                animationDelay: `${star.delay}s`,
+                opacity: star.opacity,
               }}
             />
           ))}

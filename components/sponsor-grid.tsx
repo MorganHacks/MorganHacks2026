@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 import { X, ExternalLink, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -79,10 +80,13 @@ export function SponsorGrid() {
 
             <div className="flex items-center gap-4 mb-6">
               <div className="w-24 h-24 bg-muted rounded-lg flex items-center justify-center overflow-hidden">
-                <img
+                <Image
                   src={selectedSponsor.image || "/placeholder.svg"}
                   alt={selectedSponsor.name}
                   className="w-full h-full object-contain"
+                  width={96}
+                  height={96}
+                  unoptimized
                 />
               </div>
               <div>
@@ -150,10 +154,13 @@ function SponsorCard({
             size === "small" ? "w-20 h-20" : "w-32 h-32"
           }`}
         >
-          <img
+          <Image
             src={sponsor.image || "/placeholder.svg"}
             alt={sponsor.name}
             className="w-full h-full object-contain p-2"
+            width={size === "small" ? 80 : 128}
+            height={size === "small" ? 80 : 128}
+            unoptimized
           />
         </div>
 

@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react"
 
+const TARGET_DATE = new Date("2026-04-14T00:00:00")
+
 export function CountdownPortal() {
-  const targetDate = new Date("2026-04-14T00:00:00")
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -14,7 +15,7 @@ export function CountdownPortal() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const difference = +targetDate - +new Date()
+      const difference = +TARGET_DATE - +new Date()
 
       if (difference > 0) {
         setTimeLeft({

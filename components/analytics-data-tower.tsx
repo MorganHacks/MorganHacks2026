@@ -150,26 +150,29 @@ function PieChartWithLabels({ slices, total }: { slices: Slice[]; total: number 
   const center = size / 2
   const radius = 110
   const paths = useMemo(() => {
-    let currentAngle = -90 // start at top
-    return slices.map((slice) => {
-      const angle = (slice.value / total) * 360
-      const startAngle = currentAngle
-      const endAngle = currentAngle + angle
-      currentAngle = endAngle
+    return slices.reduce(
+      (acc, slice) => {
+        const angle = (slice.value / total) * 360
+        const startAngle = acc.currentAngle
+        const endAngle = startAngle + angle
 
-      const start = polarToCartesian(center, center, radius, endAngle)
-      const end = polarToCartesian(center, center, radius, startAngle)
-      const largeArcFlag = angle > 180 ? 1 : 0
-      const d = `M ${center} ${center} L ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y} Z`
+        const start = polarToCartesian(center, center, radius, endAngle)
+        const end = polarToCartesian(center, center, radius, startAngle)
+        const largeArcFlag = angle > 180 ? 1 : 0
+        const d = `M ${center} ${center} L ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y} Z`
 
-      const percent = Math.round((slice.value / total) * 100)
-      const midAngle = startAngle + angle / 2
-      const lineStart = polarToCartesian(center, center, radius * 0.88, midAngle)
-      const labelPos = polarToCartesian(center, center, radius * 1.15, midAngle)
-      const textAnchor = labelPos.x < center ? "end" : "start"
+        const percent = Math.round((slice.value / total) * 100)
+        const midAngle = startAngle + angle / 2
+        const lineStart = polarToCartesian(center, center, radius * 0.88, midAngle)
+        const labelPos = polarToCartesian(center, center, radius * 1.15, midAngle)
+        const textAnchor = labelPos.x < center ? "end" : "start"
 
-      return { d, color: slice.color, label: `${slice.label} (${percent}%)`, lineStart, labelPos, textAnchor }
-    })
+        acc.paths.push({ d, color: slice.color, label: `${slice.label} (${percent}%)`, lineStart, labelPos, textAnchor })
+        acc.currentAngle = endAngle
+        return acc
+      },
+      { currentAngle: -90, paths: [] as Array<{ d: string; color: string; label: string; lineStart: { x: number; y: number }; labelPos: { x: number; y: number }; textAnchor: string }> }
+    ).paths
   }, [center, radius, slices, total])
 
   return (
