@@ -52,14 +52,21 @@ export function Navigation() {
               </Link>
             ))}
             <Button
+              asChild
               variant="outline"
               className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70"
-              onClick={(e) => e.preventDefault()}
             >
-              Become a Judge
+              <Link href="https://www.jotform.com/form/250957540277161" target="_blank" rel="noopener noreferrer">
+                Become a Judge
+              </Link>
             </Button>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border hover:scale-105 transition-transform">
-              Register Now
+            <Button
+              asChild
+              className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border hover:scale-105 transition-transform"
+            >
+              <Link href="https://www.jotform.com/form/251163649282157" target="_blank" rel="noopener noreferrer">
+                Register Now
+              </Link>
             </Button>
           </div>
 
@@ -92,14 +99,21 @@ export function Navigation() {
                 </Link>
               ))}
               <Button
+                asChild
                 variant="outline"
                 className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70 w-full"
-                onClick={(e) => e.preventDefault()}
               >
-                Become a Judge
+                <Link href="https://www.jotform.com/form/250957540277161" target="_blank" rel="noopener noreferrer">
+                  Become a Judge
+                </Link>
               </Button>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border w-full">
-                Register Now
+              <Button
+                asChild
+                className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border w-full"
+              >
+                <Link href="https://www.jotform.com/form/251163649282157" target="_blank" rel="noopener noreferrer">
+                  Register Now
+                </Link>
               </Button>
             </div>
           </div>

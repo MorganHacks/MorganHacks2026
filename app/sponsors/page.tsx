@@ -48,13 +48,17 @@ export default function SponsorsPage() {
                 <p>Thank you,<br />The MorganHacks Team</p>
               </div>
 
-              {/* <div className="mt-6 flex justify-center">
-                <Link href="https://example.com/sponsorship-prospectus.pdf" target="_blank" rel="noopener noreferrer">
+              <div className="mt-6 flex justify-center">
+                <Link
+                  href="https://www.jotform.com/form/253334594024051"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button size="lg" className="neon-border">
-                    View Sponsorship Packet (PDF)
+                    Sponsor Us
                   </Button>
                 </Link>
-              </div> */}
+              </div>
             </div> 
 
             <div className="space-y-10">
