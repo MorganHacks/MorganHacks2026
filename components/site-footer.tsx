@@ -39,11 +39,19 @@ const socials = [
   { label: "TikTok", href: "https://www.tiktok.com/@morganhacks2026", icon: TikTok },
 ]
 
+const involvementLinks = [
+  { label: "Hacker Registration", href: "https://www.jotform.com/form/251163649282157" },
+  { label: "Mentor Registration", href: "https://www.jotform.com/form/253297815473164" },
+  { label: "Sponsor Interest Form", href: "https://www.jotform.com/form/253334594024051" },
+  { label: "Judge Interest", href: "https://www.jotform.com/form/250957540277161" },
+  { label: "Volunteer", href: "https://www.jotform.com/form/243146481679163" },
+]
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-primary/20 bg-card/40 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 items-start">
+        <div className="grid gap-10 sm:grid-cols-3 items-start">
           <div className="space-y-2">
             <p className="text-lg font-bold font-orbitron">MorganHacks</p>
             <p className="text-sm text-muted-foreground">
@@ -68,6 +76,23 @@ export function SiteFooter() {
                   </Link>
                 )
               })}
+            </div>
+          </div>
+          <div className="space-y-2">
+            <p className="text-sm font-bold font-orbitron">Get Involved</p>
+            <div className="grid grid-cols-1 gap-2">
+              {involvementLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 text-sm text-foreground hover:border-primary/50 transition-colors"
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                  <span>{link.label}</span>
+                  <span className="text-xs text-muted-foreground font-mono">→</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

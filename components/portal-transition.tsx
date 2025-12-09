@@ -8,7 +8,6 @@ export function PortalTransition() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsTransitioning(true)
     const timer = setTimeout(() => {
       setIsTransitioning(false)
