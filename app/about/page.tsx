@@ -19,6 +19,12 @@ const sections = [
       "Expert judges from academia and industry who will review projects, provide feedback, and help teams refine their pitches.",
     status: "To Be Announced",
   },
+  {
+    title: "Judging Criteria",
+    description:
+      "How we evaluate projects: impact, technical depth, creativity, user experience, and presentation. Full rubric is TBA.",
+    status: "To Be Announced",
+  },
 ]
 
 export default function AboutPage() {
@@ -39,7 +45,7 @@ export default function AboutPage() {
       </section>
 
       <section className="pb-16 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sections.map((item) => (
             <div
               key={item.title}
