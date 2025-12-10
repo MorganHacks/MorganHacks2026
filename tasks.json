@@ -97,7 +97,7 @@
     {
       "title": "House Click: Camera Transition to First-Person",
       "description": "When a user clicks on a track house, transition the view to a first-person perspective inside that house.",
-      "is_done": false,
+      "is_done": true,
       "difficulty": "medium",
       "subtasks": [
         {
@@ -123,14 +123,14 @@
         {
           "title": "Initiate first-person mode",
           "description": "Once the camera is inside the house and the transition is complete, prepare to switch to first-person controls (enable pointer lock, etc.). This may involve prompting the user or automatically locking the pointer if possible.",
-          "is_done": false
+          "is_done": true
         }
       ]
     },
     {
       "title": "Interior Room and First-Person Mode",
       "description": "Create a simple interior environment for the house and enable first-person camera controls for navigation inside the house.",
-      "is_done": false,
+      "is_done": true,
       "difficulty": "hard",
       "subtasks": [
         {
@@ -146,55 +146,55 @@
         {
           "title": "Enable Pointer Lock controls",
           "description": "Add PointerLockControls (from drei/three-stdlib) to allow first-person mouse look. The user should be able to move the camera view with mouse movement when the pointer is locked.",
-          "is_done": false
+          "is_done": true
         },
         {
           "title": "Implement keyboard navigation",
           "description": "Allow basic WASD (or arrow keys) movement for the camera inside the room. Update the camera position based on key input to move forward, backward, and strafe left/right in the direction the camera is facing.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Constrain movement within room",
             "description": "Prevent the camera from going through walls or leaving the room boundaries. For example, clamp the camera position to the extents of the room so the user remains inside the house.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "UI cues for first-person mode",
             "description": "Provide guidance or UI hints in this mode, such as a small crosshair at the center of the screen and instructions (e.g., \"Use WASD to move, mouse to look; Press Esc or Exit to leave\").",
-            "is_done": false
+            "is_done": true
           }
         ]
       },
     {
       "title": "Track Detail Panels (Interior Overlays)",
       "description": "Show detailed information about the selected track inside the house using overlay panels (HTML elements over the 3D canvas).",
-      "is_done": false,
+      "is_done": true,
       "difficulty": "medium",
       "subtasks": [
         {
           "title": "Design track detail panel",
           "description": "Create an HTML/CSS panel component that will display track details (e.g., track name, description, other relevant info).",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Populate panel with track data",
             "description": "When a house is entered (track selected), load the corresponding track's data (from track-cities.json or another source) and display it in the detail panel.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Overlay panel in 3D view",
             "description": "Use an overlay technique (e.g., React portal or drei's Html component) to render the detail panel on top of the 3D scene. Position it as a HUD element (e.g., fixed position in the viewport or attached to part of the room).",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Style panel for readability",
             "description": "Apply styling to the panel (background, text color, size) to ensure it's readable against the 3D scene. Possibly use a translucent background or card-like appearance.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Support interaction if needed",
             "description": "If the panel has interactive elements (e.g., a list of tracks or a play button), ensure those can be clicked/used while in first-person mode (the pointer lock may need to be released or not interfere with clicking the panel).",
-            "is_done": false
+            "is_done": true
           }
         ]
       },
@@ -290,33 +290,33 @@
       {
         "title": "Prepare for 3D Model Support",
         "description": "Design the system to allow loading custom 3D models (GLTF/GLB) for each track house in the future, even if using placeholders for now.",
-        "is_done": false,
+        "is_done": true,
         "difficulty": "medium",
         "subtasks": [
           {
             "title": "Extend track data structure",
             "description": "Add a field in track-cities.json (or related data source) for an optional model filename or URL for each track house.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Implement conditional model loading",
             "description": "In the 3D scene code, check if a track has an associated GLTF model path. If so, use a loader (e.g., drei's useGLTF or useLoader) to load and display the model instead of the placeholder mesh.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Fallback to placeholder meshes",
             "description": "If no model is specified for a track, continue to use the default placeholder mesh (e.g., the simple box) so that every track has some visible representation.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Optimize model loading",
             "description": "Plan to load models on demand to avoid performance issues (e.g., only load a model when it comes into view or when that house is clicked). For now, include hooks or structure to support this lazy loading of models.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Document model integration",
             "description": "Write notes or documentation for future developers on how to add a custom .glb/.gltf model for a track (e.g., where to place the file and how to reference it in the data).",
-            "is_done": false
+            "is_done": true
           }
         ]
       },
@@ -329,17 +329,17 @@
           {
             "title": "Improve scene lighting and environment",
             "description": "Add better lighting (e.g., HemisphereLight, spotlight on selected house) or environment maps for more realistic visuals. Optionally add a skybox or ground plane for context.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Camera transition effects",
             "description": "Add easing or a brief fade in/out during camera transitions into and out of houses to make the experience smoother.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Responsive and layout tweaks",
             "description": "Ensure the 3D canvas and track list layout work well on different screen sizes (mobile, desktop). The toggle and exit UI should be easy to use on all devices.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Performance optimizations",
@@ -349,12 +349,12 @@
           {
             "title": "Visual differentiation of houses",
             "description": "Give each track house a distinct appearance (color or texture) or size based on data, to make them easier to distinguish in 3D.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "First-person UX enhancements",
             "description": "Add a visible crosshair in first-person mode and perhaps a tooltip on the Exit button (or a key hint to press Esc). Maybe add collision so the camera can't go through objects if more objects are added in rooms.",
-            "is_done": false
+            "is_done": true
           },
           {
             "title": "Testing and bug fixes",
@@ -364,7 +364,7 @@
           {
             "title": "Update documentation",
             "description": "Update project README or documentation to include instructions for the new 3D track view feature, how to use it, and any tech notes on implementation for future maintenance.",
-            "is_done": false
+            "is_done": true
           }
         ]
       }

@@ -76,11 +76,42 @@ export default function TracksPage() {
             </div>
           </div>
 
-          {viewMode === "3d" ? (
-            <TrackScene3D selectedId={selectedTrackId} onSelect={setSelectedTrackId} insideId={insideTrackId} />
-          ) : (
-            <InteractiveCityMap />
-          )}
+          <div className="relative">
+            {viewMode === "3d" ? (
+              <TrackScene3D selectedId={selectedTrackId} onSelect={setSelectedTrackId} insideId={insideTrackId} />
+            ) : (
+              <InteractiveCityMap />
+            )}
+
+            {viewMode === "3d" && insideTrackId && selectedTrack && (
+              <div className="pointer-events-auto absolute top-3 right-3 w-full max-w-sm">
+                <div className="rounded-lg border border-primary/40 bg-background/90 backdrop-blur p-4 shadow-lg">
+                  <p className="text-[11px] uppercase text-muted-foreground font-mono mb-1">Inside View</p>
+                  <h3 className="text-xl font-bold font-orbitron">{selectedTrack.name}</h3>
+                  <p className="text-sm text-muted-foreground mt-1 font-mono">
+                    {selectedDetail?.fullDescription ?? selectedTrack.description}
+                  </p>
+                  <div className="mt-3 space-y-2 text-xs text-foreground font-mono">
+                    <p className="text-muted-foreground/80">Resources:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {(selectedDetail?.resources ?? []).map((resource) => (
+                        <a
+                          key={resource.url}
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2 py-1 rounded border border-primary/30 bg-primary/10 text-primary hover:border-primary/60 transition-colors"
+                        >
+                          {resource.name}
+                        </a>
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground/70">Press Esc to unlock cursor if you need to click links.</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
 
           {selectedTrack && (
             <div className="mt-8 p-6 rounded-lg border border-primary/30 bg-card/60">
