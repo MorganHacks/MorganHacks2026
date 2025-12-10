@@ -4,7 +4,6 @@ import { Suspense, useMemo, useRef, useState, useEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { OrbitControls, Html, PointerLockControls, useGLTF } from "@react-three/drei"
 import * as THREE from "three"
-import type { OrbitControls as OrbitControlsImpl } from "three-stdlib"
 import trackCitiesStatic from "@/public/track-cities.json"
 
 type TrackCity = {
@@ -26,8 +25,6 @@ type Props = {
   insideId?: string | null
   islandModelPath?: string
 }
-
-const toWorld = (value: number) => (value - 50) / 6
 
 export function TrackScene3D({ selectedId, onSelect, insideId, islandModelPath }: Props) {
   const cities = useMemo(() => trackCitiesStatic as TrackCity[], [])
@@ -66,7 +63,6 @@ export function TrackScene3D({ selectedId, onSelect, insideId, islandModelPath }
           <InstructionOverlay />
         </>
       )}
-
       <FadeOverlay opacity={fade} />
     </div>
   )
@@ -87,15 +83,11 @@ function SceneContent({
 }) {
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [locked, setLocked] = useState(false)
-
-  const controlsRef = useRef<OrbitControlsImpl | null>(null)
+  const controlsRef = useRef<any>(null)
   const pointerRef = useRef<any>(null)
-
   const desiredCamera = useRef(new THREE.Vector3(0, 12, 18))
   const desiredTarget = useRef(new THREE.Vector3(0, 1, 0))
-
   const { camera } = useThree()
-
   const insideCenter = useRef<THREE.Vector3 | null>(null)
   const insideBounds = useRef<{ x: number; z: number } | null>(null)
 
@@ -103,7 +95,6 @@ function SceneContent({
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.repeat) return
       keyState.current[e.code] = true
     }
     const onKeyUp = (e: KeyboardEvent) => {
@@ -117,20 +108,19 @@ function SceneContent({
     }
   }, [])
 
+  const toWorld = (value: number) => (value - 50) / 6
+
   useEffect(() => {
     if (!selectedId) {
       desiredCamera.current.set(0, 12, 18)
       desiredTarget.current.set(0, 1, 0)
       return
     }
-
     const city = cities.find((c) => c.id === selectedId)
     if (!city) return
-
     const x = toWorld(city.position.x)
     const z = toWorld(city.position.y)
     const isInside = insideId === city.id
-
     if (isInside) {
       insideCenter.current = new THREE.Vector3(x, 1.5, z)
       insideBounds.current = {
@@ -141,12 +131,12 @@ function SceneContent({
       desiredCamera.current.set(x, 1.6, z + 2.4)
       camera.position.set(x, 1.6, z + 2.4)
     } else {
-      insideCenter.current = null
-      insideBounds.current = null
       desiredTarget.current.set(x, 2, z)
       desiredCamera.current.set(x + 2.5, 6, z + 8)
+      insideCenter.current = null
+      insideBounds.current = null
     }
-  }, [cities, insideId, selectedId, camera])
+  }, [cities, insideId, selectedId])
 
   useEffect(() => {
     if (!insideId && pointerRef.current) {
@@ -188,7 +178,6 @@ function SceneContent({
       const cz = insideCenter.current.z
       const boundX = insideBounds.current?.x ?? 2.3
       const boundZ = insideBounds.current?.z ?? 2.3
-
       camera.position.x = THREE.MathUtils.clamp(camera.position.x, cx - boundX, cx + boundX)
       camera.position.z = THREE.MathUtils.clamp(camera.position.z, cz - boundZ, cz + boundZ)
     }
@@ -203,7 +192,6 @@ function SceneContent({
 
       <Suspense fallback={null}>
         {islandModelPath && <Island modelPath={islandModelPath} />}
-
         <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
           <planeGeometry args={[40, 40]} />
           <meshStandardMaterial color="#0f172a" />
@@ -216,14 +204,12 @@ function SceneContent({
           const emissive = city.color.includes("to") ? "#22d3ee" : "#38bdf8"
           const isSelected = selectedId === city.id
           const isHovered = hoveredId === city.id
-          const scaleMod = isSelected ? 1.15 : isHovered ? 1.1 : 1
+          const scale = isSelected ? 1.15 : isHovered ? 1.1 : 1
           const cityScale = city.scale ?? 1
           const hasModel = !!city.model
           const baseHeight = 3 + (idx % 3) * 0.5
           const rot = city.rotation ?? {}
           const offset = city.offset ?? {}
-          const combinedScale = scaleMod * cityScale
-          const fallbackColor = `hsl(${hue * 360}, 70%, 55%)`
 
           return (
             <group
@@ -235,40 +221,46 @@ function SceneContent({
             >
               <Suspense
                 fallback={
-                  <BoxHouse
-                    baseHeight={baseHeight}
-                    hue={hue}
-                    emissive={emissive}
-                    isSelected={isSelected}
-                    scale={combinedScale}
-                    rotation={rot}
-                    offset={offset}
-                  />
+                  <mesh castShadow position={[offset.x ?? 0, baseHeight / 2 + (offset.y ?? 0), offset.z ?? 0]} scale={scale * cityScale} rotation={[rot.x ?? 0, rot.y ?? 0, rot.z ?? 0]}>
+                    <boxGeometry args={[2, baseHeight, 2]} />
+                    <meshStandardMaterial
+                      color={`hsl(${hue * 360}, 70%, 55%)`}
+                      emissive={emissive}
+                      emissiveIntensity={isSelected ? 1 : 0.4}
+                      metalness={0.2}
+                      roughness={0.4}
+                    />
+                  </mesh>
                 }
               >
                 {hasModel ? (
                   <HouseModel
                     url={city.model as string}
-                    scale={combinedScale}
-                    fallbackColor={fallbackColor}
+                    scale={scale * cityScale}
+                    fallbackColor={`hsl(${hue * 360}, 70%, 55%)`}
                     emissive={emissive}
                     isSelected={isSelected}
                     rotation={rot}
                     offset={offset}
                   />
                 ) : (
-                  <BoxHouse
-                    baseHeight={baseHeight}
-                    hue={hue}
-                    emissive={emissive}
-                    isSelected={isSelected}
-                    scale={combinedScale}
-                    rotation={rot}
-                    offset={offset}
-                  />
+                  <mesh
+                    castShadow
+                    position={[offset.x ?? 0, baseHeight / 2 + (offset.y ?? 0), offset.z ?? 0]}
+                    scale={scale * cityScale}
+                    rotation={[rot.x ?? 0, rot.y ?? 0, rot.z ?? 0]}
+                  >
+                    <boxGeometry args={[2, baseHeight, 2]} />
+                    <meshStandardMaterial
+                      color={`hsl(${hue * 360}, 70%, 55%)`}
+                      emissive={emissive}
+                      emissiveIntensity={isSelected ? 1 : 0.4}
+                      metalness={0.2}
+                      roughness={0.4}
+                    />
+                  </mesh>
                 )}
               </Suspense>
-
               <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.2, 0]} scale={isSelected ? 1.1 : 1}>
                 <torusGeometry args={[1.4, 0.06, 12, 48]} />
                 <meshStandardMaterial
@@ -278,7 +270,6 @@ function SceneContent({
                   roughness={0.2}
                 />
               </mesh>
-
               <Html position={[0, 3.2, 0]} center className="pointer-events-none">
                 <div className="px-2 py-1 rounded-full bg-background/80 border border-primary/30 text-xs font-mono text-foreground shadow">
                   {city.name}
@@ -298,14 +289,13 @@ function SceneContent({
 
       <OrbitControls
         ref={controlsRef}
-        enablePan={!insideId}
-        enableZoom={!insideId}
-        enableRotate={!insideId}
-        maxDistance={30}
+        enablePan={insideId ? false : true}
+        enableZoom={insideId ? false : true}
+        enableRotate={insideId ? false : true}
+        maxDistance={insideId ? 30 : 30}
         minDistance={insideId ? 4 : 8}
         target={[0, 1, 0]}
       />
-
       <PointerLockControls
         ref={pointerRef}
         enabled={!!insideId}
@@ -314,42 +304,6 @@ function SceneContent({
         onUnlock={() => setLocked(false)}
       />
     </>
-  )
-}
-
-function BoxHouse({
-  baseHeight,
-  hue,
-  emissive,
-  isSelected,
-  scale,
-  rotation,
-  offset,
-}: {
-  baseHeight: number
-  hue: number
-  emissive: string
-  isSelected: boolean
-  scale: number
-  rotation: { x?: number; y?: number; z?: number }
-  offset: { x?: number; y?: number; z?: number }
-}) {
-  return (
-    <mesh
-      castShadow
-      position={[offset.x ?? 0, baseHeight / 2 + (offset.y ?? 0), offset.z ?? 0]}
-      scale={scale}
-      rotation={[rotation.x ?? 0, rotation.y ?? 0, rotation.z ?? 0]}
-    >
-      <boxGeometry args={[2, baseHeight, 2]} />
-      <meshStandardMaterial
-        color={`hsl(${hue * 360}, 70%, 55%)`}
-        emissive={emissive}
-        emissiveIntensity={isSelected ? 1 : 0.4}
-        metalness={0.2}
-        roughness={0.4}
-      />
-    </mesh>
   )
 }
 
@@ -379,7 +333,6 @@ function HouseModel({
         const material =
           (mesh.material as THREE.MeshStandardMaterial | undefined)?.clone?.() ||
           new THREE.MeshStandardMaterial({ color: fallbackColor })
-
         material.emissive = new THREE.Color(emissive)
         material.emissiveIntensity = isSelected ? 1 : 0.4
         material.metalness = 0.2
