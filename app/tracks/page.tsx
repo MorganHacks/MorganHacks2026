@@ -78,7 +78,12 @@ export default function TracksPage() {
 
           <div className="relative">
             {viewMode === "3d" ? (
-              <TrackScene3D selectedId={selectedTrackId} onSelect={setSelectedTrackId} insideId={insideTrackId} />
+              <TrackScene3D
+                selectedId={selectedTrackId}
+                onSelect={setSelectedTrackId}
+                insideId={insideTrackId}
+                islandModelPath="/models/Island.glb"
+              />
             ) : (
               <InteractiveCityMap />
             )}

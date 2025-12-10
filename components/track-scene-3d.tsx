@@ -13,15 +13,20 @@ type TrackCity = {
   color: string
   position: { x: number; y: number }
   model?: string | null
+  scale?: number
+  rotation?: { x?: number; y?: number; z?: number }
+  offset?: { x?: number; y?: number; z?: number }
+  bounds?: { x?: number; z?: number }
 }
 
 type Props = {
   selectedId?: string | null
   onSelect?: (id: string) => void
   insideId?: string | null
+  islandModelPath?: string
 }
 
-export function TrackScene3D({ selectedId, onSelect, insideId }: Props) {
+export function TrackScene3D({ selectedId, onSelect, insideId, islandModelPath }: Props) {
   const cities = useMemo(() => trackCitiesStatic as TrackCity[], [])
   const [fade, setFade] = useState(0)
 
@@ -34,7 +39,13 @@ export function TrackScene3D({ selectedId, onSelect, insideId }: Props) {
   return (
     <div className="relative w-full h-[420px] md:h-[520px] rounded-xl border border-primary/30 bg-card/40 overflow-hidden">
       <Canvas camera={{ position: [0, 12, 18], fov: 50 }} dpr={[1, 1.5]}>
-        <SceneContent cities={cities} selectedId={selectedId} onSelect={onSelect} insideId={insideId} />
+        <SceneContent
+          cities={cities}
+          selectedId={selectedId}
+          onSelect={onSelect}
+          insideId={insideId}
+          islandModelPath={islandModelPath}
+        />
       </Canvas>
 
       {insideId && (
@@ -62,11 +73,13 @@ function SceneContent({
   selectedId,
   onSelect,
   insideId,
+  islandModelPath,
 }: {
   cities: TrackCity[]
   selectedId?: string | null
   onSelect?: (id: string) => void
   insideId?: string | null
+  islandModelPath?: string
 }) {
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const [locked, setLocked] = useState(false)
@@ -76,6 +89,7 @@ function SceneContent({
   const desiredTarget = useRef(new THREE.Vector3(0, 1, 0))
   const { camera } = useThree()
   const insideCenter = useRef<THREE.Vector3 | null>(null)
+  const insideBounds = useRef<{ x: number; z: number } | null>(null)
 
   const keyState = useRef<Record<string, boolean>>({})
 
@@ -109,6 +123,10 @@ function SceneContent({
     const isInside = insideId === city.id
     if (isInside) {
       insideCenter.current = new THREE.Vector3(x, 1.5, z)
+      insideBounds.current = {
+        x: city.bounds?.x ?? 2.3,
+        z: city.bounds?.z ?? 2.3,
+      }
       desiredTarget.current.set(x, 1.5, z)
       desiredCamera.current.set(x, 1.6, z + 2.4)
       camera.position.set(x, 1.6, z + 2.4)
@@ -116,6 +134,7 @@ function SceneContent({
       desiredTarget.current.set(x, 2, z)
       desiredCamera.current.set(x + 2.5, 6, z + 8)
       insideCenter.current = null
+      insideBounds.current = null
     }
   }, [cities, insideId, selectedId])
 
@@ -157,9 +176,10 @@ function SceneContent({
 
       const cx = insideCenter.current.x
       const cz = insideCenter.current.z
-      const half = 2.3
-      camera.position.x = THREE.MathUtils.clamp(camera.position.x, cx - half, cx + half)
-      camera.position.z = THREE.MathUtils.clamp(camera.position.z, cz - half, cz + half)
+      const boundX = insideBounds.current?.x ?? 2.3
+      const boundZ = insideBounds.current?.z ?? 2.3
+      camera.position.x = THREE.MathUtils.clamp(camera.position.x, cx - boundX, cx + boundX)
+      camera.position.z = THREE.MathUtils.clamp(camera.position.z, cz - boundZ, cz + boundZ)
     }
   })
 
@@ -171,6 +191,7 @@ function SceneContent({
       <directionalLight position={[10, 12, 10]} intensity={0.8} castShadow />
 
       <Suspense fallback={null}>
+        {islandModelPath && <Island modelPath={islandModelPath} />}
         <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
           <planeGeometry args={[40, 40]} />
           <meshStandardMaterial color="#0f172a" />
@@ -184,8 +205,11 @@ function SceneContent({
           const isSelected = selectedId === city.id
           const isHovered = hoveredId === city.id
           const scale = isSelected ? 1.15 : isHovered ? 1.1 : 1
+          const cityScale = city.scale ?? 1
           const hasModel = !!city.model
           const baseHeight = 3 + (idx % 3) * 0.5
+          const rot = city.rotation ?? {}
+          const offset = city.offset ?? {}
 
           return (
             <group
@@ -197,7 +221,7 @@ function SceneContent({
             >
               <Suspense
                 fallback={
-                  <mesh castShadow position={[0, baseHeight / 2, 0]} scale={scale}>
+                  <mesh castShadow position={[offset.x ?? 0, baseHeight / 2 + (offset.y ?? 0), offset.z ?? 0]} scale={scale * cityScale} rotation={[rot.x ?? 0, rot.y ?? 0, rot.z ?? 0]}>
                     <boxGeometry args={[2, baseHeight, 2]} />
                     <meshStandardMaterial
                       color={`hsl(${hue * 360}, 70%, 55%)`}
@@ -212,13 +236,20 @@ function SceneContent({
                 {hasModel ? (
                   <HouseModel
                     url={city.model as string}
-                    scale={scale}
+                    scale={scale * cityScale}
                     fallbackColor={`hsl(${hue * 360}, 70%, 55%)`}
                     emissive={emissive}
                     isSelected={isSelected}
+                    rotation={rot}
+                    offset={offset}
                   />
                 ) : (
-                  <mesh castShadow position={[0, baseHeight / 2, 0]} scale={scale}>
+                  <mesh
+                    castShadow
+                    position={[offset.x ?? 0, baseHeight / 2 + (offset.y ?? 0), offset.z ?? 0]}
+                    scale={scale * cityScale}
+                    rotation={[rot.x ?? 0, rot.y ?? 0, rot.z ?? 0]}
+                  >
                     <boxGeometry args={[2, baseHeight, 2]} />
                     <meshStandardMaterial
                       color={`hsl(${hue * 360}, 70%, 55%)`}
@@ -282,12 +313,16 @@ function HouseModel({
   fallbackColor,
   emissive,
   isSelected,
+  rotation,
+  offset,
 }: {
   url: string
   scale: number
   fallbackColor: string
   emissive: string
   isSelected: boolean
+  rotation?: { x?: number; y?: number; z?: number }
+  offset?: { x?: number; y?: number; z?: number }
 }) {
   const gltf = useGLTF(url)
   const scene = useMemo(() => {
@@ -308,7 +343,15 @@ function HouseModel({
     return cloned
   }, [emissive, fallbackColor, gltf.scene, isSelected])
 
-  return <primitive object={scene} position={[0, 1.6, 0]} scale={scale * 1.2} dispose={null} />
+  return (
+    <primitive
+      object={scene}
+      position={[offset?.x ?? 0, 1.6 + (offset?.y ?? 0), offset?.z ?? 0]}
+      rotation={[rotation?.x ?? 0, rotation?.y ?? 0, rotation?.z ?? 0]}
+      scale={scale * 1.2}
+      dispose={null}
+    />
+  )
 }
 
 function InstructionOverlay() {
@@ -338,6 +381,19 @@ function FadeOverlay({ opacity }: { opacity: number }) {
     <div
       className="pointer-events-none absolute inset-0 bg-black transition-opacity duration-200"
       style={{ opacity }}
+    />
+  )
+}
+
+function Island({ modelPath }: { modelPath: string }) {
+  const gltf = useGLTF(modelPath)
+  return (
+    <primitive
+      object={gltf.scene}
+      position={[0, -0.05, 0]}
+      scale={1}
+      dispose={null}
+      rotation={[0, 0, 0]}
     />
   )
 }
