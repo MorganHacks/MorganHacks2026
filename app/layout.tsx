@@ -45,10 +45,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.jpeg", type: "image/jpeg" },
     ],
-    apple: "/icon.png",
+    apple: "/icon.jpeg",
   },
   manifest: "/site.webmanifest",
   themeColor: "#0b1430",
