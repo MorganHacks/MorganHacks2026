@@ -31,9 +31,12 @@ export function TrackScene3D({ selectedId, onSelect, insideId, islandModelPath }
   const [fade, setFade] = useState(0)
 
   useEffect(() => {
-    setFade(0.8)
+    const raf = requestAnimationFrame(() => setFade(0.8))
     const id = setTimeout(() => setFade(0), 220)
-    return () => clearTimeout(id)
+    return () => {
+      cancelAnimationFrame(raf)
+      clearTimeout(id)
+    }
   }, [insideId, selectedId])
 
   return (
@@ -136,12 +139,13 @@ function SceneContent({
       insideCenter.current = null
       insideBounds.current = null
     }
-  }, [cities, insideId, selectedId])
+  }, [camera, cities, insideId, selectedId])
 
   useEffect(() => {
     if (!insideId && pointerRef.current) {
       pointerRef.current.unlock?.()
-      setLocked(false)
+      const raf = requestAnimationFrame(() => setLocked(false))
+      return () => cancelAnimationFrame(raf)
     }
   }, [insideId])
 
@@ -178,8 +182,9 @@ function SceneContent({
       const cz = insideCenter.current.z
       const boundX = insideBounds.current?.x ?? 2.3
       const boundZ = insideBounds.current?.z ?? 2.3
-      camera.position.x = THREE.MathUtils.clamp(camera.position.x, cx - boundX, cx + boundX)
-      camera.position.z = THREE.MathUtils.clamp(camera.position.z, cz - boundZ, cz + boundZ)
+      const clampedX = THREE.MathUtils.clamp(camera.position.x, cx - boundX, cx + boundX)
+      const clampedZ = THREE.MathUtils.clamp(camera.position.z, cz - boundZ, cz + boundZ)
+      camera.position.set(clampedX, camera.position.y, clampedZ)
     }
   })
 
