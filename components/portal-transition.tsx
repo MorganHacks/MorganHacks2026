@@ -8,12 +8,13 @@ export function PortalTransition() {
   const pathname = usePathname()
 
   useEffect(() => {
-    setIsTransitioning(true)
-    const timer = setTimeout(() => {
-      setIsTransitioning(false)
-    }, 800)
+    const start = requestAnimationFrame(() => setIsTransitioning(true))
+    const timer = setTimeout(() => setIsTransitioning(false), 800)
 
-    return () => clearTimeout(timer)
+    return () => {
+      cancelAnimationFrame(start)
+      clearTimeout(timer)
+    }
   }, [pathname])
 
   if (!isTransitioning) return null

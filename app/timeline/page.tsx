@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/navigation"
+import { TimelineMonorail } from "@/components/timeline-monorail"
 
 export default function TimelinePage() {
   return (

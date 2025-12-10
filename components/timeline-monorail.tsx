@@ -239,7 +239,7 @@ export function TimelineMonorail() {
               : "bg-card border-primary/30 text-muted-foreground hover:border-primary/50"
           }`}
         >
-          Saturday, April 14
+          Saturday, April 11
         </button>
         <button
           onClick={() => setActiveDay("sunday")}
@@ -249,7 +249,7 @@ export function TimelineMonorail() {
               : "bg-card border-primary/30 text-muted-foreground hover:border-primary/50"
           }`}
         >
-          Sunday, April 15
+          Sunday, April 12
         </button>
       </div>
 

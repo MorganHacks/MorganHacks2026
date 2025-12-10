@@ -1,0 +1,372 @@
+{
+    "tasks": [
+    {
+      "title": "Project Setup and Dependencies",
+      "description": "Set up the project with required 3D libraries and prepare the /tracks page for the new 3D track view feature.",
+      "is_done": true,
+      "difficulty": "easy",
+      "subtasks": [
+        {
+          "title": "Install 3D libraries (react-three-fiber, @react-three/drei, three-stdlib)",
+          "description": "Add necessary packages for React Three Fiber and related utilities to the project.",
+          "is_done": true
+        },
+        {
+          "title": "Configure Next.js for 3D (disable SSR for Canvas)",
+          "description": "Ensure the Canvas from @react-three/fiber is only rendered on the client (e.g., using dynamic import with SSR disabled) to avoid server-side rendering issues.",
+          "is_done": true
+        },
+        {
+          "title": "Initialize /tracks page state for view mode",
+          "description": "Set up a state (e.g., useState) on the /tracks page to toggle between 2D list view and 3D view. Default to 2D view initially.",
+          "is_done": true
+        },
+        {
+          "title": "Verify 3D setup with a test object",
+          "description": "Render a simple test mesh (e.g., a box) in the Canvas to confirm that the 3D rendering is working in the application.",
+          "is_done": true
+        }
+      ]
+    },
+    {
+      "title": "Add 2D/3D View Toggle",
+      "description": "Implement a UI toggle on the tracks page that allows users to switch between the 2D list view and the 3D interactive view.",
+      "is_done": true,
+      "difficulty": "easy",
+      "subtasks": [
+        {
+          "title": "Create toggle UI component",
+          "description": "Add a button or switch on the /tracks page UI labeled to toggle between \"List View\" (2D) and \"3D View\".",
+          "is_done": true
+        },
+        {
+          "title": "Implement toggle functionality",
+          "description": "Connect the toggle to state: when switched to 3D, display the 3D canvas; when switched to 2D, hide or unmount the 3D canvas.",
+          "is_done": true
+        },
+        {
+          "title": "Maintain 2D list visibility",
+          "description": "Ensure the list of tracks (2D view) remains visible (under the canvas or full-width) when in 3D mode for accessibility, and is shown alone in 2D mode.",
+          "is_done": true
+        },
+        {
+          "title": "Style and accessibility",
+          "description": "Style the toggle control for clarity and ensure it is accessible (keyboard focusable and with appropriate ARIA labels or text).",
+          "is_done": true
+        }
+      ]
+    },
+    {
+      "title": "Implement 3D Scene with Track Houses",
+      "description": "Build the interactive 3D scene showing all track houses, using data from track-cities.json to position houses and label them.",
+      "is_done": true,
+      "difficulty": "hard",
+      "subtasks": [
+        {
+          "title": "Set up Canvas and Scene",
+          "description": "Add a <Canvas> to the /tracks page (client-side only) and configure a basic scene. Include ambient and directional light sources for illumination.",
+          "is_done": true
+        },
+        {
+          "title": "Initialize camera and controls",
+          "description": "Position the camera to view the entire scene of houses and add OrbitControls (from drei) for orbiting around the scene. Set an appropriate target and zoom limits so all houses remain in view.",
+          "is_done": true
+        },
+        {
+          "title": "Load track-cities data",
+          "description": "Import or fetch track-cities.json data, which contains the list of track houses with their coordinates (and possibly names or IDs).",
+          "is_done": true
+        },
+        {
+          "title": "Place house meshes in scene",
+          "description": "For each track in the data, create a mesh (e.g., a Box geometry or placeholder) at the specified coordinates in the 3D world. Adjust scaling/position as needed so houses are appropriately spaced and visible.",
+          "is_done": true
+        },
+        {
+          "title": "Add labels to houses",
+          "description": "Attach a label to each house showing its name or track title. Use a text sprite or HTML element (e.g., drei's <Html> or <Text> component) so that the label is readable (and ideally faces the camera).",
+          "is_done": true
+        },
+        {
+          "title": "Make houses interactive",
+          "description": "Enable pointer events on the house meshes so they can be clicked. For example, use onPointerUp or onClick events in react-three-fiber to detect when a house is clicked.",
+          "is_done": true
+        }
+      ]
+    },
+    {
+      "title": "House Click: Camera Transition to First-Person",
+      "description": "When a user clicks on a track house, transition the view to a first-person perspective inside that house.",
+      "is_done": false,
+      "difficulty": "medium",
+      "subtasks": [
+        {
+          "title": "Disable orbit controls on select",
+          "description": "When a house is clicked, temporarily disable or pause the OrbitControls to take manual control of the camera for the transition.",
+          "is_done": true
+        },
+        {
+          "title": "Compute interior camera target",
+          "description": "Determine the camera position and orientation that represents being inside the selected house (e.g., a point inside the house mesh or a predefined interior position).",
+          "is_done": true
+        },
+        {
+          "title": "Animate camera into house",
+          "description": "Smoothly move the camera from its current position outside to the interior target position. Use an animation or tweening library or manual interpolation over a few frames for a smooth transition.",
+          "is_done": true
+        },
+        {
+          "title": "Adjust scene for interior view",
+          "description": "After moving inside, update scene parameters if needed (e.g., camera near/far or controls) and hide or dim other houses/environment to focus on the selected house (optional).",
+          "is_done": true
+        },
+        {
+          "title": "Initiate first-person mode",
+          "description": "Once the camera is inside the house and the transition is complete, prepare to switch to first-person controls (enable pointer lock, etc.). This may involve prompting the user or automatically locking the pointer if possible.",
+          "is_done": false
+        }
+      ]
+    },
+    {
+      "title": "Interior Room and First-Person Mode",
+      "description": "Create a simple interior environment for the house and enable first-person camera controls for navigation inside the house.",
+      "is_done": false,
+      "difficulty": "hard",
+      "subtasks": [
+        {
+          "title": "Create interior room structure",
+          "description": "Inside the house, render a basic room (e.g., a box or room-shaped mesh for walls, floor, and ceiling) to serve as the interior environment.",
+          "is_done": true
+        },
+        {
+          "title": "Position camera inside room",
+          "description": "Place the camera at an appropriate starting position inside the room (e.g., near the center or just inside the entrance) and orient it as needed.",
+          "is_done": true
+        },
+        {
+          "title": "Enable Pointer Lock controls",
+          "description": "Add PointerLockControls (from drei/three-stdlib) to allow first-person mouse look. The user should be able to move the camera view with mouse movement when the pointer is locked.",
+          "is_done": false
+        },
+        {
+          "title": "Implement keyboard navigation",
+          "description": "Allow basic WASD (or arrow keys) movement for the camera inside the room. Update the camera position based on key input to move forward, backward, and strafe left/right in the direction the camera is facing.",
+            "is_done": false
+          },
+          {
+            "title": "Constrain movement within room",
+            "description": "Prevent the camera from going through walls or leaving the room boundaries. For example, clamp the camera position to the extents of the room so the user remains inside the house.",
+            "is_done": false
+          },
+          {
+            "title": "UI cues for first-person mode",
+            "description": "Provide guidance or UI hints in this mode, such as a small crosshair at the center of the screen and instructions (e.g., \"Use WASD to move, mouse to look; Press Esc or Exit to leave\").",
+            "is_done": false
+          }
+        ]
+      },
+    {
+      "title": "Track Detail Panels (Interior Overlays)",
+      "description": "Show detailed information about the selected track inside the house using overlay panels (HTML elements over the 3D canvas).",
+      "is_done": false,
+      "difficulty": "medium",
+      "subtasks": [
+        {
+          "title": "Design track detail panel",
+          "description": "Create an HTML/CSS panel component that will display track details (e.g., track name, description, other relevant info).",
+            "is_done": false
+          },
+          {
+            "title": "Populate panel with track data",
+            "description": "When a house is entered (track selected), load the corresponding track's data (from track-cities.json or another source) and display it in the detail panel.",
+            "is_done": false
+          },
+          {
+            "title": "Overlay panel in 3D view",
+            "description": "Use an overlay technique (e.g., React portal or drei's Html component) to render the detail panel on top of the 3D scene. Position it as a HUD element (e.g., fixed position in the viewport or attached to part of the room).",
+            "is_done": false
+          },
+          {
+            "title": "Style panel for readability",
+            "description": "Apply styling to the panel (background, text color, size) to ensure it's readable against the 3D scene. Possibly use a translucent background or card-like appearance.",
+            "is_done": false
+          },
+          {
+            "title": "Support interaction if needed",
+            "description": "If the panel has interactive elements (e.g., a list of tracks or a play button), ensure those can be clicked/used while in first-person mode (the pointer lock may need to be released or not interfere with clicking the panel).",
+            "is_done": false
+          }
+        ]
+      },
+    {
+      "title": "Exit Interior View (Return to 3D Overview)",
+      "description": "Implement a way for the user to exit the first-person interior mode and return to the external 3D overview of all track houses.",
+      "is_done": true,
+      "difficulty": "easy",
+      "subtasks": [
+        {
+          "title": "Add Exit button/UI",
+          "description": "Display an \"Exit\" button or UI element when in first-person mode (e.g., at the corner of the screen).",
+          "is_done": true
+        },
+        {
+          "title": "Handle exit action",
+          "description": "When the Exit button is clicked (or an exit key like Esc is pressed), release pointer lock and switch off first-person controls.",
+          "is_done": true
+        },
+        {
+          "title": "Remove interior view elements",
+          "description": "Hide or unmount the interior room and track detail panel overlays so they are not visible in the outside view.",
+          "is_done": true
+        },
+        {
+          "title": "Restore outside camera and controls",
+          "description": "Move or reset the camera back to an outside position (e.g., the original orbit view or above the house) and re-enable OrbitControls for the 3D scene.",
+          "is_done": true
+        },
+        {
+          "title": "Confirm toggle state",
+          "description": "Ensure the application knows it is still in 3D mode (so the user can continue using the 3D view or toggle back to 2D if desired) after exiting the house.",
+          "is_done": true
+        }
+      ]
+    },
+    {
+      "title": "2D Fallback Track List & Accessibility",
+      "description": "Maintain a 2D list of tracks below the 3D canvas for accessibility and as a fallback for users who prefer a text list.",
+      "is_done": true,
+      "difficulty": "easy",
+      "subtasks": [
+        {
+          "title": "Render list of tracks",
+          "description": "On the /tracks page, ensure there is a list (ul or similar) of all track items (from track-cities data or similar), showing the track name (and possibly a summary).",
+          "is_done": true
+        },
+        {
+          "title": "Place list below 3D canvas",
+          "description": "Style the page such that the track list is displayed below the 3D canvas area. In 2D mode, this list can expand (e.g., full width), and in 3D mode, it remains visible below the 3D scene.",
+          "is_done": true
+        },
+        {
+          "title": "Make list items interactive",
+          "description": "Allow users to interact with the list: for example, clicking a track in the list could highlight that track's house in the 3D view or trigger entering the house (similar to clicking the 3D house).",
+          "is_done": true
+        },
+        {
+          "title": "Ensure accessibility features",
+          "description": "Each track item in the list should be keyboard navigable and readable by screen readers. Provide proper labels so this list serves as an accessible alternative to the 3D scene.",
+          "is_done": true
+        }
+      ]
+    },
+    {
+      "title": "Lazy Load 3D Scene Assets",
+      "description": "Optimize performance by loading the 3D scene and related libraries only when the user activates the 3D view.",
+      "is_done": true,
+      "difficulty": "medium",
+      "subtasks": [
+        {
+          "title": "Code-split 3D components",
+          "description": "Use dynamic import or React lazy to separate the 3D scene component (and three.js libraries) from the main bundle. Ensure this code is only imported when needed (e.g., when 3D view is toggled on).",
+          "is_done": true
+        },
+        {
+          "title": "Trigger load on toggle",
+          "description": "When the user switches to 3D mode, initiate loading of the 3D scene bundle. Provide user feedback (like a loading spinner or message) while the 3D scene is initializing.",
+          "is_done": true
+        },
+        {
+          "title": "Prevent early 3D initialization",
+          "description": "Make sure the 3D scene does not mount or consume resources until the user explicitly opts into 3D view. In 2D mode, only the list is active to keep the page lightweight.",
+          "is_done": true
+        },
+        {
+          "title": "Test loading and unloading",
+          "description": "Verify that switching to 3D loads everything correctly and switching back to 2D unmounts or stops the 3D rendering. Ensure no memory leaks or performance issues when toggling repeatedly.",
+          "is_done": true
+        }
+      ]
+    },
+      {
+        "title": "Prepare for 3D Model Support",
+        "description": "Design the system to allow loading custom 3D models (GLTF/GLB) for each track house in the future, even if using placeholders for now.",
+        "is_done": false,
+        "difficulty": "medium",
+        "subtasks": [
+          {
+            "title": "Extend track data structure",
+            "description": "Add a field in track-cities.json (or related data source) for an optional model filename or URL for each track house.",
+            "is_done": false
+          },
+          {
+            "title": "Implement conditional model loading",
+            "description": "In the 3D scene code, check if a track has an associated GLTF model path. If so, use a loader (e.g., drei's useGLTF or useLoader) to load and display the model instead of the placeholder mesh.",
+            "is_done": false
+          },
+          {
+            "title": "Fallback to placeholder meshes",
+            "description": "If no model is specified for a track, continue to use the default placeholder mesh (e.g., the simple box) so that every track has some visible representation.",
+            "is_done": false
+          },
+          {
+            "title": "Optimize model loading",
+            "description": "Plan to load models on demand to avoid performance issues (e.g., only load a model when it comes into view or when that house is clicked). For now, include hooks or structure to support this lazy loading of models.",
+            "is_done": false
+          },
+          {
+            "title": "Document model integration",
+            "description": "Write notes or documentation for future developers on how to add a custom .glb/.gltf model for a track (e.g., where to place the file and how to reference it in the data).",
+            "is_done": false
+          }
+        ]
+      },
+      {
+        "title": "Polish and Optional Enhancements",
+        "description": "Additional improvements and nice-to-have features to enhance the 3D track experience beyond the core requirements.",
+        "is_done": false,
+        "difficulty": "medium",
+        "subtasks": [
+          {
+            "title": "Improve scene lighting and environment",
+            "description": "Add better lighting (e.g., HemisphereLight, spotlight on selected house) or environment maps for more realistic visuals. Optionally add a skybox or ground plane for context.",
+            "is_done": false
+          },
+          {
+            "title": "Camera transition effects",
+            "description": "Add easing or a brief fade in/out during camera transitions into and out of houses to make the experience smoother.",
+            "is_done": false
+          },
+          {
+            "title": "Responsive and layout tweaks",
+            "description": "Ensure the 3D canvas and track list layout work well on different screen sizes (mobile, desktop). The toggle and exit UI should be easy to use on all devices.",
+            "is_done": false
+          },
+          {
+            "title": "Performance optimizations",
+            "description": "Optimize the 3D scene for performance, e.g., limit render distance, simplify geometry if needed, and only render the scene when it updates or is in view (use react-three-fiber's rendering controls).",
+            "is_done": false
+          },
+          {
+            "title": "Visual differentiation of houses",
+            "description": "Give each track house a distinct appearance (color or texture) or size based on data, to make them easier to distinguish in 3D.",
+            "is_done": false
+          },
+          {
+            "title": "First-person UX enhancements",
+            "description": "Add a visible crosshair in first-person mode and perhaps a tooltip on the Exit button (or a key hint to press Esc). Maybe add collision so the camera can't go through objects if more objects are added in rooms.",
+            "is_done": false
+          },
+          {
+            "title": "Testing and bug fixes",
+            "description": "Conduct thorough testing of all new features (toggle, 3D scene interactions, pointer lock controls, etc.) and fix any issues. Write unit/integration tests for critical logic if feasible (e.g., toggle behavior).",
+            "is_done": false
+          },
+          {
+            "title": "Update documentation",
+            "description": "Update project README or documentation to include instructions for the new 3D track view feature, how to use it, and any tech notes on implementation for future maintenance.",
+            "is_done": false
+          }
+        ]
+      }
+    ]
+  }
