@@ -82,7 +82,6 @@ export default function TracksPage() {
                 selectedId={selectedTrackId}
                 onSelect={setSelectedTrackId}
                 insideId={insideTrackId}
-                islandModelPath="/models/Island.glb"
               />
             ) : (
               <InteractiveCityMap />
