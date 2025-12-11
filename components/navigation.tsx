@@ -121,20 +121,19 @@ export function Navigation() {
       </div>
 
       {showRegistrationModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4">
-          <div className="max-w-md w-full rounded-xl bg-background border border-primary/30 shadow-2xl p-6 relative">
-            <p className="text-sm uppercase text-muted-foreground font-mono">Heads up</p>
-            <h2 className="text-2xl font-bold font-orbitron mt-1">Registration opens Dec 15</h2>
+        <div className="fixed inset-0 z-[60] grid place-items-center bg-black/60 px-4">
+          <div className="max-w-md w-full rounded-xl bg-background border border-primary/30 shadow-2xl p-6 relative text-center">
+            <p className="text-sm uppercase text-muted-foreground font-mono">MorganHacks 2026</p>
+            <h2 className="text-2xl font-bold font-orbitron mt-1">Registration opens December 15</h2>
             <p className="text-sm text-muted-foreground font-mono mt-2">
-              Online registration is paused right now. Come back on December 15 to secure your spot for MorganHacks
-              2026.
+              Check back on December 15 to save your spot. We can’t wait to build with you!
             </p>
-            <div className="mt-4 flex justify-end">
+            <div className="mt-5 flex justify-center">
               <Button
                 onClick={() => setShowRegistrationModal(false)}
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                Got it
+                OK
               </Button>
             </div>
           </div>
