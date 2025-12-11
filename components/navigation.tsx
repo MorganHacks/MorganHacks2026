@@ -3,13 +3,19 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [showRegistrationModal, setShowRegistrationModal] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    const handler = () => setShowRegistrationModal(true)
+    window.addEventListener("open-registration-modal", handler as any)
+    return () => window.removeEventListener("open-registration-modal", handler as any)
+  }, [])
 
   const links = [
     { href: "/about", label: "About" },
