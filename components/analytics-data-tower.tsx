@@ -19,10 +19,10 @@ type Slice = {
 }
 
 const stats: Metric[] = [
-  { label: "Total Hackers", value: 142, icon: Users, tone: "text-primary" },
-  { label: "Workshops", value: 6, icon: Sparkles, tone: "text-secondary" },
-  { label: "Schools Represented", value: 14, icon: School, tone: "text-accent" },
-  { label: "Distinct Majors", value: 43, icon: BookOpenCheck, tone: "text-primary" },
+  { label: "Total Hackers", value: 150, icon: Users, tone: "text-primary" },
+  { label: "Workshops", value: 5, icon: Sparkles, tone: "text-secondary" },
+  { label: "Schools Represented", value: 15, icon: School, tone: "text-accent" },
+  { label: "Distinct Majors", value: 45, icon: BookOpenCheck, tone: "text-primary" },
 ]
 
 const classificationMix: Slice[] = [
