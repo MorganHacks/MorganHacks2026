@@ -1,14 +1,5 @@
 [
     {
-      "id": "grid",
-      "name": "Grid and City Systems",
-      "description": "Transit, campuses, utilities, safety, and civic tools for smarter cities",
-      "color": "from-cyan-500 to-blue-500",
-      "position": { "x": 18, "y": 26 },
-      "icon": "Cpu",
-      "glowColor": "rgba(6, 182, 212, 0.5)"
-    },
-    {
       "id": "people",
       "name": "People and Wellbeing",
       "description": "Health, mental wellbeing, accessibility, and life tools for students and communities",
@@ -45,15 +36,6 @@
       "glowColor": "rgba(249, 115, 22, 0.5)"
     },
     {
-      "id": "wildcard",
-      "name": "Wildcard Labs",
-      "description": "Anything experimental or hard to label, from new tools to art pieces",
-      "color": "from-yellow-400 to-fuchsia-500",
-      "position": { "x": 52, "y": 44 },
-      "icon": "Sparkles",
-      "glowColor": "rgba(250, 204, 21, 0.5)"
-    },
-    {
       "id": "commerce",
       "name": "Commerce and Fintech Systems",
       "description": "Payments, budgeting, marketplaces, creator monetization, and financial tools",
@@ -61,14 +43,5 @@
       "position": { "x": 20, "y": 48 },
       "icon": "Banknote",
       "glowColor": "rgba(132, 204, 22, 0.5)"
-    },
-    {
-      "id": "research",
-      "name": "Research, Deep Tech, and Sci Fi Systems",
-      "description": "Algorithms, protocols, tooling, simulations, and experimental infrastructure",
-      "color": "from-sky-500 to-indigo-500",
-      "position": { "x": 80, "y": 52 },
-      "icon": "Orbit",
-      "glowColor": "rgba(56, 189, 248, 0.5)"
     }
   ]

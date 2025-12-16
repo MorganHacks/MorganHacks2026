@@ -40,7 +40,7 @@ const socials = [
 ]
 
 const involvementLinks = [
-  { label: "Hacker Registration", href: "modal://registration" },
+  { label: "Hacker Registration", href: "https://www.jotform.com/form/251163649282157" },
   { label: "Mentor Registration", href: "https://www.jotform.com/form/253297815473164" },
   { label: "Sponsor Interest Form", href: "https://www.jotform.com/form/253334594024051" },
   { label: "Judge Interest", href: "https://www.jotform.com/form/250957540277161" },
@@ -81,33 +81,18 @@ export function SiteFooter() {
           <div className="space-y-2">
             <p className="text-sm font-bold font-orbitron">Get Involved</p>
             <div className="grid grid-cols-1 gap-2">
-              {involvementLinks.map((link) =>
-                link.href.startsWith("modal://") ? (
-                  <button
-                    key={link.label}
-                    type="button"
-                    onClick={() => {
-                      const event = new CustomEvent("open-registration-modal")
-                      window.dispatchEvent(event)
-                    }}
-                    className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 text-sm text-foreground hover:border-primary/50 transition-colors text-left"
-                  >
-                    <span>{link.label}</span>
-                    <span className="text-xs text-muted-foreground font-mono">→</span>
-                  </button>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 text-sm text-foreground hover:border-primary/50 transition-colors"
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  >
-                    <span>{link.label}</span>
-                    <span className="text-xs text-muted-foreground font-mono">→</span>
-                  </Link>
-                ),
-              )}
+              {involvementLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 text-sm text-foreground hover:border-primary/50 transition-colors"
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                  <span>{link.label}</span>
+                  <span className="text-xs text-muted-foreground font-mono">→</span>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

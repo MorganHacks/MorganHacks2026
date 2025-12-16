@@ -1,15 +1,4 @@
 {
-    "grid": {
-      "fullDescription": "Build the backbone of the Tech City Verse. Think transit, campus life, public safety, smart buildings, wayfinding, and tools that help communities run smoother. AI, data, and automation are all welcome as long as they serve real people and real cities.",
-      "challenges": ["Challenges: TBA"],
-      "prizes": ["Prizes: TBA"],
-      "resources": [
-        { "name": "Open Data Baltimore", "url": "https://data.baltimorecity.gov" },
-        { "name": "Mapbox Docs", "url": "https://docs.mapbox.com" },
-        { "name": "Leaflet JS", "url": "https://leafletjs.com" },
-        { "name": "OpenStreetMap", "url": "https://www.openstreetmap.org" }
-      ]
-    },
     "people": {
       "fullDescription": "Design tools that make life feel lighter. Health, mental wellbeing, accessibility, study helpers, budgeting, habit tracking, and community support. This is where you build things that actually help the people around you.",
       "challenges": ["Challenges: TBA"],
@@ -57,17 +46,6 @@
         { "name": "ROS 2 Docs", "url": "https://docs.ros.org" }
       ]
     },
-    "wildcard": {
-      "fullDescription": "The glitch in the grid. Protocol experiments, dev tools, security projects, finance ideas, art installations, or anything that does not quite fit the other districts. If it is bold and surprising, it lives here.",
-      "challenges": ["Challenges: TBA"],
-      "prizes": ["Prizes: TBA"],
-      "resources": [
-        { "name": "GitHub Actions", "url": "https://docs.github.com/actions" },
-        { "name": "Supabase Docs", "url": "https://supabase.com/docs" },
-        { "name": "OpenAI Platform", "url": "https://platform.openai.com/docs" },
-        { "name": "Cloudflare Workers", "url": "https://developers.cloudflare.com/workers" }
-      ]
-    },
     "commerce": {
       "fullDescription": "Money, markets, and value flows. Payments, budgeting, investing, campus marketplaces, creator monetization, fraud detection, and tools that help people and small businesses move money smarter.",
       "challenges": ["Challenges: TBA"],
@@ -78,16 +56,5 @@
         { "name": "PayPal Developer", "url": "https://developer.paypal.com" },
         { "name": "Yahoo Finance API Guides", "url": "https://www.yahoofinanceapi.com" }
       ]
-    },
-    "research": {
-      "fullDescription": "For the hackers who think like scientists and systems engineers. Algorithms, new protocols, compression, distributed systems, simulation, data tooling, and deep tech that pushes the boundary of what is possible.",
-      "challenges": ["Challenges: TBA"],
-      "prizes": ["Prizes: TBA"],
-      "resources": [
-        { "name": "arXiv", "url": "https://arxiv.org" },
-        { "name": "Papers With Code", "url": "https://paperswithcode.com" },
-        { "name": "NumPy Docs", "url": "https://numpy.org/doc" },
-        { "name": "Kubernetes Docs", "url": "https://kubernetes.io/docs" }
-      ]
     }
-  }
+}
