@@ -28,7 +28,7 @@ export function Navigation() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/")
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b border-primary/30 shadow-lg shadow-black/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -63,7 +63,7 @@ export function Navigation() {
               variant="outline"
               className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70"
             >
-              <Link href="https://www.jotform.com/form/250957540277161" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.jotform.com/form/253384910720152" target="_blank" rel="noopener noreferrer">
                 Become a Judge
               </Link>
             </Button>
@@ -110,7 +110,7 @@ export function Navigation() {
                 variant="outline"
                 className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70 w-full"
               >
-                <Link href="https://www.jotform.com/form/250957540277161" target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.jotform.com/form/253384910720152" target="_blank" rel="noopener noreferrer">
                   Become a Judge
                 </Link>
               </Button>

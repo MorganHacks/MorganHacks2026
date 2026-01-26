@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Orbitron, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
@@ -50,6 +50,9 @@ export const metadata: Metadata = {
     apple: "/icon.jpeg",
   },
   manifest: "/site.webmanifest",
+}
+
+export const viewport: Viewport = {
   themeColor: "#0b1430",
 }
 

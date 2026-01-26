@@ -15,7 +15,7 @@
   --secondary: oklch(0.63 0.12 285);
   --secondary-foreground: oklch(0.98 0.01 270);
   --muted: oklch(0.2 0.03 270);
-  --muted-foreground: oklch(0.65 0.03 270);
+  --muted-foreground: oklch(0.78 0.02 270);
   --accent: oklch(0.56 0.16 232);
   --accent-foreground: oklch(0.08 0.02 270);
   --destructive: oklch(0.6 0.25 25);
@@ -55,7 +55,7 @@
   --secondary: oklch(0.63 0.12 285);
   --secondary-foreground: oklch(0.98 0.01 270);
   --muted: oklch(0.2 0.03 270);
-  --muted-foreground: oklch(0.65 0.03 270);
+  --muted-foreground: oklch(0.78 0.02 270);
   --accent: oklch(0.56 0.16 232);
   --accent-foreground: oklch(0.08 0.02 270);
   --destructive: oklch(0.6 0.25 25);
@@ -275,6 +275,33 @@
 
   .animate-fade-in {
     animation: fade-in 0.3s ease-out;
+  }
+
+  /* Marquee animations for recap section */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-reverse 30s linear infinite;
   }
 
   /* Adding smooth page transitions */

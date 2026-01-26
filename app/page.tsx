@@ -4,11 +4,24 @@ import { CountdownPortal } from "@/components/countdown-portal"
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { HomeTrackGrid } from "@/components/home-track-grid"
+import { RecapMarquee } from "@/components/recap-marquee"
 import { ArrowRight, Zap, Users, Trophy } from "lucide-react"
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&q=80')",
+        }}
+      >
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-background/70" />
+      </div>
+
+      <div className="relative z-10">
       <Navigation />
 
       {/* Hero Section */}
@@ -17,42 +30,47 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
-              <span className="text-sm text-primary font-mono">April 11-12, 2026</span>
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Countdown Portal - Left side */}
+            <div className="flex-1 flex justify-center lg:justify-start order-2 lg:order-1">
+              <CountdownPortal />
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-orbitron">
-              <span className="neon-glow-cyan">MorganHacks</span>
-              <br />
-              <span className="neon-glow-pink">2026</span>
-            </h1>
+            {/* Hero Text - Right side */}
+            <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
+              <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
+                <span className="text-sm text-primary font-mono">April 11-12, 2026</span>
+              </div>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 text-pretty">
-              {"Morgan State University's hackathon—two days of building, learning, and launching big ideas."}
-            </p>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-orbitron">
+                <span className="neon-glow-cyan">MorganHacks</span>
+                <br />
+                <span className="neon-glow-pink">2026</span>
+              </h1>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/tracks">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border group">
-                  See the Tracks
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link href="/timeline">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary/10 bg-transparent"
-                >
-                  View Schedule
-                </Button>
-              </Link>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 text-pretty">
+                {"Morgan State University's hackathon—two days of building, learning, and launching big ideas."}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                <Link href="/tracks">
+                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border group">
+                    See the Tracks
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link href="/timeline">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-secondary text-secondary hover:bg-secondary/10 bg-transparent"
+                  >
+                    View Schedule
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-
-          {/* Countdown Portal */}
-          <CountdownPortal />
         </div>
       </section>
 
@@ -61,7 +79,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard icon={<Users className="w-8 h-8" />} value="200+" label="Hackers Expected" color="primary" />
-            <StatCard icon={<Zap className="w-8 h-8" />} value="8" label="Districts" color="secondary" />
+            <StatCard icon={<Zap className="w-8 h-8" />} value="5" label="Districts" color="secondary" />
             <StatCard icon={<Trophy className="w-8 h-8" />} value="TBA" label="In Prizes" color="accent" />
           </div>
         </div>
@@ -81,6 +99,10 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Recap Section */}
+      {/* <RecapMarquee /> */}
+
+      </div>
     </main>
   )
 }

@@ -43,8 +43,8 @@ const involvementLinks = [
   { label: "Hacker Registration", href: "https://www.jotform.com/form/251163649282157" },
   { label: "Mentor Registration", href: "https://www.jotform.com/form/253297815473164" },
   { label: "Sponsor Interest Form", href: "https://www.jotform.com/form/253334594024051" },
-  { label: "Judge Interest", href: "https://www.jotform.com/form/250957540277161" },
-  { label: "Volunteer", href: "https://www.jotform.com/form/243146481679163" },
+  { label: "Judge Registration", href: "https://www.jotform.com/form/253384910720152" },
+  { label: "Volunteer", href: "https://www.jotform.com/form/253384481261155" },
 ]
 
 export function SiteFooter() {
@@ -98,7 +98,6 @@ export function SiteFooter() {
         </div>
         <div className="mt-8 text-sm text-muted-foreground text-center">
           <p>© 2025 MorganHacks. All rights reserved.</p>
-          <p>Built by students at Morgan State University for innovators everywhere.</p>
         </div>
       </div>
     </footer>
