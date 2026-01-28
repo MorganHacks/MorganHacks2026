@@ -96,7 +96,17 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <div className="mt-8 text-sm text-muted-foreground text-center">
+        <div className="mt-8 text-sm text-muted-foreground text-center space-y-2">
+          <p>
+            <Link 
+              href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors underline underline-offset-2"
+            >
+              MLH Code of Conduct
+            </Link>
+          </p>
           <p>© 2025 MorganHacks. All rights reserved.</p>
         </div>
       </div>

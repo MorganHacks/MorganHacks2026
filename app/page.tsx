@@ -38,8 +38,8 @@ export default function Home() {
 
             {/* Hero Text - Right side */}
             <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
-              <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
-                <span className="text-sm text-primary font-mono">April 11-12, 2026</span>
+             <div className="inline-block mb-6 px-6 py-3 bg-primary/10 border border-primary/30 rounded-full">
+                <span className="text-base md:text-lg text-primary font-mono font-semibold">April 11-12, 2026</span>
               </div>
 
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-orbitron">
@@ -80,7 +80,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard icon={<Users className="w-8 h-8" />} value="200+" label="Hackers Expected" color="primary" />
             <StatCard icon={<Zap className="w-8 h-8" />} value="5" label="Districts" color="secondary" />
-            <StatCard icon={<Trophy className="w-8 h-8" />} value="TBA" label="In Prizes" color="accent" />
+            <StatCard icon={<Trophy className="w-8 h-8" />} value="15k" label="In Prizes" color="accent" />
           </div>
         </div>
       </section>

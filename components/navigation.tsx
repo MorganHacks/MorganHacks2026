@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +30,7 @@ export function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b border-primary/30 shadow-lg shadow-black/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:pr-20 lg:pr-24">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
@@ -122,10 +123,47 @@ export function Navigation() {
                   Register Now
                 </Link>
               </Button>
+              {/* MLH Trust Badge - Mobile */}
+              <Link 
+                href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" 
+                target="_blank"
+                className="flex justify-center pt-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <Image 
+                  src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" 
+                  alt="Major League Hacking 2026 Hackathon Season"
+                  width={50}
+                  height={87}
+                  className="h-[60px] w-auto"
+                />
+              </Link>
             </div>
           </div>
         )}
       </div>
+
+      {/* MLH Trust Badge - Desktop, fixed to viewport right edge */}
+      <a 
+        href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" 
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          zIndex: 10000,
+          width: '60px',
+          maxWidth: '60px'
+        }}
+        className="hidden md:block lg:!w-[80px] lg:!max-w-[80px]"
+      >
+        <img 
+          src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" 
+          alt="Major League Hacking 2026 Hackathon Season"
+          style={{ width: '100%', height: 'auto' }}
+        />
+      </a>
 
       {/* registration modal removed now that registration is live */}
     </nav>

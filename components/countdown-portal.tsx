@@ -11,6 +11,7 @@ export function CountdownPortal() {
     minutes: 0,
     seconds: 0,
   })
+  
   const [isPortalOpen, setIsPortalOpen] = useState(false)
 
   useEffect(() => {
