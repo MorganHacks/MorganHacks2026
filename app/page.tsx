@@ -80,7 +80,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard icon={<Users className="w-8 h-8" />} value="200+" label="Hackers Expected" color="primary" />
             <StatCard icon={<Zap className="w-8 h-8" />} value="5" label="Districts" color="secondary" />
-            <StatCard icon={<Trophy className="w-8 h-8" />} value="15k" label="In Prizes" color="accent" />
+            <StatCard icon={<Trophy className="w-8 h-8" />} value="Up to 15k" label="In Prizes" color="accent" />
           </div>
         </div>
       </section>
