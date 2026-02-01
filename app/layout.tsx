@@ -64,9 +64,22 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${orbitron.variable} font-sans antialiased`}>
-        <PortalTransition />
-        {children}
-        <SiteFooter />
+        {/* Global Background Image */}
+        <div 
+          className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/mh-bg.jpg')",
+          }}
+        >
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-background/70" />
+        </div>
+
+        <div className="relative z-10">
+          <PortalTransition />
+          {children}
+          <SiteFooter />
+        </div>
         <Analytics />
       </body>
     </html>

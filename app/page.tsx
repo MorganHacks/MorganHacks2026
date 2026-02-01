@@ -10,18 +10,6 @@ import { ArrowRight, Zap, Users, Trophy } from "lucide-react"
 export default function Home() {
   return (
     <main className="min-h-screen relative">
-      {/* Background Image */}
-      <div 
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/mh-bg.jpg')",
-        }}
-      >
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-background/70" />
-      </div>
-
-      <div className="relative z-10">
       <Navigation />
 
       {/* Hero Section */}
@@ -80,7 +68,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard icon={<Users className="w-8 h-8" />} value="200+" label="Hackers Expected" color="primary" />
             <StatCard icon={<Zap className="w-8 h-8" />} value="5" label="Districts" color="secondary" />
-            <StatCard icon={<Trophy className="w-8 h-8" />} value="Up to 15k" label="In Prizes" color="accent" />
+            <StatCard icon={<Trophy className="w-8 h-8" />} value="Up to $15k" label="In Prizes" color="accent" />
           </div>
         </div>
       </section>
@@ -102,7 +90,6 @@ export default function Home() {
       {/* Recap Section */}
       {/* <RecapMarquee /> */}
 
-      </div>
     </main>
   )
 }

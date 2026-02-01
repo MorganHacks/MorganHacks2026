@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/navigation"
+import { TeamShowcase } from "@/components/team-showcase"
 
 const sections = [
   {
@@ -65,6 +66,9 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* Team Section */}
+      {/* <TeamShowcase /> */}
 
     </main>
   )

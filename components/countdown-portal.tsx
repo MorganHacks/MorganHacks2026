@@ -38,14 +38,14 @@ export function CountdownPortal() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[500px]">
-      {/* Portal background effect */}
+      {/* Portal background effect - using radial gradient instead of blur to avoid GPU artifacts */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div
-          className={`w-96 h-96 rounded-full transition-all duration-1000 ${
+          className={`w-[500px] h-[500px] rounded-full transition-all duration-1000 ${
             isPortalOpen
-              ? "animate-pulse bg-linear-to-r from-primary via-secondary to-accent"
-              : "bg-linear-to-r from-primary/20 via-secondary/20 to-accent/20"
-          } blur-3xl`}
+              ? "animate-pulse bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,hsl(var(--secondary))_25%,hsl(var(--accent))_50%,transparent_70%)]"
+              : "bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.2)_0%,hsl(var(--secondary)/0.2)_25%,transparent_60%)]"
+          }`}
         />
       </div>
 
