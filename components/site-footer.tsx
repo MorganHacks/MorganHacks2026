@@ -55,7 +55,7 @@ export function SiteFooter() {
           <div className="space-y-2">
             <p className="text-lg font-bold font-orbitron">MorganHacks</p>
             <p className="text-sm text-muted-foreground">
-              Morgan State University&apos;s hackathon for builders across all majors. Join us in 2026 to ship bold ideas.
+              Morgan State University&apos;s hackathon for builders across all majors. Join us in April to ship bold ideas.
             </p>
           </div>
           <div>
