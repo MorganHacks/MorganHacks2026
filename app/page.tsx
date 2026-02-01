@@ -14,7 +14,7 @@ export default function Home() {
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&q=80')",
+          backgroundImage: "url('/mh-bg.jpg')",
         }}
       >
         {/* Dark overlay for readability */}
@@ -92,7 +92,7 @@ export default function Home() {
             <span className="neon-glow-blue">Explore Tracks</span>
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Eight themed districts. Pick one to start your build journey.
+            Five themed districts. Pick one to start your build journey.
           </p>
 
           <HomeTrackGrid />
