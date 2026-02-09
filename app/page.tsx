@@ -88,7 +88,7 @@ export default function Home() {
       </section>
 
       {/* Recap Section */}
-      {/* <RecapMarquee /> */}
+      <RecapMarquee />
 
     </main>
   )
