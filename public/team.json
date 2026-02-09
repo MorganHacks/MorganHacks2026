@@ -2,24 +2,24 @@
   "team": [
     {
       "id": 1,
-      "name": "Oluwasegun Soji-John",
-      "role": "President",
-      "image": "/headshot/oluwasegun.jpg",
-      "linkedin": "https://www.linkedin.com/in/oluwasegun-soji-john/" 
+      "name": "Alex Johnson",
+      "role": "Lead Organizer",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      "linkedin": "https://linkedin.com/in/"
     },
     {
       "id": 2,
-      "name": "Oluwajomiloju King",
-      "role": "Registeration Team",
-      "image": "/headshot/jomiloju.jpg",
-      "linkedin": "https://www.linkedin.com/in/oluwajomiloju-king/"
+      "name": "Maya Chen",
+      "role": "Technical Director",
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+      "linkedin": "https://linkedin.com/in/"
     },
     {
       "id": 3,
-      "name": "Oluwatobi Olajde",
-      "role": "Technology Team",
-      "image": "/headshot/oluwatobi.jpg",
-      "linkedin": "https://www.linkedin.com/in/oluwatobi-olajide"
+      "name": "Jordan Williams",
+      "role": "Sponsorship Lead",
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      "linkedin": "https://linkedin.com/in/"
     },
     {
       "id": 4,
