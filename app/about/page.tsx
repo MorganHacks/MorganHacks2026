@@ -68,7 +68,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      {/* <TeamShowcase /> */}
+      <TeamShowcase />
 
     </main>
   )

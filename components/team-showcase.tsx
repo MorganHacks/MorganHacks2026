@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Linkedin } from "lucide-react"
 
 interface TeamMember {
   id: number
   name: string
   role: string
-  image: string
+  image: string 
   linkedin: string
 }
 
@@ -16,9 +16,13 @@ export function TeamShowcase() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
   useEffect(() => {
-    fetch("/team.json")
+      fetch("/team.json")
       .then((res) => res.json())
-      .then((data) => setTeam(data.team))
+      .then((data: TeamMember[]) => {
+        const filteredTeam = data
+                filteredTeam.sort((a, b) => a.id - b.id)
+        setTeam(filteredTeam.filter((a) => a.image ))
+      })
       .catch((err) => console.error("Failed to load team data:", err))
   }, [])
 
@@ -37,7 +41,7 @@ export function TeamShowcase() {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8" onClick={() => console.log(team)}>
           {team.map((member) => (
             <div
               key={member.id}

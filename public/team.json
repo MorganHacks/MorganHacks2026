@@ -1,60 +1,86 @@
-{
-  "team": [
+[
     {
-      "id": 1,
-      "name": "Oluwasegun Soji-John",
-      "role": "President",
-      "image": "/headshot/oluwasegun.jpg",
-      "linkedin": "https://www.linkedin.com/in/oluwasegun-soji-john/" 
+        "id": 7,
+        "name": "Charles  Ehimare",
+        "image": "/headshot/charles.jpg",
+        "role": "Media Marketing Team",
+        "linkedin": "https://www.linkedin.com/in/charles-ehimare2217"
     },
     {
-      "id": 2,
-      "name": "Oluwajomiloju King",
-      "role": "Registeration Team",
-      "image": "/headshot/jomiloju.jpg",
-      "linkedin": "https://www.linkedin.com/in/oluwajomiloju-king/"
+        "id": 9,
+        "name": "Najae Potts",
+        "role": "Media Marketing Team",
+        "image": "/headshot/najae.jpg",
+        "linkedin": "https://www.linkedin.com/in/najae-potts"
     },
     {
-      "id": 3,
-      "name": "Oluwatobi Olajde",
-      "role": "Technology Team",
-      "image": "/headshot/oluwatobi.jpg",
-      "linkedin": "https://www.linkedin.com/in/oluwatobi-olajide"
+        "id": 6,
+        "name": "Oluwatobi Olajide",
+        "role": "Technology Team",
+        "image": "/headshot/oluwatobi.jpg",
+        "linkedin": "https://www.linkedin.com/in/oluwatobi-olajide"
     },
     {
-      "id": 4,
-      "name": "Samira Patel",
-      "role": "Design Lead",
-      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-      "linkedin": "https://linkedin.com/in/"
+        "id": 1,
+        "name": "Oluwasegun Soji-John",
+        "role": "President",
+        "image": "/headshot/oluwasegun.jpg",
+        "linkedin": "https://www.linkedin.com/in/oluwasegun-soji-john/"
     },
     {
-      "id": 5,
-      "name": "Marcus Thompson",
-      "role": "Logistics Coordinator",
-      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-      "linkedin": "https://linkedin.com/in/"
+        "id": 10,
+        "name": " Nasif Ajilore",
+        "role": "Logistics Team",
+        "image": "/headshot/nasif.jpg",
+        "linkedin": "https://www.linkedin.com/in/nasif-ajilore-796637229"
     },
     {
-      "id": 6,
-      "name": "Aisha Rahman",
-      "role": "Marketing Lead",
-      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
-      "linkedin": "https://linkedin.com/in/"
+        "id": 8,
+        "name": "Elizabeth Stewart",
+        "role": "Operations Team",
+        "image": "/headshot/elizabeth.jpg",
+        "linkedin": "https://www.linkedin.com/in/elizabeth-h-stewart28"
     },
     {
-      "id": 7,
-      "name": "David Kim",
-      "role": "Workshop Coordinator",
-      "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
-      "linkedin": "https://linkedin.com/in/"
+        "id": 2,
+        "name": "Sanae Freeman ",
+        "role": "Vice President of Operations & Logistics Team",
+        "image": null,
+        "linkedin": "https://linkedin.com/in/sanae-freeman-98323419a"
     },
     {
-      "id": 8,
-      "name": "Zoe Martinez",
-      "role": "Volunteer Lead",
-      "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
-      "linkedin": "https://linkedin.com/in/"
+        "id": 5,
+        "name": "Iyinoluwa Ayodele (Grace)",
+        "role": "Operation Team",
+        "image": "/headshot/iyinoluwa.jpg",
+        "linkedin": "https://www.linkedin.com/in/iyinoluwa-ayodele/"
+    },
+    {
+        "id": 12,
+        "name": "Mehki Freeman",
+        "role": "Technology Team",
+        "image": null,
+        "linkedin": "https://www.linkedin.com/in/mehkifreeman"
+    },
+    {
+        "id": 3,
+        "name": "Stephanie Adeoye",
+        "role": "Vice President - Registration and Sponsorships Team",
+        "image": "/headshot/stephanie.jpg",
+        "linkedin": "https://www.linkedin.com/in/stephanie-adeoye-2a3b70291/"
+    },
+    {
+        "id": 11,
+        "name": "Marissa Savage ",
+        "role": "Logistic Team",
+        "image": "/headshot/marissa.jpg",
+        "linkedin": "https://www.linkedin.com/in/marissa-savage-04923124a"
+    },
+    {
+        "id": 4,
+        "name": "Oluwajomiloju King",
+        "role": "Registration and Transportation Team",
+        "image": "/headshot/jomiloju.jpg",
+        "linkedin": "https://www.linkedin.com/in\/oluwajomiloju-king"
     }
-  ]
-}
+]
