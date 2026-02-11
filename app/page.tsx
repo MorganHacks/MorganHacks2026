@@ -83,7 +83,7 @@ export default function Home() {
             Five themed districts. Pick one to start your build journey. Track details: TBA.
           </p>
 
-          <HomeTrackGrid />
+          {/* <HomeTrackGrid /> */}
         </div>
       </section>
 
