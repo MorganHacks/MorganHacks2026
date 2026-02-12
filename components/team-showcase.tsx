@@ -115,19 +115,6 @@ export function TeamShowcase() {
             </div>
           ))}
         </div>
-
-        {/* Join CTA */}
-        <div className="mt-16 text-center">
-          <div className="inline-block p-6 rounded-2xl bg-card/50 border border-primary/20">
-            <p className="text-muted-foreground mb-2">Want to be part of the team?</p>
-            <a 
-              href="mailto:team@morganhacks.com" 
-              className="text-primary font-mono hover:text-accent transition-colors"
-            >
-              team@morganhacks.com
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   )
