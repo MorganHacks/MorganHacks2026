@@ -80,10 +80,10 @@ export default function Home() {
             <span className="neon-glow-blue">Explore Tracks</span>
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Five themed districts. Pick one to start your build journey.
+            Five themed districts. Pick one to start your build journey. Track details: TBA.
           </p>
 
-          <HomeTrackGrid />
+          {/* <HomeTrackGrid /> */}
         </div>
       </section>
 

@@ -15,11 +15,11 @@ export default function TracksPage() {
               <span className="neon-glow-cyan">Track Cities</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
-              Explore Five interconnected districts. Drag or pinch to navigate, tap or click a city to open details and resources.
+              Explore Five interconnected districts. Drag or pinch to navigate, tap or click a city to open details and resources. Interactive map: TBA.
             </p>
           </div>
 
-          <InteractiveCityMap />
+          {/* <InteractiveCityMap /> */}
         </div>
       </section>
     </main>
