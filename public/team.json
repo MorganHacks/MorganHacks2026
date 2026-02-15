@@ -2,7 +2,7 @@
     {
         "id": 7,
         "name": "Charles  Ehimare",
-        "image": "/headshot/charles.jpg",
+        "image": "/headshot/charles.JPG",
         "role": "Media Marketing Team",
         "linkedin": "https://www.linkedin.com/in/charles-ehimare2217"
     },
@@ -10,35 +10,35 @@
         "id": 9,
         "name": "Najae Potts",
         "role": "Media Marketing Team",
-        "image": "/headshot/najae.jpg",
+        "image": "/headshot/najae.JPG",
         "linkedin": "https://www.linkedin.com/in/najae-potts"
     },
     {
         "id": 6,
         "name": "Oluwatobi Olajide",
         "role": "Technology Team",
-        "image": "/headshot/oluwatobi.jpg",
+        "image": "/headshot/oluwatobi.JPG",
         "linkedin": "https://www.linkedin.com/in/oluwatobi-olajide"
     },
     {
         "id": 1,
         "name": "Oluwasegun Soji-John",
         "role": "President",
-        "image": "/headshot/oluwasegun.jpg",
+        "image": "/headshot/oluwasegun.JPG",
         "linkedin": "https://www.linkedin.com/in/oluwasegun-soji-john/"
     },
     {
         "id": 10,
         "name": " Nasif Ajilore",
         "role": "Logistics Team",
-        "image": "/headshot/nasif.jpg",
+        "image": "/headshot/nasif.JPG",
         "linkedin": "https://www.linkedin.com/in/nasif-ajilore-796637229"
     },
     {
         "id": 8,
         "name": "Elizabeth Stewart",
         "role": "Operations Team",
-        "image": "/headshot/elizabeth.jpg",
+        "image": "/headshot/elizabeth.JPG",
         "linkedin": "https://www.linkedin.com/in/elizabeth-h-stewart28"
     },
     {
@@ -52,7 +52,7 @@
         "id": 5,
         "name": "Iyinoluwa Ayodele (Grace)",
         "role": "Operation Team",
-        "image": "/headshot/iyinoluwa.jpg",
+        "image": "/headshot/iyinoluwa.JPG",
         "linkedin": "https://www.linkedin.com/in/iyinoluwa-ayodele/"
     },
     {
@@ -66,21 +66,21 @@
         "id": 3,
         "name": "Stephanie Adeoye",
         "role": "Vice President - Registration and Sponsorships Team",
-        "image": "/headshot/stephanie.jpg",
+        "image": "/headshot/stephanie.JPG",
         "linkedin": "https://www.linkedin.com/in/stephanie-adeoye-2a3b70291/"
     },
     {
         "id": 11,
         "name": "Marissa Savage ",
         "role": "Logistic Team",
-        "image": "/headshot/marissa.jpg",
+        "image": "/headshot/marissa.JPG",
         "linkedin": "https://www.linkedin.com/in/marissa-savage-04923124a"
     },
     {
         "id": 4,
         "name": "Oluwajomiloju King",
         "role": "Registration and Transportation Team",
-        "image": "/headshot/jomiloju.jpg",
+        "image": "/headshot/jomiloju.JPG",
         "linkedin": "https://www.linkedin.com/in\/oluwajomiloju-king"
     }
 ]
