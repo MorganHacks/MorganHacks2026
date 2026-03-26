@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: "MorganHacks 2026",
     template: "%s • MorganHacks 2026",
   },
-  description: "Join us April 14-15, 2026 for MorganHacks.",
+  description: "Join us April 11-12, 2026 for MorganHacks.",
   keywords: ["MorganHacks", "hackathon", "Morgan State University", "2026"],
   authors: [{ name: "MorganHacks Team", url: "https://morganhacks.com" }],
   creator: "MorganHacks Team",
