@@ -1,3 +1,4 @@
+import { BusRoutes } from "@/components/bus-routes"
 import { Navigation } from "@/components/navigation"
 
 export default function TransitPage() {
@@ -12,11 +13,10 @@ export default function TransitPage() {
               <span className="neon-glow-blue">Transit System</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
-              Bus routes and schedule: TBA.
+              Official bus schedule for MorganHacks weekend.
             </p>
           </div>
-
-          {/* <TransitMap /> */}
+          <BusRoutes />
         </div>
       </section>
     </main>

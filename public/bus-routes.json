@@ -1,0 +1,140 @@
+[
+  {
+    "date": "2026-04-11",
+    "label": "04/11/2026",
+    "routes": [
+      {
+        "id": "bus-1",
+        "name": "Bus 1",
+        "stops": [
+          {
+            "type": "pickup",
+            "location": "Howard University (Banneker Recreation Center)",
+            "time": "7:15 AM"
+          },
+          {
+            "type": "dropoff",
+            "location": "Morgan State University",
+            "time": "8:20 AM"
+          }
+        ]
+      },
+      {
+        "id": "bus-2",
+        "name": "Bus 2",
+        "stops": [
+          {
+            "type": "pickup",
+            "location": "University of Maryland College Park",
+            "time": "6:45 AM"
+          },
+          {
+            "type": "stop",
+            "location": "Bowie State University (Thurgood Marshall Library)",
+            "time": "7:10 AM"
+          },
+          {
+            "type": "dropoff",
+            "location": "Morgan State University",
+            "time": "8:00 AM"
+          }
+        ]
+      },
+      {
+        "id": "bus-3",
+        "name": "Bus 3",
+        "stops": [
+          {
+            "type": "pickup",
+            "location": "Johns Hopkins University (Mason Hall)",
+            "time": "7:00 AM"
+          },
+          {
+            "type": "stop",
+            "location": "Towson University (Towson Center)",
+            "time": "7:20 AM"
+          },
+          {
+            "type": "stop",
+            "location": "UMBC (The Commons)",
+            "time": "7:55 AM"
+          },
+          {
+            "type": "dropoff",
+            "location": "Morgan State University",
+            "time": "8:25 AM"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "label": "04/12/2026",
+    "routes": [
+      {
+        "id": "bus-1",
+        "name": "Bus 1",
+        "stops": [
+          {
+            "type": "pickup",
+            "location": "Morgan State University",
+            "time": "6:30 PM"
+          },
+          {
+            "type": "dropoff",
+            "location": "Howard University (Banneker Recreation Center)",
+            "time": "7:30 PM"
+          }
+        ]
+      },
+      {
+        "id": "bus-2",
+        "name": "Bus 2",
+        "stops": [
+          {
+            "type": "pickup",
+            "location": "Morgan State University",
+            "time": "6:30 PM"
+          },
+          {
+            "type": "stop",
+            "location": "Bowie State University (Thurgood Marshall Library)",
+            "time": "7:15 PM"
+          },
+          {
+            "type": "dropoff",
+            "location": "University of Maryland College Park",
+            "time": "7:40 PM"
+          }
+        ]
+      },
+      {
+        "id": "bus-3",
+        "name": "Bus 3",
+        "stops": [
+          {
+            "type": "pickup",
+            "location": "Morgan State University",
+            "time": "6:30 PM"
+          },
+          {
+            "type": "stop",
+            "location": "Johns Hopkins University (Mason Hall)",
+            "time": "6:45 PM"
+          },
+          {
+            "type": "stop",
+            "location": "Towson University (Towson Center)",
+            "time": "7:05 PM"
+          },
+          {
+            "type": "dropoff",
+            "location": "UMBC (The Commons)",
+            "time": "7:35 PM"
+          }
+        ]
+      }
+    ]
+  }
+]
