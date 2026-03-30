@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     default: "MorganHacks 2026",
     template: "%s • MorganHacks 2026",
   },
-  description: "Join us April 14-15, 2026 for MorganHacks.",
+  description: "Join us April 11-12, 2026 for MorganHacks.",
   keywords: ["MorganHacks", "hackathon", "Morgan State University", "2026"],
   authors: [{ name: "MorganHacks Team", url: "https://morganhacks.com" }],
   creator: "MorganHacks Team",
   publisher: "MorganHacks",
   openGraph: {
     title: "MorganHacks 2026",
-    description: "Join us April 14-15, 2026 for MorganHacks.",
+    description: "Join us April 11-12, 2026 for MorganHacks.",
     url: "https://morganhacks.com",
     siteName: "MorganHacks",
     locale: "en_US",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "MorganHacks 2026",
-    description: "Join us April 14-15, 2026 for MorganHacks.",
+    description: "Join us April 11-12, 2026 for MorganHacks.",
     images: ["/og-image.png"],
   },
   icons: {
