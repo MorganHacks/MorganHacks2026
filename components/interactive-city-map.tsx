@@ -18,10 +18,12 @@ type TrackCity = {
 }
 
 type TrackDetail = {
-  fullDescription: string
-  challenges: string[]
+  trackName: string
+  description: string
+  challenge: string
+  whatGoodLooksLike: string[]
   prizes: string[]
-  resources: { name: string; url: string }[]
+  resources: { name: string; description: string; url: string }[]
 }
 
 const PARTICLE_SEEDS = Array.from({ length: 20 }).map((_, i) => ({
@@ -158,8 +160,10 @@ export function InteractiveCityMap() {
       ? trackDetailsData[selectedCity]
       : selectedCity
         ? {
-            fullDescription: "Details coming soon.",
-            challenges: ["Challenges: TBA"],
+            trackName: selectedCity.replace(/_/g, " "),
+            description: "Details coming soon.",
+            challenge: "Challenge details will be announced soon.",
+            whatGoodLooksLike: ["Success metrics will be announced soon."],
             prizes: ["Prizes: TBA"],
             resources: [],
           }
@@ -388,15 +392,17 @@ export function InteractiveCityMap() {
               <selected.icon className="w-7 h-7 text-white" />
             </div>
             <h3 className="text-2xl font-bold mb-2 font-orbitron">{selected.name}</h3>
-            <p className="text-sm text-muted-foreground mb-4 font-mono">{selectedTrack.fullDescription}</p>
+            <p className="text-sm text-muted-foreground mb-4 font-mono">{selectedTrack.description}</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">Challenges</p>
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                  What Good Looks Like
+                </p>
                 <ul className="space-y-2">
-                  {selectedTrack.challenges.slice(0, 3).map((challenge, i) => (
+                  {selectedTrack.whatGoodLooksLike.slice(0, 3).map((item, i) => (
                     <li key={i} className="text-sm text-foreground font-mono">
-                      • {challenge}
+                      • {item}
                     </li>
                   ))}
                 </ul>
