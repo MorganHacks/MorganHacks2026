@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hackathon City: Track Navigation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#a8c9f3",
+              "secondary-container": "#294b6f",
+              "surface-container-low": "#181c22",
+              "surface-bright": "#353940",
+              "on-primary": "#003642",
+              "primary-fixed-dim": "#3cd7ff",
+              "primary": "#3cd7ff",
+              "surface-container-highest": "#31353c",
+              "inverse-primary": "#00677e",
+              "on-error": "#690005",
+              "on-tertiary-fixed": "#001e2d",
+              "inverse-on-surface": "#2d3137",
+              "outline-variant": "#414754",
+              "inverse-surface": "#dfe2eb",
+              "surface-dim": "#10141a",
+              "on-secondary-fixed-variant": "#27496c",
+              "surface-container-high": "#262a31",
+              "surface-container": "#1c2026",
+              "surface-tint": "#3cd7ff",
+              "tertiary-fixed-dim": "#a0ccea",
+              "secondary-fixed": "#d1e4ff",
+              "tertiary-fixed": "#c6e7ff",
+              "on-secondary-container": "#9abbe4",
+              "on-tertiary-container": "#002d41",
+              "primary-container": "#009ebe",
+              "outline": "#8b90a0",
+              "tertiary-container": "#6b96b2",
+              "surface-container-lowest": "#0a0e14",
+              "tertiary": "#a0ccea",
+              "error": "#ffb4ab",
+              "on-secondary-fixed": "#001d36",
+              "background": "#10141a",
+              "on-primary-fixed-variant": "#004e5f",
+              "error-container": "#93000a",
+              "surface": "#10141a",
+              "on-error-container": "#ffdad6",
+              "secondary-fixed-dim": "#a8c9f3",
+              "on-tertiary-fixed-variant": "#1c4b64",
+              "on-background": "#dfe2eb",
+              "on-surface": "#dfe2eb",
+              "on-secondary": "#0a3254",
+              "on-tertiary": "#00344b",
+              "on-primary-fixed": "#001f27",
+              "primary-fixed": "#b4ebff",
+              "on-surface-variant": "#c1c6d7",
+              "surface-variant": "#31353c",
+              "on-primary-container": "#002e3a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .city-grid {
+            background-image: 
+                linear-gradient(to right, rgba(65, 71, 84, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(65, 71, 84, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .city-grid-fine {
+            background-image: 
+                linear-gradient(to right, rgba(65, 71, 84, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(65, 71, 84, 0.05) 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl flex justify-between items-center px-8 py-4 w-full font-['Inter'] tracking-tight">
+<div class="text-xl font-bold tracking-tighter text-[#3cd7ff]">Digital Cartographer</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-[#3cd7ff] border-b-2 border-[#3cd7ff] pb-1" href="#">Tracks</a>
+<a class="text-[#c1c6d7] hover:text-[#3cd7ff] transition-colors" href="#">Schedule</a>
+<a class="text-[#c1c6d7] hover:text-[#3cd7ff] transition-colors" href="#">Prizes</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-[#c1c6d7] hover:bg-[#1c2026] p-2 rounded-full transition-all duration-300 active:scale-95">account_circle</button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-5 py-1.5 rounded-md font-medium text-sm active:scale-95 duration-200 transition-all">Register</button>
+</div>
+</header>
+<!-- Main Map Canvas -->
+<main class="relative flex-grow w-full overflow-hidden flex flex-col pt-[72px]">
+<!-- Digital Cartography Background -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-[#10141a]"></div>
+<div class="absolute inset-0 city-grid-fine opacity-40"></div>
+<div class="absolute inset-0 city-grid opacity-60"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#10141a]/20 to-[#10141a]"></div>
+<!-- Atmospheric Map Elements -->
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-secondary-container/5 rounded-full blur-[150px]"></div>
+</div>
+<!-- Hero Title & Content Canvas -->
+<div class="relative z-10 container mx-auto px-12 pt-16 flex flex-col h-full pointer-events-none">
+<div class="max-w-2xl mt-8">
+<span class="text-primary font-label text-[10px] uppercase tracking-[0.2em] mb-4 block">System Interface // v2.04</span>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-4 text-on-surface">Hackathon City: Track Navigation</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed font-light">
+                    Navigate the digital architecture of the Protocol. Each quadrant represents a critical mission track for the next generation of cartographers.
+                </p>
+</div>
+<!-- Map Interactive Interface (Pointer events restored) -->
+<div class="flex-grow relative mt-12 pointer-events-auto min-h-[500px]">
+<!-- Coordinate Labels (Editorial style) -->
+<div class="absolute top-0 left-0 text-[10px] font-mono text-outline-variant/40 flex flex-col space-y-2">
+<span>LAT_REF: 44.022N</span>
+<span>LONG_REF: 12.011E</span>
+</div>
+<!-- Track: Health & Human Impact (44, 12) -->
+<div class="absolute group" style="top: 12%; left: 44%;">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-20 h-20 bg-[#ff8eb2]/10 rounded-full blur-xl group-hover:bg-[#ff8eb2]/20 transition-all"></div>
+<div class="w-12 h-12 bg-surface-container border border-outline-variant/15 rounded-lg flex items-center justify-center z-10 group-hover:scale-110 group-hover:border-[#ff8eb2]/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[#ff8eb2]" style="font-variation-settings: 'FILL' 1;">heart_check</span>
+</div>
+<!-- Data Cluster Label -->
+<div class="absolute left-14 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-surface-container-highest/90 backdrop-blur-md px-4 py-2 rounded-xl border border-outline-variant/20 shadow-2xl">
+<div class="flex items-center space-x-3">
+<div class="w-px h-8 bg-[#ff8eb2]"></div>
+<div>
+<div class="text-[10px] uppercase tracking-widest text-outline">Sector 44:12</div>
+<div class="text-sm font-bold text-on-surface">Health &amp; Human Impact</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Track: Planet (78, 30) -->
+<div class="absolute group" style="top: 30%; left: 78%;">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-24 h-24 bg-[#10b981]/10 rounded-full blur-xl group-hover:bg-[#10b981]/20 transition-all"></div>
+<div class="w-12 h-12 bg-surface-container border border-outline-variant/15 rounded-lg flex items-center justify-center z-10 group-hover:scale-110 group-hover:border-[#10b981]/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[#10b981]" style="font-variation-settings: 'FILL' 1;">energy_savings_leaf</span>
+</div>
+<div class="absolute right-14 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-surface-container-highest/90 backdrop-blur-md px-4 py-2 rounded-xl border border-outline-variant/20 shadow-2xl">
+<div class="flex items-center space-x-3">
+<div>
+<div class="text-[10px] uppercase tracking-widest text-outline text-right">Sector 78:30</div>
+<div class="text-sm font-bold text-on-surface">Planet</div>
+</div>
+<div class="w-px h-8 bg-[#10b981]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Track: Culture (30, 68) -->
+<div class="absolute group" style="top: 68%; left: 30%;">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-20 h-20 bg-[#a855f7]/10 rounded-full blur-xl group-hover:bg-[#a855f7]/20 transition-all"></div>
+<div class="w-12 h-12 bg-surface-container border border-outline-variant/15 rounded-lg flex items-center justify-center z-10 group-hover:scale-110 group-hover:border-[#a855f7]/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[#a855f7]" style="font-variation-settings: 'FILL' 1;">gamepad</span>
+</div>
+<div class="absolute left-14 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-surface-container-highest/90 backdrop-blur-md px-4 py-2 rounded-xl border border-outline-variant/20 shadow-2xl">
+<div class="flex items-center space-x-3">
+<div class="w-px h-8 bg-[#a855f7]"></div>
+<div>
+<div class="text-[10px] uppercase tracking-widest text-outline">Sector 30:68</div>
+<div class="text-sm font-bold text-on-surface">Culture</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Track: Commerce (20, 48) -->
+<div class="absolute group" style="top: 48%; left: 20%;">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-20 h-20 bg-[#84cc16]/10 rounded-full blur-xl group-hover:bg-[#84cc16]/20 transition-all"></div>
+<div class="w-12 h-12 bg-surface-container border border-outline-variant/15 rounded-lg flex items-center justify-center z-10 group-hover:scale-110 group-hover:border-[#84cc16]/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[#84cc16]" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div class="absolute left-14 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-surface-container-highest/90 backdrop-blur-md px-4 py-2 rounded-xl border border-outline-variant/20 shadow-2xl">
+<div class="flex items-center space-x-3">
+<div class="w-px h-8 bg-[#84cc16]"></div>
+<div>
+<div class="text-[10px] uppercase tracking-widest text-outline">Sector 20:48</div>
+<div class="text-sm font-bold text-on-surface">Commerce</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Track: Beyond Reality (68, 70) -->
+<div class="absolute group" style="top: 70%; left: 68%;">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-28 h-28 bg-[#3cd7ff]/10 rounded-full blur-xl group-hover:bg-[#3cd7ff]/20 transition-all"></div>
+<div class="w-12 h-12 bg-surface-container border border-outline-variant/15 rounded-lg flex items-center justify-center z-10 group-hover:scale-110 group-hover:border-[#3cd7ff]/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[#3cd7ff]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="absolute top-14 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-surface-container-highest/90 backdrop-blur-md px-4 py-2 rounded-xl border border-outline-variant/20 shadow-2xl">
+<div class="flex flex-col items-center">
+<div class="text-[10px] uppercase tracking-widest text-outline mb-1">Sector 68:70</div>
+<div class="text-sm font-bold text-on-surface">Beyond Reality</div>
+<div class="w-12 h-px bg-[#3cd7ff] mt-2"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Image Element (Invisible but used for context) -->
+<div class="hidden">
+<img alt="Digital Map Grid" data-alt="a high fidelity topographical digital map with glowing cyan grid lines and deep navy blue background and abstract technological textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATGMSwc_J5XAgfnLmSJDNQeX1HUnzyt5ALgbNpinlOnuTOm7p6qV5MTRI0SzcO3niUvmKT4-wfLAgH5SQbQkECZGx37swgjS2e9QipWR8VknD3gc7KKy72ncCgf9R1pW2Y7nQ_d8Fa4rhKhHK05nR-vfBq4IIiUX5iVLFTMBW5EGdyjl3PazvVABjz6YD6g8vI2ykEfXWc7aToO4w4-WsiHlEPjy8COpvThC55lDlKfTu5LGXoCyXridD3TNYtWcwvmM--JT-nGzA"/>
+</div>
+</main>
+<!-- Sidebar Data Detail (Floating) -->
+<div class="fixed right-8 top-32 z-40 w-64 hidden xl:block">
+<div class="bg-surface-container/40 backdrop-blur-xl rounded-xl p-6 border border-outline-variant/10">
+<h3 class="font-label text-[10px] uppercase tracking-widest text-primary mb-4">Cartography Legend</h3>
+<ul class="space-y-4">
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 rounded-full bg-[#ff8eb2] mt-1.5 shadow-[0_0_8px_rgba(255,142,178,0.5)]"></div>
+<div class="text-xs text-on-surface-variant font-light">Biological and human-centric technological advancement.</div>
+</li>
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 rounded-full bg-[#10b981] mt-1.5 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+<div class="text-xs text-on-surface-variant font-light">Sustainability, ecology, and climate remediation systems.</div>
+</li>
+<li class="flex items-start space-x-3">
+<div class="w-2 h-2 rounded-full bg-[#3cd7ff] mt-1.5 shadow-[0_0_8px_rgba(60,215,255,0.5)]"></div>
+<div class="text-xs text-on-surface-variant font-light">XR, spatial computing, and meta-territory development.</div>
+</li>
+</ul>
+<div class="mt-6 pt-6 border-t border-outline-variant/10">
+<div class="text-[10px] uppercase tracking-[0.2em] text-outline mb-2">Network Status</div>
+<div class="flex items-center space-x-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+<span class="text-[10px] font-mono text-primary">OPERATIONAL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-6 mt-auto bg-[#10141a] border-t border-[#414754]/15 flex flex-col md:flex-row justify-between items-center px-12 max-w-full font-['Inter'] text-[10px] uppercase tracking-[0.1em]">
+<div class="text-[#3cd7ff] font-bold opacity-80 hover:opacity-100 transition-all cursor-default">Digital Cartographer Protocol</div>
+<div class="flex space-x-8 my-4 md:my-0">
+<a class="text-[#c1c6d7] hover:text-[#3cd7ff] transition-colors" href="#">Terminals</a>
+<a class="text-[#c1c6d7] hover:text-[#3cd7ff] transition-colors" href="#">Privacy Protocol</a>
+<a class="text-[#c1c6d7] hover:text-[#3cd7ff] transition-colors" href="#">Support</a>
+</div>
+<div class="text-[#c1c6d7] opacity-60">© 2024 Digital Cartographer Protocol</div>
+</footer>
+</body></html>
