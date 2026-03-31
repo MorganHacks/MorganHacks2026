@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/navigation"
-import { TrackLandingEthereal } from "@/components/track-landing-ethereal"
 import { TrackLandingKinetic } from "@/components/track-landing-kinetic"
 import trackDetails from "@/public/track-details.json"
 
@@ -13,8 +12,7 @@ export default function TracksPage() {
     <main className="min-h-screen">
       <Navigation />
 
-      {/* <TrackLandingEthereal tracks={tracks} /> */}
-      <TrackLandingKinetic tracks={tracks} />
+      {/* <TrackLandingKinetic tracks={tracks} /> */}
     </main>
   )
 }
