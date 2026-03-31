@@ -77,12 +77,10 @@ export default function Home() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 font-orbitron">
-            <span className="neon-glow-blue">Explore Tracks</span>
+            <Link href="/tracks" className="inline-block hover:opacity-90 transition-opacity">
+              <span className="neon-glow-blue">Explore Tracks</span>
+            </Link>
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Five themed districts. Pick one to start your build journey. Track details: TBA.
-          </p>
-
           {/* <HomeTrackGrid /> */}
         </div>
       </section>

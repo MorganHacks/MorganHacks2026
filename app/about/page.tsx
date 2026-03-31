@@ -40,7 +40,7 @@ export default function AboutPage() {
             What to Expect
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Workshops, panels, and judging experiences are coming together for MorganHacks 2026. Stay tuned for the full lineup—everything below is TBA while we finalize details.
+            Workshops, panels, and judging experiences are coming together for MorganHacks 2026. Stay tuned for the full lineup.
           </p>
         </div>
       </section>

@@ -1,7 +1,7 @@
 {
   "health_human_impact": {
     "trackName": "Health & Human Impact",
-    "description": "Build technology that improves everyday human life. This track focuses on health, mental wellbeing, accessibility, and productivity. The strongest projects are simple, practical, and immediately useful — something a student, family member, or community could realistically start using right away.",
+    "description": "Build technology that improves everyday human life. This track focuses on health, mental wellbeing, accessibility, and productivity. The strongest projects are simple, practical, and immediately useful, designed for students, families, and communities to start using right away.",
     "challenge": "How can you use technology to reduce stress, improve wellbeing, or make daily life easier for real people? Focus on building something accessible, practical, and impactful within the time constraints of the hackathon.",
     "whatGoodLooksLike": [
       "Solves a real and relatable human problem",
@@ -37,7 +37,7 @@
 
   "culture": {
     "trackName": "Culture",
-    "description": "Build experiences that people enjoy, share, and remember. This track focuses on creative technology — games, interactive media, social platforms, and tools for creators. The strongest projects are engaging, visually compelling, and designed for real user interaction.",
+    "description": "Build experiences that people enjoy, share, and remember. This track focuses on creative technology, including games, interactive media, social platforms, and creator tools. The strongest projects are engaging, visually compelling, and built for real user interaction.",
     "challenge": "How can you use technology to entertain, connect, or enable self-expression? Focus on building interactive experiences that people can immediately engage with and share.",
     "whatGoodLooksLike": [
       "Highly interactive and engaging user experience",
@@ -145,7 +145,7 @@
 
   "beyond_reality": {
     "trackName": "Beyond Reality",
-    "description": "Build something that feels like the future. This track is for experimental, unconventional, and boundary-pushing ideas — blending AI, immersive experiences, simulations, or entirely new ways of interacting with technology. The goal is to explore what’s possible and create something people won’t forget.",
+    "description": "Build something that feels like the future. This track is for experimental, unconventional, and boundary-pushing ideas, blending AI, immersive experiences, simulations, and new ways of interacting with technology. The goal is to explore what’s possible and create something people won’t forget.",
     "challenge": "What does the future look like, and how can you build a piece of it today? Create something bold, unconventional, or unexpected that reimagines how people interact with technology.",
     "whatGoodLooksLike": [
       "Highly creative and unconventional concept",

@@ -1,47 +1,47 @@
 [
-    {
-      "id": "people",
-      "name": "People and Wellbeing",
-      "description": "Health, mental wellbeing, accessibility, and life tools for students and communities",
-      "color": "from-pink-500 to-rose-500",
-      "position": { "x": 44, "y": 12 },
-      "icon": "Heart",
-      "glowColor": "rgba(236, 72, 153, 0.5)"
-    },
-    {
-      "id": "planet",
-      "name": "Planet and Infrastructure",
-      "description": "Climate, energy, food systems, housing, and resilient infrastructure",
-      "color": "from-emerald-500 to-sky-500",
-      "position": { "x": 78, "y": 30 },
-      "icon": "Leaf",
-      "glowColor": "rgba(16, 185, 129, 0.5)"
-    },
-    {
-      "id": "culture",
-      "name": "Culture, Media, and Play",
-      "description": "Games, music, storytelling, social apps, and creative tools",
-      "color": "from-purple-500 to-violet-500",
-      "position": { "x": 30, "y": 68 },
-      "icon": "Gamepad2",
-      "glowColor": "rgba(168, 85, 247, 0.5)"
-    },
-    {
-      "id": "autonomy",
-      "name": "Autonomous Worlds",
-      "description": "Robotics, IoT, wearables, drones, and systems that sense and act",
-      "color": "from-orange-500 to-red-500",
-      "position": { "x": 68, "y": 70 },
-      "icon": "Bot",
-      "glowColor": "rgba(249, 115, 22, 0.5)"
-    },
-    {
-      "id": "commerce",
-      "name": "Commerce and Fintech Systems",
-      "description": "Payments, budgeting, marketplaces, creator monetization, and financial tools",
-      "color": "from-lime-400 to-emerald-500",
-      "position": { "x": 20, "y": 48 },
-      "icon": "Banknote",
-      "glowColor": "rgba(132, 204, 22, 0.5)"
-    }
-  ]
+  {
+    "id": "health_human_impact",
+    "name": "Health & Human Impact",
+    "description": "Health, mental wellbeing, accessibility, and tools that improve everyday life",
+    "color": "from-pink-500 to-rose-500",
+    "position": { "x": 44, "y": 12 },
+    "icon": "Heart",
+    "glowColor": "rgba(236, 72, 153, 0.5)"
+  },
+  {
+    "id": "planet",
+    "name": "Planet",
+    "description": "Sustainability, climate, energy, and tools that turn environmental awareness into action",
+    "color": "from-emerald-500 to-sky-500",
+    "position": { "x": 78, "y": 30 },
+    "icon": "Leaf",
+    "glowColor": "rgba(16, 185, 129, 0.5)"
+  },
+  {
+    "id": "culture",
+    "name": "Culture",
+    "description": "Games, media, social experiences, and tools for creativity and self-expression",
+    "color": "from-purple-500 to-violet-500",
+    "position": { "x": 30, "y": 68 },
+    "icon": "Gamepad2",
+    "glowColor": "rgba(168, 85, 247, 0.5)"
+  },
+  {
+    "id": "commerce",
+    "name": "Commerce",
+    "description": "Payments, marketplaces, and tools that help people earn, spend, and manage money better",
+    "color": "from-lime-400 to-emerald-500",
+    "position": { "x": 20, "y": 48 },
+    "icon": "Banknote",
+    "glowColor": "rgba(132, 204, 22, 0.5)"
+  },
+  {
+    "id": "beyond_reality",
+    "name": "Beyond Reality",
+    "description": "Experimental, immersive, and futuristic ideas that push the boundaries of technology",
+    "color": "from-cyan-400 to-blue-500",
+    "position": { "x": 68, "y": 70 },
+    "icon": "Sparkles",
+    "glowColor": "rgba(56, 189, 248, 0.5)"
+  }
+]

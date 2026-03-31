@@ -1,20 +1,27 @@
 [
     {
-        "id": 7,
+        "id": 8,
         "name": "Charles  Ehimare",
         "image": "/headshot/charles.JPG",
-        "role": "Media Marketing Team",
+        "role": "Media and Marketing Team",
         "linkedin": "https://www.linkedin.com/in/charles-ehimare2217"
     },
     {
-        "id": 9,
+        "id": 4,
+        "name": "Chelsea Minard",
+        "image": "https://2025.morganhacks.com/_next/image?url=%2Fteam%2Fchelsea.jpg&w=3840&q=75",
+        "role": "Vice President - Media, Marketing and Technology Team",
+        "linkedin": "https://www.linkedin.com/in/chelsea-minard/"
+    },
+    {
+        "id": 10,
         "name": "Najae Potts",
-        "role": "Media Marketing Team",
+        "role": "Media and Marketing Team",
         "image": "/headshot/najae.JPG",
         "linkedin": "https://www.linkedin.com/in/najae-potts"
     },
     {
-        "id": 6,
+        "id": 7,
         "name": "Oluwatobi Olajide",
         "role": "Technology Team",
         "image": "/headshot/oluwatobi.JPG",
@@ -28,14 +35,14 @@
         "linkedin": "https://www.linkedin.com/in/oluwasegun-soji-john/"
     },
     {
-        "id": 10,
+        "id": 11,
         "name": " Nasif Ajilore",
         "role": "Logistics Team",
         "image": "/headshot/nasif.JPG",
         "linkedin": "https://www.linkedin.com/in/nasif-ajilore-796637229"
     },
     {
-        "id": 8,
+        "id": 9,
         "name": "Elizabeth Stewart",
         "role": "Operations Team",
         "image": "/headshot/elizabeth.JPG",
@@ -43,24 +50,17 @@
     },
     {
         "id": 2,
-        "name": "Sanae Freeman ",
+        "name": "Sanae Freeman",
         "role": "Vice President of Operations & Logistics Team",
-        "image": null,
+        "image": "https://2025.morganhacks.com/_next/image?url=%2Fteam%2Fsanae.jpg&w=3840&q=75",
         "linkedin": "https://linkedin.com/in/sanae-freeman-98323419a"
     },
     {
-        "id": 5,
+        "id": 6,
         "name": "Iyinoluwa Ayodele (Grace)",
-        "role": "Operation Team",
+        "role": "Operations Team",
         "image": "/headshot/iyinoluwa.JPG",
         "linkedin": "https://www.linkedin.com/in/iyinoluwa-ayodele/"
-    },
-    {
-        "id": 12,
-        "name": "Mehki Freeman",
-        "role": "Technology Team",
-        "image": null,
-        "linkedin": "https://www.linkedin.com/in/mehkifreeman"
     },
     {
         "id": 3,
@@ -70,17 +70,17 @@
         "linkedin": "https://www.linkedin.com/in/stephanie-adeoye-2a3b70291/"
     },
     {
-        "id": 11,
+        "id": 12,
         "name": "Marissa Savage ",
-        "role": "Logistic Team",
+        "role": "Logistics Team",
         "image": "/headshot/marissa.JPG",
         "linkedin": "https://www.linkedin.com/in/marissa-savage-04923124a"
     },
     {
-        "id": 4,
+        "id": 5,
         "name": "Oluwajomiloju King",
         "role": "Registration and Transportation Team",
         "image": "/headshot/jomiloju.JPG",
-        "linkedin": "https://www.linkedin.com/in\/oluwajomiloju-king"
+        "linkedin": "https://www.linkedin.com/in/oluwajomiloju-king"
     }
 ]
