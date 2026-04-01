@@ -25,7 +25,7 @@
         "stops": [
           {
             "type": "pickup",
-            "location": "University of Maryland College Park",
+            "location": "University of Maryland College Park (Stamp Student Union)",
             "time": "6:45 AM"
           },
           {
@@ -104,7 +104,7 @@
           },
           {
             "type": "dropoff",
-            "location": "University of Maryland College Park",
+            "location": "University of Maryland College Park (Stamp Student Union)",
             "time": "7:40 PM"
           }
         ]
