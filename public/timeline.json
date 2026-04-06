@@ -1,0 +1,196 @@
+{
+  "days": [
+    {
+      "date": "2026-04-11",
+      "label": "Day One - Saturday, April 11th, 2026",
+      "events": [
+        {
+          "id": 0,
+          "title": "Organizers Arrive",
+          "timeStart": "06:00",
+          "responsibility": "All Teams",
+          "type": "general"
+        },
+        {
+          "id": 0.5,
+          "title": "Volunteers Arrive",
+          "timeStart": "07:00",
+          "responsibility": "Logistics / Registration / Operations Team",
+          "type": "general"
+        },
+        {
+          "id": 1,
+          "title": "Check-in, Breakfast & Networking",
+          "timeStart": "08:00",
+          "timeEnd": "09:45",
+          "location": "First Floor",
+          "responsibility": "Registration & Volunteers",
+          "type": "food"
+        },
+        {
+          "id": 2,
+          "title": "Sponsorship Fair",
+          "timeStart": "08:30",
+          "timeEnd": "09:30",
+          "responsibility": "Sponsors",
+          "type": "general"
+        },
+        {
+          "id": 3,
+          "title": "Opening Ceremony",
+          "timeStart": "10:00",
+          "timeEnd": "11:50",
+          "location": "Auditorium 104",
+          "type": "highlight",
+          "subEvents": [
+            {
+              "title": "Chief of Staff Address",
+              "time": "10:05 - 10:15"
+            },
+            {
+              "title": "Keynote Speaker",
+              "time": "10:15 - 10:30"
+            },
+            {
+              "title": "Panel Session",
+              "time": "10:30 - 11:05"
+            },
+            {
+              "title": "Hackathon Breakdown & Challenge Statements",
+              "time": "11:05 - 11:50"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Coding Begins",
+          "timeStart": "12:00",
+          "location": "Study Rooms",
+          "type": "highlight"
+        },
+        {
+          "id": 5,
+          "title": "Workshop 1",
+          "timeStart": "12:30",
+          "timeEnd": "13:30",
+          "location": "Room 208",
+          "responsibility": "Sponsors",
+          "type": "workshop"
+        },
+        {
+          "id": 6,
+          "title": "Lunch Served",
+          "timeStart": "13:30",
+          "timeEnd": "15:00",
+          "location": "First Floor",
+          "responsibility": "Logistics",
+          "type": "food"
+        },
+        {
+          "id": 7,
+          "title": "Workshop 2",
+          "timeStart": "16:00",
+          "timeEnd": "17:00",
+          "location": "Room 112",
+          "responsibility": "Sponsors",
+          "type": "workshop"
+        },
+        {
+          "id": 8,
+          "title": "Dinner Served",
+          "timeStart": "17:00",
+          "timeEnd": "20:00",
+          "location": "First Floor",
+          "responsibility": "Logistics",
+          "type": "food"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "label": "Day Two - Sunday, April 12th, 2026",
+      "events": [
+        {
+          "id": 10,
+          "title": "Breakfast Served",
+          "timeStart": "08:00",
+          "timeEnd": "10:00",
+          "location": "First Floor",
+          "responsibility": "Logistics",
+          "type": "food"
+        },
+        {
+          "id": 11,
+          "title": "Pitch Practice",
+          "timeStart": "11:00",
+          "location": "Study Rooms",
+          "responsibility": "Mentors",
+          "type": "general"
+        },
+        {
+          "id": 12,
+          "title": "Lunch Served",
+          "timeStart": "12:00",
+          "location": "First Floor",
+          "responsibility": "Logistics & Volunteers",
+          "type": "food"
+        },
+        {
+          "id": 13,
+          "title": "Submission Deadline",
+          "timeStart": "12:00",
+          "location": "Devpost",
+          "type": "highlight"
+        },
+        {
+          "id": 14,
+          "title": "Round 1 Judging",
+          "timeStart": "13:30",
+          "timeEnd": "15:30",
+          "location": "Rooms 207, 307, 309",
+          "responsibility": "Judges",
+          "type": "highlight"
+        },
+        {
+          "id": 15,
+          "title": "Top 6 Teams Announced",
+          "timeStart": "15:45",
+          "timeEnd": "16:00",
+          "location": "Auditorium 104",
+          "type": "highlight"
+        },
+        {
+          "id": 16,
+          "title": "Final Presentations (Round 2)",
+          "timeStart": "16:05",
+          "timeEnd": "17:00",
+          "location": "Auditorium 104",
+          "responsibility": "Everyone",
+          "type": "highlight"
+        },
+        {
+          "id": 17,
+          "title": "Judges Deliberation",
+          "timeStart": "17:00",
+          "timeEnd": "17:10",
+          "location": "Breakout Room",
+          "type": "general"
+        },
+        {
+          "id": 18,
+          "title": "Winners Announced",
+          "timeStart": "17:10",
+          "timeEnd": "17:30",
+          "type": "highlight"
+        },
+        {
+          "id": 19,
+          "title": "Clean Up",
+          "timeStart": "16:00",
+          "timeEnd": "18:15",
+          "type": "general"
+        }
+      ]
+    }
+  ]
+}
