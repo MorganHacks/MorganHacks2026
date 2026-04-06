@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Banknote, Gamepad2, Heart, Leaf, Sparkles } from "lucide-react"
 
 type TrackDetail = {
@@ -58,25 +58,60 @@ const trackMap = [
 
 export function TrackLandingKinetic({ tracks }: TrackLandingKineticProps) {
 	const [activeTrackId, setActiveTrackId] = useState<string | null>(null)
-	const hashToPercent = (value: string, min: number, max: number) => {
-		let hash = 0
-		for (let i = 0; i < value.length; i += 1) {
-			hash = (hash * 31 + value.charCodeAt(i)) % 10000
-		}
-		const range = max - min
-		return min + (hash % range)
-	}
+	const [positions, setPositions] = useState<Record<string, { top: number; left: number }>>({})
+
+	useEffect(() => {
+		const minDistance = 16
+		const maxAttempts = 200
+		const bounds = { top: [12, 78], left: [10, 68] }
+
+		const nextPositions: Record<string, { top: number; left: number }> = {}
+		const points: Array<{ top: number; left: number }> = []
+
+		trackMap.forEach((track) => {
+			let attempt = 0
+			let placed = false
+
+			while (attempt < maxAttempts && !placed) {
+				const top = bounds.top[0] + Math.random() * (bounds.top[1] - bounds.top[0])
+				const left = bounds.left[0] + Math.random() * (bounds.left[1] - bounds.left[0])
+
+				const tooClose = points.some((point) => {
+					const dx = point.left - left
+					const dy = point.top - top
+					return Math.hypot(dx, dy) < minDistance
+				})
+
+				if (!tooClose) {
+					points.push({ top, left })
+					nextPositions[track.id] = { top, left }
+					placed = true
+				}
+
+				attempt += 1
+			}
+
+			if (!placed) {
+				const fallback = {
+					top: bounds.top[0] + Math.random() * (bounds.top[1] - bounds.top[0]),
+					left: bounds.left[0] + Math.random() * (bounds.left[1] - bounds.left[0]),
+				}
+				points.push(fallback)
+				nextPositions[track.id] = fallback
+			}
+		})
+
+		setPositions(nextPositions)
+	}, [])
 
 	const orderedTracks = trackMap.map((config) => {
 		const match = tracks.find((track) => track.id === config.id)
+		const fallbackPosition = positions[config.id] ?? { top: 50, left: 50 }
 		return {
 			...config,
 			trackName: match?.trackName ?? config.id.replace(/_/g, " "),
 			description: match?.description ?? "",
-			position: {
-				top: hashToPercent(`${config.id}-top`, 12, 78),
-				left: hashToPercent(`${config.id}-left`, 16, 84),
-			},
+			position: fallbackPosition,
 			legend: match?.trackName ?? config.id.replace(/_/g, " "),
 		}
 	})
