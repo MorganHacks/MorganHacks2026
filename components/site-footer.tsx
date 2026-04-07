@@ -39,12 +39,18 @@ const socials = [
   { label: "TikTok", href: "https://www.tiktok.com/@morganhacks2026", icon: TikTok },
 ]
 
-const involvementLinks = [
-  { label: "Hacker Registration", href: "https://www.jotform.com/form/251163649282157" },
-  { label: "Mentor Registration", href: "https://www.jotform.com/form/253297815473164" },
-  { label: "Sponsor Interest Form", href: "https://www.jotform.com/form/253334594024051" },
-  { label: "Judge Registration", href: "https://www.jotform.com/form/253384910720152" },
-  { label: "Volunteer Registration", href: "https://www.jotform.com/form/253384481261155" },
+type InvolvementLink = {
+  label: string
+  href?: string
+  closed?: boolean
+}
+
+const involvementLinks: InvolvementLink[] = [
+  // { label: "Hacker Registration Closed", closed: true },
+  // { label: "Mentor Registration", href: "https://www.jotform.com/form/253297815473164" },
+  // { label: "Sponsor Interest Form", href: "https://www.jotform.com/form/253334594024051" },
+  // { label: "Judge Registration", href: "https://www.jotform.com/form/253384910720152" },
+  // { label: "Volunteer Registration", href: "https://www.jotform.com/form/253384481261155" },
   { label: "Bus Routes RSVP Form", href: "https://form.jotform.com/260886109987172" }
 ]
 
@@ -82,18 +88,28 @@ export function SiteFooter() {
           <div className="space-y-2">
             <p className="text-sm font-bold font-orbitron">Get Involved</p>
             <div className="grid grid-cols-1 gap-2">
-              {involvementLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 text-sm text-foreground hover:border-primary/50 transition-colors"
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                >
-                  <span>{link.label}</span>
-                  <span className="text-xs text-muted-foreground font-mono">→</span>
-                </Link>
-              ))}
+              {involvementLinks.map((link) =>
+                link.href ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 text-sm text-foreground hover:border-primary/50 transition-colors"
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-xs text-muted-foreground font-mono">→</span>
+                  </Link>
+                ) : (
+                  <div
+                    key={link.label}
+                    className="inline-flex items-center justify-between px-3 py-2 rounded-md border border-primary/20 bg-muted/20 text-sm text-muted-foreground"
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-xs font-mono uppercase tracking-wide text-primary/80">Closed</span>
+                  </div>
+                ),
+              )}
             </div>
           </div>
         </div>

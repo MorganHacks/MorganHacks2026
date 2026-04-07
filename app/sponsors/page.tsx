@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/navigation"
 import { SponsorGrid } from "@/components/sponsor-grid"
 import { AnalyticsDataTower } from "@/components/analytics-data-tower"
 import Link from "next/link"
@@ -7,8 +6,6 @@ import { Button } from "@/components/ui/button"
 export default function SponsorsPage() {
   return (
     <main className="min-h-screen">
-      <Navigation />
-
       <section className="pt-24 pb-12 px-4">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Sponsors section */}

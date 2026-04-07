@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { PortalTransition } from "@/components/portal-transition"
 import { SiteFooter } from "@/components/site-footer"
+import { Navigation } from "@/components/navigation"
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({
         </div>
 
         <div className="relative z-10">
+          <Navigation />
           <PortalTransition />
           {children}
           <SiteFooter />
