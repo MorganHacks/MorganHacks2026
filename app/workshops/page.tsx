@@ -1,10 +1,6 @@
-import { Navigation } from "@/components/navigation"
-
 export default function WorkshopsPage() {
   return (
     <main className="min-h-screen">
-      <Navigation />
-
       <section className="pt-24 pb-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">

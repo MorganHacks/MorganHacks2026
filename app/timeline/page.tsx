@@ -1,6 +1,5 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { Clock3, MapPin, CalendarDays, UtensilsCrossed, Sparkles, Wrench, CircleDot } from "lucide-react"
 
@@ -50,10 +49,29 @@ const EVENT_TYPE_ICONS: Record<string, React.ComponentType<{ className?: string 
   workshop: Wrench,
 }
 
+function parseTimeParts(time: string) {
+  const match = time.trim().match(/^(\d{1,2}):(\d{2})(?:\s*([AaPp][Mm]))?$/)
+  if (!match) {
+    throw new Error(`Invalid time value: ${time}`)
+  }
+
+  let hour = Number(match[1])
+  const minute = Number(match[2])
+  const meridiem = match[3]?.toUpperCase()
+
+  if (meridiem === "AM" && hour === 12) {
+    hour = 0
+  }
+
+  if (meridiem === "PM" && hour !== 12) {
+    hour += 12
+  }
+
+  return { hour, minute }
+}
+
 function parseDateTime(date: string, time: string) {
-  const [hourText, minuteText] = time.split(":")
-  const hour = Number(hourText)
-  const minute = Number(minuteText)
+  const { hour, minute } = parseTimeParts(time)
   return new Date(`${date}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00`)
 }
 
@@ -64,9 +82,9 @@ function eventRange(day: TimelineDay, event: TimelineEvent) {
 }
 
 function formatTime(time: string) {
-  const [hourText, minuteText] = time.split(":")
+  const { hour, minute } = parseTimeParts(time)
   const base = new Date()
-  base.setHours(Number(hourText), Number(minuteText), 0, 0)
+  base.setHours(hour, minute, 0, 0)
   return new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(base)
 }
 
@@ -82,7 +100,7 @@ function shouldShowEvent(day: TimelineDay, event: TimelineEvent) {
     return false
   }
 
-  const hiddenTitles = new Set(["clean up", "judges deliberation", "volunteers arrive"])
+  const hiddenTitles = new Set(["clean up", "judges deliberation", "volunteers arrive", "sponsorship fair"])
   return !hiddenTitles.has(event.title.trim().toLowerCase())
 }
 
@@ -185,8 +203,6 @@ export default function TimelinePage() {
 
   return (
     <main className="min-h-screen relative overflow-hidden">
-      <Navigation />
-
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_85%_65%_at_50%_0%,theme(colors.secondary/.06),transparent_70%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_80%_55%_at_50%_5%,#000_70%,transparent_115%)] opacity-20" />
 

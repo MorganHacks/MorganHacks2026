@@ -1,7 +1,6 @@
 import type React from "react"
 import Link from "next/link"
 import { CountdownPortal } from "@/components/countdown-portal"
-import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { HomeTrackGrid } from "@/components/home-track-grid"
 import { RecapMarquee } from "@/components/recap-marquee"
@@ -10,8 +9,6 @@ import { ArrowRight, Zap, Users, Trophy } from "lucide-react"
 export default function Home() {
   return (
     <main className="min-h-screen relative">
-      <Navigation />
-
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 px-4 overflow-hidden">
         {/* Background grid effect */}
@@ -27,7 +24,7 @@ export default function Home() {
             {/* Hero Text - Right side */}
             <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
              <div className="inline-block mb-6 px-6 py-3 bg-primary/10 border border-primary/30 rounded-full">
-                <span className="text-base md:text-lg text-primary font-mono font-semibold">April 11-12, 2026</span>
+                <span className="text-base md:text-lg text-primary font-mono font-semibold">April 11-12, 2026 • Starts at 8:00 AM</span>
               </div>
 
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance font-orbitron">

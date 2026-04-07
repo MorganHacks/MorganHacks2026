@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const TARGET_DATE = new Date("2026-04-11T00:00:00")
+const TARGET_DATE = new Date("2026-04-11T08:00:00-04:00")
 
 export function CountdownPortal() {
   const [timeLeft, setTimeLeft] = useState({
@@ -73,7 +73,7 @@ export function CountdownPortal() {
                   <TimeUnit value={timeLeft.minutes} label="Mins" />
                   <TimeUnit value={timeLeft.seconds} label="Secs" />
                 </div>
-                <p className="mt-6 text-xs md:text-sm text-muted-foreground font-mono">April 11, 2026</p>
+                <p className="mt-6 text-xs md:text-sm text-muted-foreground font-mono">April 11, 2026 at 8:00 AM</p>
               </>
             ) : (
               <div className="animate-fade-in">

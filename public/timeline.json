@@ -7,22 +7,22 @@
         {
           "id": 0,
           "title": "Organizers Arrive",
-          "timeStart": "06:00",
+          "timeStart": "6:00 AM",
           "responsibility": "All Teams",
           "type": "general"
         },
         {
           "id": 0.5,
           "title": "Volunteers Arrive",
-          "timeStart": "07:00",
+          "timeStart": "7:00 AM",
           "responsibility": "Logistics / Registration / Operations Team",
           "type": "general"
         },
         {
           "id": 1,
           "title": "Check-in, Breakfast & Networking",
-          "timeStart": "08:00",
-          "timeEnd": "09:45",
+          "timeStart": "8:00 AM",
+          "timeEnd": "9:45 AM",
           "location": "First Floor",
           "responsibility": "Registration & Volunteers",
           "type": "food"
@@ -30,58 +30,61 @@
         {
           "id": 2,
           "title": "Sponsorship Fair",
-          "timeStart": "08:30",
-          "timeEnd": "09:30",
+          "timeStart": "8:30 AM",
+          "timeEnd": "9:30 AM",
           "responsibility": "Sponsors",
           "type": "general"
         },
         {
           "id": 3,
           "title": "Opening Ceremony",
-          "timeStart": "10:00",
-          "timeEnd": "11:50",
+          "timeStart": "10:00 AM",
+          "timeEnd": "11:05 AM",
           "location": "Auditorium 104",
           "type": "highlight",
           "subEvents": [
             {
               "title": "Chief of Staff Address",
-              "time": "10:05 - 10:15"
+              "time": "10:05 AM - 10:15 AM"
             },
             {
-              "title": "Keynote Speaker",
-              "time": "10:15 - 10:30"
+              "title": "Keynote Speech",
+              "time": "10:15 AM - 10:30 AM"
             },
             {
               "title": "Panel Session",
-              "time": "10:30 - 11:05"
-            },
-            {
-              "title": "Hackathon Breakdown & Challenge Statements",
-              "time": "11:05 - 11:50"
+              "time": "10:30 AM - 11:05 AM"
             }
           ]
         },
         {
+          "id": 3.5,
+          "title": "Hackathon Breakdown & Challenge Statements",
+          "timeStart": "12:00 PM",
+          "location": "Auditorium 104",
+          "type": "highlight"
+        },
+        {
           "id": 4,
           "title": "Coding Begins",
-          "timeStart": "12:00",
+          "timeStart": "12:00 PM",
           "location": "Study Rooms",
           "type": "highlight"
         },
         {
           "id": 5,
           "title": "Workshop 1",
-          "timeStart": "12:30",
-          "timeEnd": "13:30",
-          "location": "Room 208",
+          "timeStart": "12:30 PM",
+          "timeEnd": "1:30 PM",
+          "location": "To be Announced",
           "responsibility": "Sponsors",
           "type": "workshop"
         },
         {
           "id": 6,
           "title": "Lunch Served",
-          "timeStart": "13:30",
-          "timeEnd": "15:00",
+          "timeStart": "1:30 PM",
+          "timeEnd": "3:00 PM",
           "location": "First Floor",
           "responsibility": "Logistics",
           "type": "food"
@@ -89,17 +92,17 @@
         {
           "id": 7,
           "title": "Workshop 2",
-          "timeStart": "16:00",
-          "timeEnd": "17:00",
-          "location": "Room 112",
+          "timeStart": "4:00 PM",
+          "timeEnd": "5:00 PM",
+          "location": "To be Announced",
           "responsibility": "Sponsors",
           "type": "workshop"
         },
         {
           "id": 8,
           "title": "Dinner Served",
-          "timeStart": "17:00",
-          "timeEnd": "20:00",
+          "timeStart": "5:00 PM",
+          "timeEnd": "8:00 PM",
           "location": "First Floor",
           "responsibility": "Logistics",
           "type": "food"
@@ -113,8 +116,8 @@
         {
           "id": 10,
           "title": "Breakfast Served",
-          "timeStart": "08:00",
-          "timeEnd": "10:00",
+          "timeStart": "8:00 AM",
+          "timeEnd": "10:00 AM",
           "location": "First Floor",
           "responsibility": "Logistics",
           "type": "food"
@@ -122,7 +125,7 @@
         {
           "id": 11,
           "title": "Pitch Practice",
-          "timeStart": "11:00",
+          "timeStart": "11:00 AM",
           "location": "Study Rooms",
           "responsibility": "Mentors",
           "type": "general"
@@ -130,7 +133,7 @@
         {
           "id": 12,
           "title": "Lunch Served",
-          "timeStart": "12:00",
+          "timeStart": "12:00 PM",
           "location": "First Floor",
           "responsibility": "Logistics & Volunteers",
           "type": "food"
@@ -138,32 +141,32 @@
         {
           "id": 13,
           "title": "Submission Deadline",
-          "timeStart": "12:00",
+          "timeStart": "12:00 PM",
           "location": "Devpost",
           "type": "highlight"
         },
         {
           "id": 14,
           "title": "Round 1 Judging",
-          "timeStart": "13:30",
-          "timeEnd": "15:30",
+          "timeStart": "1:30 PM",
+          "timeEnd": "3:30 PM",
           "location": "Rooms 207, 307, 309",
           "responsibility": "Judges",
           "type": "highlight"
         },
         {
           "id": 15,
-          "title": "Top 6 Teams Announced",
-          "timeStart": "15:45",
-          "timeEnd": "16:00",
+          "title": "Closing Cemeromy & Top 5 Teams Announced",
+          "timeStart": "3:45 PM",
+          "timeEnd": "4:00 PM",
           "location": "Auditorium 104",
           "type": "highlight"
         },
         {
           "id": 16,
           "title": "Final Presentations (Round 2)",
-          "timeStart": "16:05",
-          "timeEnd": "17:00",
+          "timeStart": "4:05 PM",
+          "timeEnd": "5:00 PM",
           "location": "Auditorium 104",
           "responsibility": "Everyone",
           "type": "highlight"
@@ -171,23 +174,23 @@
         {
           "id": 17,
           "title": "Judges Deliberation",
-          "timeStart": "17:00",
-          "timeEnd": "17:10",
+          "timeStart": "5:00 PM",
+          "timeEnd": "5:10 PM",
           "location": "Breakout Room",
           "type": "general"
         },
         {
           "id": 18,
           "title": "Winners Announced",
-          "timeStart": "17:10",
-          "timeEnd": "17:30",
+          "timeStart": "5:10 PM",
+          "timeEnd": "5:30 PM",
           "type": "highlight"
         },
         {
           "id": 19,
           "title": "Clean Up",
-          "timeStart": "16:00",
-          "timeEnd": "18:15",
+          "timeStart": "4:00 PM",
+          "timeEnd": "6:15 PM",
           "type": "general"
         }
       ]

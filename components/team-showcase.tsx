@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import { Linkedin } from "lucide-react"
 
 interface TeamMember {
@@ -27,7 +27,7 @@ export function TeamShowcase() {
   }, [])
 
   return (
-    <section className="py-20 border-t border-primary/20">
+    <section className="bg-gradient-to-b from-background via-card/10 to-background pb-20 pt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

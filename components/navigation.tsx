@@ -1,28 +1,20 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [showRegistrationModal, setShowRegistrationModal] = useState(false)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const handler = () => setShowRegistrationModal(true)
-    window.addEventListener("open-registration-modal", handler as any)
-    return () => window.removeEventListener("open-registration-modal", handler as any)
-  }, [])
 
   const links = [
     { href: "/about", label: "About" },
-    { href: "/tracks", label: "Track Cities" },
+    { href: "/tracks", label: "Tracks" },
     { href: "/sponsors", label: "Sponsors" },
-    { href: "/timeline", label: "Timeline" },
+    { href: "/timeline", label: "Schedule" },
     { href: "/transit", label: "Transit" },
   ]
 
@@ -59,23 +51,9 @@ export function Navigation() {
                 )}
               </Link>
             ))}
-            <Button
-              asChild
-              variant="outline"
-              className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70"
-            >
-              <Link href="https://www.jotform.com/form/253384910720152" target="_blank" rel="noopener noreferrer">
-                Become a Judge
-              </Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border hover:scale-105 transition-transform"
-            >
-              <Link href="https://www.jotform.com/form/251163649282157" target="_blank" rel="noopener noreferrer">
-                Register Now
-              </Link>
-            </Button>
+            <div className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-mono text-primary">
+              Registration Closed
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -106,23 +84,9 @@ export function Navigation() {
                   {link.label}
                 </Link>
               ))}
-              <Button
-                asChild
-                variant="outline"
-                className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/70 w-full"
-              >
-                <Link href="https://www.jotform.com/form/253384910720152" target="_blank" rel="noopener noreferrer">
-                  Become a Judge
-                </Link>
-              </Button>
-              <Button
-                asChild
-                className="bg-primary text-primary-foreground hover:bg-primary/90 neon-border w-full"
-              >
-                <Link href="https://www.jotform.com/form/251163649282157" target="_blank" rel="noopener noreferrer">
-                  Register Now
-                </Link>
-              </Button>
+              <div className="flex w-full items-center justify-center rounded-md border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-mono text-primary">
+                Registration Closed
+              </div>
               {/* MLH Trust Badge - Mobile */}
               <Link 
                 href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" 
@@ -164,8 +128,6 @@ export function Navigation() {
           style={{ width: '100%', height: 'auto' }}
         />
       </a>
-
-      {/* registration modal removed now that registration is live */}
     </nav>
   )
 }
