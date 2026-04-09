@@ -50,7 +50,7 @@ const involvementLinks: InvolvementLink[] = [
   // { label: "Mentor Registration", href: "https://www.jotform.com/form/253297815473164" },
   // { label: "Sponsor Interest Form", href: "https://www.jotform.com/form/253334594024051" },
   // { label: "Judge Registration", href: "https://www.jotform.com/form/253384910720152" },
-  // { label: "Volunteer Registration", href: "https://www.jotform.com/form/253384481261155" },
+  { label: "Volunteer Application", href: "https://www.jotform.com/form/253384481261155" },
   { label: "Bus Routes RSVP Form", href: "https://form.jotform.com/260886109987172" }
 ]
 
