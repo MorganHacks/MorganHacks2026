@@ -16,6 +16,7 @@ export function Navigation() {
     { href: "/sponsors", label: "Sponsors" },
     { href: "/timeline", label: "Schedule" },
     { href: "/transit", label: "Transit" },
+    { href: "/volunteers", label: "Volunteers" },
   ]
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/")
@@ -36,12 +37,12 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors font-mono relative ${
+                className={`relative text-[13px] transition-colors font-mono lg:text-sm ${
                   isActive(link.href) ? "text-primary font-bold" : "text-muted-foreground hover:text-primary"
                 }`}
               >
@@ -51,8 +52,9 @@ export function Navigation() {
                 )}
               </Link>
             ))}
-            <div className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-mono text-primary">
-              Registration Closed
+            <div className="inline-flex items-center rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-[13px] font-mono text-primary lg:px-4 lg:text-sm">
+              <span className="lg:hidden">Reg. Closed</span>
+              <span className="hidden lg:inline">Registration Closed</span>
             </div>
           </div>
 
