@@ -37,11 +37,10 @@ export function CountdownPortal() {
   }, [])
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[500px]">
-      {/* Portal background effect - using radial gradient instead of blur to avoid GPU artifacts */}
+    <div className="relative flex min-h-[320px] flex-col items-center justify-center sm:min-h-[360px] lg:min-h-[360px]">
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div
-          className={`w-[500px] h-[500px] rounded-full transition-all duration-1000 ${
+          className={`h-[320px] w-[320px] rounded-full transition-all duration-1000 sm:h-[380px] sm:w-[380px] ${
             isPortalOpen
               ? "animate-pulse bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,hsl(var(--secondary))_25%,hsl(var(--accent))_50%,transparent_70%)]"
               : "bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.2)_0%,hsl(var(--secondary)/0.2)_25%,transparent_60%)]"
@@ -49,19 +48,16 @@ export function CountdownPortal() {
         />
       </div>
 
-      {/* Portal ring */}
       <div className="relative z-10">
         <div
-          className={`relative w-80 h-80 md:w-96 md:h-96 rounded-full border-4 transition-all duration-500 ${
+          className={`relative h-64 w-64 rounded-full border-4 transition-all duration-500 sm:h-72 sm:w-72 lg:h-80 lg:w-80 ${
             isPortalOpen ? "border-accent animate-spin-slow neon-border" : "border-primary/50 animate-pulse"
           }`}
         >
-          {/* Inner portal rings */}
           <div className="absolute inset-4 rounded-full border-2 border-secondary/30 animate-pulse" />
           <div className="absolute inset-8 rounded-full border border-accent/20" />
 
-          {/* Countdown content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center sm:p-8">
             {!isPortalOpen ? (
               <>
                 <h3 className="text-sm md:text-base text-muted-foreground uppercase tracking-widest mb-4 font-mono">
