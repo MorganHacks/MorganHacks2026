@@ -10,7 +10,6 @@ type TrackDetail = {
 	description: string
 	challenge: string
 	whatGoodLooksLike: string[]
-	prizes: string[]
 	resources: { name: string; description: string; url: string }[]
 }
 
@@ -293,16 +292,7 @@ export function TrackLandingKinetic({ tracks }: TrackLandingKineticProps) {
 										))}
 									</ul>
 								</section>
-								<section className="space-y-4">
-									<h3 className="text-xs uppercase tracking-[0.2em] text-white/50">Prize Pool</h3>
-									<div className="flex flex-col items-center gap-3 border bg-white/5 p-6" style={{ borderColor: `${activeDetail.color}40` }}>
-										{activeDetail.prizes.map((prize) => (
-											<div key={prize} className="text-lg font-semibold text-white/70">
-												{prize}
-											</div>
-										))}
-									</div>
-								</section>
+
 							</div>
 
 							<section className="space-y-4">

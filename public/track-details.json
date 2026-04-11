@@ -10,7 +10,6 @@
       "Realistic to use beyond the hackathon",
       "Thoughtful consideration of inclusivity and accessibility"
     ],
-    "prizes": ["TBA"],
     "resources": [
       {
         "name": "HL7 FHIR API",
@@ -46,7 +45,6 @@
       "Easy to demo and understand quickly",
       "Something users would want to share or come back to"
     ],
-    "prizes": ["TBA"],
     "resources": [
       {
         "name": "Unity Learn",
@@ -82,7 +80,6 @@
       "Realistic use case for students, creators, or small businesses",
       "Clear logic behind how money flows through the system"
     ],
-    "prizes": ["TBA"],
     "resources": [
       {
         "name": "Stripe",
@@ -118,7 +115,6 @@
       "Relevant to real communities, campuses, or everyday life",
       "Simple, clear, and easy to demonstrate impact"
     ],
-    "prizes": ["TBA"],
     "resources": [
       {
         "name": "NOAA Climate Data API",
@@ -154,7 +150,6 @@
       "Interactive, immersive, or experimental design",
       "Clear vision, even if the idea is ambitious"
     ],
-    "prizes": ["TBA"],
     "resources": [
       {
         "name": "Three.js",

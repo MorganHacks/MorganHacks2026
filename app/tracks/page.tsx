@@ -6,7 +6,6 @@ type TrackDetail = {
   description: string
   challenge: string
   whatGoodLooksLike: string[]
-  prizes: string[]
   resources: { name: string; description: string; url: string }[]
 }
 

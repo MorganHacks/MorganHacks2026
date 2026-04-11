@@ -22,7 +22,6 @@ type TrackDetail = {
   description: string
   challenge: string
   whatGoodLooksLike: string[]
-  prizes: string[]
   resources: { name: string; description: string; url: string }[]
 }
 
@@ -164,7 +163,6 @@ export function InteractiveCityMap() {
             description: "Details coming soon.",
             challenge: "Challenge details will be announced soon.",
             whatGoodLooksLike: ["Success metrics will be announced soon."],
-            prizes: ["Prizes: TBA"],
             resources: [],
           }
         : null
@@ -407,16 +405,7 @@ export function InteractiveCityMap() {
                   ))}
                 </ul>
               </div>
-              <div>
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground mb-2">Prizes</p>
-                <ul className="space-y-1">
-                  {selectedTrack.prizes.slice(0, 3).map((prize, i) => (
-                    <li key={i} className="text-sm text-foreground font-mono">
-                      {prize}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
             </div>
 
             <div className="mt-6">
