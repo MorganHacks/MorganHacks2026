@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Rocket } from "lucide-react"
 
 const TARGET_DATE = new Date("2026-04-11T08:00:00-04:00")
 
@@ -40,18 +41,20 @@ export function CountdownPortal() {
     <div className="relative flex min-h-[320px] flex-col items-center justify-center sm:min-h-[360px] lg:min-h-[360px]">
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <div
-          className={`h-[320px] w-[320px] rounded-full transition-all duration-1000 sm:h-[380px] sm:w-[380px] ${
+          className={`rounded-full transition-all duration-1000 ${
             isPortalOpen
-              ? "animate-pulse bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,hsl(var(--secondary))_25%,hsl(var(--accent))_50%,transparent_70%)]"
-              : "bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.2)_0%,hsl(var(--secondary)/0.2)_25%,transparent_60%)]"
+              ? "h-[340px] w-[340px] animate-pulse bg-[radial-gradient(circle_at_center,hsl(var(--primary))_0%,hsl(var(--secondary))_25%,hsl(var(--accent))_50%,transparent_70%)] sm:h-[420px] sm:w-[420px]"
+              : "h-[320px] w-[320px] bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.2)_0%,hsl(var(--secondary)/0.2)_25%,transparent_60%)] sm:h-[380px] sm:w-[380px]"
           }`}
         />
       </div>
 
       <div className="relative z-10">
         <div
-          className={`relative h-64 w-64 rounded-full border-4 transition-all duration-500 sm:h-72 sm:w-72 lg:h-80 lg:w-80 ${
-            isPortalOpen ? "border-accent animate-spin-slow neon-border" : "border-primary/50 animate-pulse"
+          className={`relative rounded-full border-4 transition-all duration-500 ${
+            isPortalOpen
+              ? "h-72 w-72 border-accent animate-spin-slow neon-border sm:h-80 sm:w-80 lg:h-[22rem] lg:w-[22rem]"
+              : "h-64 w-64 border-primary/50 animate-pulse sm:h-72 sm:w-72 lg:h-80 lg:w-80"
           }`}
         >
           <div className="absolute inset-4 rounded-full border-2 border-secondary/30 animate-pulse" />
@@ -72,12 +75,21 @@ export function CountdownPortal() {
                 <p className="mt-6 text-xs md:text-sm text-muted-foreground font-mono">April 11, 2026 at 8:00 AM</p>
               </>
             ) : (
-              <div className="animate-fade-in">
-                <div className="text-6xl md:text-8xl mb-4 neon-glow-cyan">🚀</div>
-                <h3 className="text-2xl md:text-3xl font-bold neon-glow-blue font-orbitron">
+              <div className="flex flex-col items-center text-center animate-fade-in">
+                <div
+                  className="mb-5 flex h-24 w-24 items-center justify-center rounded-full border border-primary/35 bg-primary/10 animate-float sm:h-28 sm:w-28 md:h-32 md:w-32"
+                  style={{
+                    boxShadow: "0 0 28px hsl(var(--primary) / 0.35), inset 0 0 18px hsl(var(--primary) / 0.12)",
+                  }}
+                >
+                  <Rocket className="h-12 w-12 text-primary sm:h-16 sm:w-16 md:h-20 md:w-20" strokeWidth={1.8} />
+                </div>
+                <h3 className="text-2xl md:text-4xl font-bold neon-glow-blue font-orbitron">
                   PORTAL OPEN
                 </h3>
-                <p className="mt-4 text-sm text-accent">MorganHacks has begun!</p>
+                <p className="mt-3 text-xs font-mono uppercase tracking-[0.25em] text-accent/90 md:text-sm">
+                  MorganHacks has begun!
+                </p>
               </div>
             )}
           </div>

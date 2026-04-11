@@ -2,7 +2,9 @@
 
 import Link from "next/link"
 import { useMemo, useState } from "react"
-import { Banknote, Gamepad2, Heart, Leaf, Sparkles } from "lucide-react"
+import { Banknote, ExternalLink, FileText, Gamepad2, Heart, Leaf, Sparkles } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
 
 type TrackDetail = {
 	id: string
@@ -54,6 +56,9 @@ const trackMap = [
 		legend: "Future tech",
 	},
 ]
+
+const EXTRA_CHALLENGE_STATEMENTS_URL =
+	"https://docs.google.com/document/d/1SovNOVzxPaan58nxvCJIt-VX49Rf-uU3/edit?usp=sharing&ouid=114078902189188144163&rtpof=true&sd=true"
 
 function createTrackPositions() {
 	const minDistance = 16
@@ -156,6 +161,35 @@ export function TrackLandingKinetic({ tracks }: TrackLandingKineticProps) {
 					<p className="mt-3 text-base text-white/70 md:text-lg">
 						Choose a mission track and explore the challenges, resources, and prizes.
 					</p>
+					<div className="mt-6 rounded-2xl border border-accent/20 bg-white/5 p-5 backdrop-blur-xl">
+						<div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+							<div className="space-y-2">
+								<div className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-accent/80">
+									<FileText className="h-3.5 w-3.5" />
+									<span>Challenge Statements</span>
+								</div>
+								<h2 className="text-lg font-semibold text-white md:text-xl">Two extra challenges outside the five tracks</h2>
+								<p className="text-sm text-white/70">
+									These are separate challenge statements, not additional tracks. Open the Google Doc for the full prompts and requirements.
+								</p>
+							</div>
+							<Button
+								asChild
+								variant="outline"
+								size="lg"
+								className="w-full shrink-0 border-accent/35 bg-accent/10 text-accent hover:bg-accent/15 hover:text-accent md:w-auto"
+							>
+								<Link
+									href={EXTRA_CHALLENGE_STATEMENTS_URL}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Open Challenge Statements
+									<ExternalLink className="h-4 w-4" />
+								</Link>
+							</Button>
+						</div>
+					</div>
 				</div>
 
 				<div className="relative mt-12 min-h-[520px] flex-1">
