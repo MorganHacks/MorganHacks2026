@@ -118,7 +118,7 @@ export function HomePrizeShowcase() {
         <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 id="home-prizes-heading" className="text-3xl font-bold font-orbitron sm:text-4xl lg:text-[3.25rem]">
-              <span className="neon-glow-cyan">Prize</span>
+              <span className="neon-glow-cyan">Prizes</span>
             </h2>
           </div>
           <div className="inline-flex w-fit items-center rounded-full border border-primary/15 bg-background/45 px-4 py-2 text-[11px] font-mono uppercase tracking-[0.24em] text-muted-foreground backdrop-blur-sm">
