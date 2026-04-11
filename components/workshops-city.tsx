@@ -19,7 +19,7 @@ const workshops = [
     company: "Google AI",
     time: "Saturday, 1:00 PM",
     duration: "90 minutes",
-    location: "AI District - Room 301",
+    location: "Room 112",
     capacity: "50 hackers",
     level: "Beginner",
     description:
