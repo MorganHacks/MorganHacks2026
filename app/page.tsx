@@ -62,10 +62,9 @@ export default function Home() {
 
       <section className="py-16 px-4 border-t border-primary/20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <StatCard icon={<Users className="w-8 h-8" />} value="200+" label="Hackers Expected" color="primary" />
             <StatCard icon={<Zap className="w-8 h-8" />} value="5" label="Challenge Districts" color="secondary" />
-            <StatCard icon={<Trophy className="w-8 h-8" />} value="$12.5k" label="Cash Awards" color="accent" />
           </div>
         </div>
       </section>
