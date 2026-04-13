@@ -84,11 +84,11 @@ export function CountdownPortal() {
                 >
                   <Rocket className="h-12 w-12 text-primary sm:h-16 sm:w-16 md:h-20 md:w-20" strokeWidth={1.8} />
                 </div>
-                <h3 className="text-2xl md:text-4xl font-bold neon-glow-blue font-orbitron">
-                  PORTAL OPEN
+                <h3 className="text-2xl md:text-4xl font-bold neon-glow-pink font-orbitron">
+                  PORTAL CLOSED
                 </h3>
                 <p className="mt-3 text-xs font-mono uppercase tracking-[0.25em] text-accent/90 md:text-sm">
-                  MorganHacks has begun!
+                  Event has ended
                 </p>
               </div>
             )}
