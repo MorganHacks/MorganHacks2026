@@ -22,6 +22,9 @@ export default function Home() {
             <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
               <div className="mb-4 inline-block rounded-full border border-primary/30 bg-primary/10 px-5 py-2.5">
                 <span className="text-base md:text-lg text-primary font-mono font-semibold">April 11-12, 2026 • Starts at 8:00 AM</span>
+                <span className="ml-3 inline-block rounded-full bg-accent/20 border border-accent/40 px-3 py-1 text-xs uppercase tracking-wider text-accent">
+                  Portal Closed
+                </span>
               </div>
 
               <h1 className="mb-4 text-balance font-orbitron text-4xl font-bold md:text-5xl lg:text-6xl">
